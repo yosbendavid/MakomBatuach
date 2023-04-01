@@ -1,0 +1,130 @@
+.register-boxs-div{
+  text-align: right;
+  direction: rtl;
+  padding-right: 45%;
+}
+
+.register-boxs-div .back-from-register{
+  padding-top: 15px;
+  padding-right: 300px;
+  height: 25px;
+}
+
+.register-boxs-div .have-account-p{
+  font-size: 16px;
+  margin-top: 25px;
+}
+.register-boxs-div .have-account-p .connect-page{
+  font-size: 16px;
+  color: blue;
+}
+.register-boxs-div .register-submit-btn{
+  text-align: center;
+  color: white;
+  background-color: rgb(0, 194, 0);
+  width: 325px;
+  height: 50px;
+  border: 0;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.register-boxs-div .register-title-div .title-first-row{
+  padding-left: 250px;
+  font-size: 28px;
+  color: rgb(0, 0, 118);
+  margin: 0px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.register-boxs-div .register-title-div .title-second-row{
+  font-size: 44px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(0, 0, 118);
+  margin: 0;
+  text-align: right;
+  padding-left: 175px;
+}
+.register-boxs-div .register-title-div{
+  margin: 0px 0 10px 0;
+  direction: rtl;
+}
+.register-boxs-div .text-box-item{
+  text-align: right;
+}
+.register-boxs-div .select-box-item {
+  direction: rtl;
+  text-align: right;
+}
+
+.register-boxs-div .text-box-item .text-box-title,
+.register-boxs-div .select-box-item .select-box-title {
+  font-size: 22px;
+  color: rgb(0, 0, 118);
+  margin-bottom: 5px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.register-boxs-div .text-box-item label {
+  text-align: right;
+}
+
+.register-boxs-div .text-box-item input,
+.register-boxs-div .select-box-item select{
+  width: 300px;
+  height: 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(210, 210, 210, 0.608);
+  text-align: right;
+  padding: 0px 10px;
+  font-size: 16px;
+  color: rgb(0, 0, 118);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.register-boxs-div .select-box-item select{
+  width: 325px;
+  height: 45px;
+  font-size: 16px ;
+}
+.register-boxs-div .text-box-item input[type=date]{
+  font-size: 16px ;
+}
+.register-boxs-div .text-box-item input::placeholder{
+  font-size: 16px ;
+  color: rgba(128, 128, 128, 0.79);
+}
+@media screen and (max-width: 1500px) {
+  .register-boxs-div{
+    padding-right: 40%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .register-boxs-div{
+    padding-right: 35%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .register-boxs-div{
+    padding-right: 30%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .register-boxs-div{
+    padding-right: 20%;
+  }
+}
+@media screen and (max-width: 475px) {
+  .register-boxs-div{
+    padding-right: 10%;
+  }
+}
+@media screen and (max-width: 380px) {
+  .register-boxs-div{
+    padding-right: 5%;
+  }
+}
