@@ -19,13 +19,12 @@ export const textBoxesArray = [
     {
       id: 'tb4',
       title: 'תאריך לידה',
-      placeHolder: 'XX-XX-XXXX',
       type: 'date',
     },
     {
       id: 'tb5',
       title: 'סיסמא',
       placeHolder: 'בחר סיסמא (מינימום 8 תווים)',
-      type: 'text',
+      type: 'password',
     }
   ];

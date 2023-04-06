@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function TextBox(props){
+const TextBox = (props) => {
     const [text, setText] = useState("");
     
     function handleChange(event) {
@@ -19,7 +19,7 @@ function TextBox(props){
               type={props.type} 
               id={`my-input-${props.id}`} 
               placeholder={`${props.placeHolder}`} 
-              value={text} 
+              minLength={props.minlength ? props.minlength : ''}
               onChange={handleChange} 
             />
         </div>

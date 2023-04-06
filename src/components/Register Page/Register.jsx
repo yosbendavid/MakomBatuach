@@ -7,7 +7,7 @@ import {textBoxesArray} from "./Data/textBoxesArray";
 import backArrow from "../../Photos/backArrow.svg";
 import '../../CSS/register.css';
 
-function RegisterBoxs(){
+const RegisterBoxs = () => {
 
     const [name, setName] = useState("");
     const [email, seteEMail] = useState("");
@@ -15,26 +15,25 @@ function RegisterBoxs(){
     const [birthDate, setBirthDate] = useState("");
     const [password, setPassword] = useState("");
     
-    function handleNameChange(value) {
+    const handleNameChange = (value) => {
         setName(value);
     }
 
-    function handleEmailChange(value) {
+    const handleEmailChange = (value) => {
         seteEMail(value);
     }
 
-    function handleGenderChange(value) {
+    const handleGenderChange = (value) => {
         setGender(value);
     }
 
-    function handleBirthDateChange(value) {
+    const handleBirthDateChange = (value) => {
         setBirthDate(value);
     }
 
-    function handlePasswordChange(value) {
+    const handlePasswordChange = (value) => {
         setPassword(value);
     }
-
     return(
         <div className="register-boxs-div">
             <img className="back-from-register" src={backArrow} alt="Back arrow"/>
@@ -63,7 +62,6 @@ function RegisterBoxs(){
                 <TextBox
                 id={textBoxesArray[3].id}
                 title={textBoxesArray[3].title}
-                placeHolder={textBoxesArray[3].placeHolder}
                 type={textBoxesArray[3].type}
                 onChange={handleBirthDateChange}
                 />

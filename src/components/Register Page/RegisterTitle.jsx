@@ -1,4 +1,4 @@
-function RegisterTitle(){
+const RegisterTitle = () => {
     return(
         <div className='register-title-div'>
             <p className='title-first-row'>שלום,</p>
