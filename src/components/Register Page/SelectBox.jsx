@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function SelectBox(props) {
   const [options, setOptions] = useState([]);
+  const [selectedValue, setSelectedValue] = useState('');
 
   useEffect(() => {
     const newOptions = [];
@@ -13,11 +14,18 @@ function SelectBox(props) {
     setOptions(newOptions);
   }, [props.values]);
 
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    if (props.onChange) {
+      props.onChange(event.target.value);
+    }
+  };
+
   return (
     <div className='select-box-item'>
-      <label className="select-box-title">{props.title}</label>
+      <label className="select-box-title">{props.title}:</label>
       <br />
-      <select id={`${props.id}`}>
+      <select id={`${props.id}`} value={selectedValue} onChange={handleChange}>
         <option value="" disabled selected>{props.placeHolder}</option>
         {options}
       </select>
