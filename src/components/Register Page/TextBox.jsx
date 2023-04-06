@@ -19,7 +19,6 @@ const TextBox = (props) => {
               type={props.type} 
               id={`my-input-${props.id}`} 
               placeholder={`${props.placeHolder}`} 
-              minLength={props.minlength ? props.minlength : ''}
               onChange={handleChange} 
             />
         </div>
