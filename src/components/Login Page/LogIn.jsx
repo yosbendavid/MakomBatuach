@@ -9,10 +9,12 @@ const Login = () => {
 
     const [email, seteEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
+    // הפונקציה שאני מעביר כדי לתפוס את הערך של אימייל
     const handleEmailChange = (value) => {
         seteEmail(value);
     }
+    // הפונקציה שאני מעביר כדי לתפוס את הערך של סיסמה
     const handlePasswordChange = (value) => {
         setPassword(value);
     }
@@ -30,8 +32,10 @@ const Login = () => {
     }
     return(
         <div className="login-container-div">
+            {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
             <LoginTopPart/>
             <div className='login-input-div'>
+                {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
                 <TextBox
                     id={inputBoxArrayLogin[0].id}
                     title={inputBoxArrayLogin[0].title}
@@ -46,14 +50,19 @@ const Login = () => {
                     type={inputBoxArrayLogin[1].type}
                     onChange={handlePasswordChange}
                 />
+
+                {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
                 <div className='forgot-password-div'>
                     <p className='forgot-password-p'>שכחת סיסמה?</p>
                 </div>
+
+                {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
                 <div id='wrong-password-or-email'>
                     <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
                 </div>
             </div>
 
+            {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
             <div className='login-btn-div'>
                 <ButtonCard className="register-submit-btn" onClick={loginInAccount}>התחבר</ButtonCard>
                 <div className='new-account-div'>

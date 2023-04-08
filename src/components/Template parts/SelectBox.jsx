@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SelectOptionsCard from './SelectOptionsCard';
-
+//קומפוננטה שמיצרת קופסאות סלקסט רק צריך להעביר ערכים אליה
 const SelectBox = (props) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedValue] = useState('');
@@ -19,7 +19,7 @@ const SelectBox = (props) => {
     setSelectedValue(event.target.value);
     props.onChange(event.target.value);
   };
-
+  //בגלל הגבלות של סי אס אס השתמשתי ברעיון כדי שהנראות תיהיה אחידה בצבע
   const selectClassName = selectedOption !== '' ? 'select-box-selected' : '';
 
   return (

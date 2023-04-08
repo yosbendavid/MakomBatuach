@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import eyeForPassword from '../../Photos/eyeForPassword.svg';
 import eyeForPasswordOff from '../../Photos/eyeForPasswordOff.svg';
 import InputCard from './InputCard';
-
-
+//זה מייצרת את האינפוט טקסט צריך להעביר ערכים נוח ומונע שיכפול, מתאים גם לסיסמה גם טקסט וגם מייל
 const TextBox = (props) => {
   const [text, setText] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
