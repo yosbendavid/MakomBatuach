@@ -1,0 +1,36 @@
+.select-box-item {
+    direction: rtl;
+    text-align: right;
+}
+.select-box-item .select-box-title {
+    font-size: 22px;
+    color: rgb(0, 0, 118);
+    text-align: right;
+    padding-right: 10px;
+}
+.select-box-item select{
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(210, 210, 210, 0.608);
+    text-align: right;
+    padding: 0px 10px;
+    font-size: 18px;
+    color: rgba(128, 128, 128, 0.79);
+    font-family: 'Open-Sans', sans-serif;
+}
+.select-box-item .select-box-selected {
+    color: rgb(0, 0, 118);
+}
+select option[disabled]:first-child {
+    color: rgba(128, 128, 128, 0.79);
+}
+  
+select option:not([disabled]) {
+    color: rgb(0, 0, 118);
+}
+.select-box-item select{
+    width: 322px;
+    height: 43px;
+    font-size: 18px ;
+}

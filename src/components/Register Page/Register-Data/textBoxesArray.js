@@ -9,7 +9,7 @@ export const textBoxesArray = [
       id: 'tb2',
       title: 'אימייל',
       placeHolder: 'הכנס אימייל כאן',
-      type: 'text',
+      type: 'email',
     },
     {
       id: 'tb3',
@@ -19,12 +19,13 @@ export const textBoxesArray = [
     {
       id: 'tb4',
       title: 'תאריך לידה',
+      placeHolder: 'dd/mm/yyyy',
       type: 'date',
     },
     {
       id: 'tb5',
-      title: 'סיסמא',
-      placeHolder: 'בחר סיסמא (מינימום 8 תווים)',
+      title: 'סיסמה',
+      placeHolder: 'בחר סיסמה (מינימום 8 תווים)',
       type: 'password',
     }
   ];

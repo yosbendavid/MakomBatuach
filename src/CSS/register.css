@@ -1,37 +1,22 @@
-.register-boxs-div{
-  text-align: right;
+.register-boxs-div {
+  text-align: center;
   direction: rtl;
-  padding-right: 42%;
+  margin-top: 50px;
 }
 
-.register-boxs-div .back-from-register{
-  margin-top: 20px;
+.register-boxs-div .back-from-register {
   padding-right: 300px;
   height: 25px;
 }
-
-.register-boxs-div .have-account-p{
-  font-size: 16px;
-  margin-top: 25px;
+.register-input-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.register-boxs-div .have-account-p .connect-page{
-  font-size: 16px;
-  color: blue;
+.register-boxs-div .register-title-div{
+ margin: 15px 0 30px 0;
 }
-.register-boxs-div .register-submit-btn{
-  padding: 15px;
-  text-align: center;
-  color: white;
-  background-color: rgb(0, 194, 0);
-  width: 300px;
-  border: 0;
-  font-size: 22px;
-  font-weight: 700;
-  font-family: 'Open-Sans', sans-serif;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.register-boxs-div .register-title-div .title-first-row{
+.register-boxs-div .register-input-div .register-title-div .title-first-row {
   padding-left: 250px;
   font-size: 28px;
   color: rgb(0, 0, 118);
@@ -39,7 +24,7 @@
   text-align: right;
   font-family: 'Open-Sans', sans-serif;
 }
-.register-boxs-div .register-title-div .title-second-row{
+.register-boxs-div .register-input-div .register-title-div .title-second-row {
   font-size: 44px;
   font-weight: 700;
   font-family: 'Open-Sans', sans-serif;
@@ -48,125 +33,25 @@
   text-align: right;
   padding-left: 175px;
 }
-.register-boxs-div .register-title-div{
-  margin: 0px 0 10px 0;
-  direction: rtl;
-}
-.register-boxs-div .text-box-item{
-  text-align: right;
-}
-.register-boxs-div .select-box-item {
-  direction: rtl;
-  text-align: right;
+.register-btn-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
 }
 
-.register-boxs-div .text-box-item .text-box-title,
-.register-boxs-div .select-box-item .select-box-title {
-  font-size: 22px;
-  color: rgb(0, 0, 118);
-  margin-bottom: 5px;
-  text-align: right;
-  padding-right: 10px;
-}
-
-.register-boxs-div .text-box-item label {
-  text-align: right;
-}
-
-.register-boxs-div .text-box-item input,
-.register-boxs-div .select-box-item select{
+.have-account-div {
+  display: flex;
   width: 300px;
-  height: 40px;
-  border-radius: 15px;
-  border: 1px solid rgba(210, 210, 210, 0.608);
-  text-align: right;
-  padding: 0px 10px;
-  font-size: 16px;
-  color: rgb(0, 0, 118);
+}
+.register-boxs-div .have-account-p {
+  font-size: 18px;
+  margin: 0;
   font-family: 'Open-Sans', sans-serif;
 }
 
-.register-boxs-div .select-box-item select{
-  width: 325px;
-  height: 45px;
-  font-size: 16px ;
-  color: rgba(128, 128, 128, 0.79);
+.register-boxs-div .have-account-p .connect-page {
+  font-size: 18px;
+  color: blue;
 }
-.register-boxs-div .text-box-item input::placeholder{
-  font-size: 16px ;
-  color: rgba(128, 128, 128, 0.79);
-}
-.register-boxs-div .select-box-item select:focus{
-  color: rgb(0, 0, 118);
-}
-.register-boxs-div .text-box-item input[type="date"]{
-  color: rgba(128, 128, 128, 0.79);
-}
-.register-boxs-div .text-box-item input[type="date"]:focus{
-  color: rgb(0, 0, 118);
-}
-@media screen and (max-width: 1800px) {
-  .register-boxs-div{
-    padding-right: 41%;
-  }
-}
-@media screen and (max-width: 1700px) {
-  .register-boxs-div{
-    padding-right: 40%;
-  }
-}
-@media screen and (max-width: 1600px) {
-  .register-boxs-div{
-    padding-right: 39%;
-  }
-}
-@media screen and (max-width: 1500px) {
-  .register-boxs-div{
-    padding-right: 38%;
-  }
-}
-@media screen and (max-width: 1300px) {
-  .register-boxs-div{
-    padding-right: 36%;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .register-boxs-div{
-    padding-right: 35%;
-  }
-}
-@media screen and (max-width: 1100px) {
-  .register-boxs-div{
-    padding-right: 34%;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .register-boxs-div{
-    padding-right: 33%;
-  }
-}
-@media screen and (max-width: 900px) {
-  .register-boxs-div{
-    padding-right: 30%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .register-boxs-div{
-    padding-right: 27%;
-  }
-}
-@media screen and (max-width: 700px) {
-  .register-boxs-div{
-    padding-right: 20%;
-  }
-}
-@media screen and (max-width: 475px) {
-  .register-boxs-div{
-    padding-right: 10%;
-  }
-}
-@media screen and (max-width: 380px) {
-  .register-boxs-div{
-    padding-right: 5%;
-  }
-}
+

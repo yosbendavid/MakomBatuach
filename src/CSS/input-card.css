@@ -1,0 +1,45 @@
+  .text-box-item{
+    text-align: right;
+    direction: rtl;
+    margin: 5px 0;
+  }
+  .text-box-item .text-box-title{
+    font-size: 22px;
+    color: rgb(0, 0, 118);
+    text-align: right;
+    padding-right: 10px;
+  }
+  .text-box-item input{
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(210, 210, 210, 0.608);
+    text-align: right;
+    padding: 0px 10px;
+    font-size: 18px;
+    color: rgba(128, 128, 128, 0.79);
+    font-family: 'Open-Sans', sans-serif;
+  }
+  .text-box-item input::placeholder{
+    font-size: 18px ;
+    color: rgba(128, 128, 128, 0.79);
+  }
+  .text-box-item .input-box-selected{
+    color: rgb(0, 0, 118);
+  }
+  /* .text-box-item input[type="date"]{
+    color: rgba(128, 128, 128, 0.79);
+  }
+  .text-box-item input[type="date"]:focus{
+    color: rgb(0, 0, 118);
+  } */
+  .input-wrapper input[type="password"] {
+    position: relative;
+  }
+  .password-toggle {
+    transform: translate(150%, 40%);
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+  }
