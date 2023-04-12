@@ -19,7 +19,8 @@ const Login = () => {
         setPassword(value);
     }
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
-    const loginInAccount = () => {
+    const loginInAccount = (event) => {
+        event.preventDefault();
         if (password == "1" && email == "1") {
             console.log("Great");
             const inputElement = document.getElementById('wrong-password-or-email');
@@ -34,41 +35,45 @@ const Login = () => {
         <div className="login-container-div">
             {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
             <LoginTopPart/>
-            <div className='login-input-div'>
-                {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
-                <TextBox
-                    id={inputBoxArrayLogin[0].id}
-                    title={inputBoxArrayLogin[0].title}
-                    placeHolder={inputBoxArrayLogin[0].placeHolder}
-                    type={inputBoxArrayLogin[0].type}
-                    onChange={handleEmailChange}
-                />
-                <TextBox
-                    id={inputBoxArrayLogin[1].id}
-                    title={inputBoxArrayLogin[1].title}
-                    placeHolder={inputBoxArrayLogin[1].placeHolder}
-                    type={inputBoxArrayLogin[1].type}
-                    onChange={handlePasswordChange}
-                />
+            <form onSubmit={loginInAccount}>
+                <div className='login-input-div'>
+                    {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
+                    <TextBox
+                        id={inputBoxArrayLogin[0].id}
+                        title={inputBoxArrayLogin[0].title}
+                        placeHolder={inputBoxArrayLogin[0].placeHolder}
+                        type={inputBoxArrayLogin[0].type}
+                        autoComplete= {inputBoxArrayLogin[0].autoComplete}
+                        onChange={handleEmailChange}
+                    />
+                    <TextBox
+                        id={inputBoxArrayLogin[1].id}
+                        title={inputBoxArrayLogin[1].title}
+                        placeHolder={inputBoxArrayLogin[1].placeHolder}
+                        type={inputBoxArrayLogin[1].type}
+                        autoComplete= {inputBoxArrayLogin[1].autoComplete}
+                        onChange={handlePasswordChange}
+                    />
 
-                {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
-                <div className='forgot-password-div'>
-                    <p className='forgot-password-p'>שכחת סיסמה?</p>
+                    {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
+                    <div className='forgot-password-div'>
+                        <p className='forgot-password-p'>שכחת סיסמה?</p>
+                    </div>
+
+                    {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
+                    <div id='wrong-password-or-email'>
+                        <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
+                    </div>
                 </div>
 
-                {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
-                <div id='wrong-password-or-email'>
-                    <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
+                {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
+                <div className='login-btn-div'>
+                    <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
+                    <div className='new-account-div'>
+                        <p className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
+                    </div>
                 </div>
-            </div>
-
-            {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
-            <div className='login-btn-div'>
-                <ButtonCard className="register-submit-btn" onClick={loginInAccount}>התחבר</ButtonCard>
-                <div className='new-account-div'>
-                    <p className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
-                </div>
-            </div>
+            </form>
         </div>
     );
 }

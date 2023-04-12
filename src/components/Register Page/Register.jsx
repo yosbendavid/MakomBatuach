@@ -37,12 +37,10 @@ const RegisterBoxs = () => {
     }
 
     //לוחץ על צור משתמש זה הפונקציה עם הולידציה בנוגע למידע לעדכן לולידציה רלוונטית
-    const registerAcount = () => {
+    const registerAcount = (event) => {
+        event.preventDefault();
         const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        const today = new Date();
-        const minDate = new Date('1920-01-01');
-        const selectedDate = new Date(birthDate);
-        if (password.length > 8 && name.length > 3 && emailRegex.test(email) && selectedDate <= today && selectedDate >= minDate) {
+        if (password.length > 8 && name.length > 3 && emailRegex.test(email)) {
             console.log("Great Success!")
         } else {
             console.log("NO!")
@@ -52,6 +50,7 @@ const RegisterBoxs = () => {
     return(
         <div className="register-boxs-div">
             <img className="back-from-register" src={backArrow} alt="Back arrow"/>
+            <form onSubmit={registerAcount}>
                 <div className='register-input-div'>
                     <RegisterTitle />
                     <TextBox
@@ -59,6 +58,7 @@ const RegisterBoxs = () => {
                         title={textBoxesArray[0].title}
                         placeHolder={textBoxesArray[0].placeHolder}
                         type={textBoxesArray[0].type}
+                        autoComplete= {textBoxesArray[0].autoComplete}
                         onChange={handleNameChange}
                     />
                     <TextBox
@@ -66,6 +66,7 @@ const RegisterBoxs = () => {
                         title={textBoxesArray[1].title}
                         placeHolder={textBoxesArray[1].placeHolder}
                         type={textBoxesArray[1].type}
+                        autoComplete= {textBoxesArray[0].autoComplete}
                         onChange={handleEmailChange}
                     />
                     <SelectBox
@@ -76,26 +77,29 @@ const RegisterBoxs = () => {
                         onChange={handleGenderChange}
                     />
                     <TextBox
+                        id={textBoxesArray[2].id}
+                        title={textBoxesArray[2].title}
+                        placeHolder={textBoxesArray[2].placeHolder}
+                        type={textBoxesArray[2].type}
+                        autoComplete= {textBoxesArray[2].autoComplete}
+                        onChange={handleBirthDateChange}
+                    />
+                    <TextBox
                         id={textBoxesArray[3].id}
                         title={textBoxesArray[3].title}
                         placeHolder={textBoxesArray[3].placeHolder}
                         type={textBoxesArray[3].type}
-                        onChange={handleBirthDateChange}
-                    />
-                    <TextBox
-                        id={textBoxesArray[4].id}
-                        title={textBoxesArray[4].title}
-                        placeHolder={textBoxesArray[4].placeHolder}
-                        type={textBoxesArray[4].type}
+                        autoComplete= {textBoxesArray[3].autoComplete}
                         onChange={handlePasswordChange}
                     />
                 </div>
                 <div className='register-btn-div'>
-                    <ButtonCard className="register-submit-btn" onClick={registerAcount}>צור משתמש</ButtonCard>
+                    <ButtonCard type="submit" className="register-submit-btn">צור משתמש</ButtonCard>
                     <div className='have-account-div'>
                         <p className="have-account-p">יש לך כבר משתמש? <span className="connect-page">התחבר</span></p>
                     </div>
                 </div>
+            </form>
         </div>
     );
 }

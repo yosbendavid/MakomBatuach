@@ -31,6 +31,7 @@ const TextBox = (props) => {
           id={`my-input-${props.id}`}
           placeholder={props.placeHolder}
           onChange={handleChange}
+          autoComplete= {props.autoComplete}
           className={className}
         />
         {props.type === "password" && (
