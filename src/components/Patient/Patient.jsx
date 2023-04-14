@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PHomePage from "./PHomePage";
-import "../../CSS/TherapistHomePage.css";
+import "../../CSS/Patient.css";
 import BottomBar from "../Template parts/BottomBar"
 
 const Patient = () => {
     return(
-        <div>
-            
+        <div className="patient-container-div">
+
             <BottomBar />
         </div>
     );

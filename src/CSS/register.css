@@ -2,8 +2,6 @@
   text-align: center;
   direction: rtl;
   margin-top: 30px;
-  padding-bottom: 70px; /* same height as bottom bar */
-  overflow-y: auto;
 }
 
 .register-boxs-div .back-from-register {

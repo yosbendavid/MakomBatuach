@@ -1,7 +1,5 @@
 .login-container-div{
     direction: rtl;
-    padding-bottom: 70px; /* same height as bottom bar */
-    overflow-y: auto;
 }
 .image-container{
     display: flex;
