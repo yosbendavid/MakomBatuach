@@ -1,0 +1,63 @@
+.bottom-bar-container{
+    display: inline-flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: -1px;
+    
+}
+.bottom-bar-div{
+    display: inline-flex;
+    position: fixed;
+    bottom: -1px;
+    width: 100%;
+    max-width: 450px; /*אם נרצה שזה ישאר בגודל מסויים ולא יגדל*/
+    align-items: center;
+    height: 60px;
+    background-color: #f5f5f5;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.15);
+    justify-content: space-around;
+}
+.user-icon {
+    width: 25px;
+    height: 29px;
+}
+.calendar-icon{
+    width: 24px;
+    height: 30px;
+}
+.home-icon{
+    width: 28px;
+    height: 29px;
+}
+.home-icon-div,
+.calendar-icon-div,
+.user-icon-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.3%;
+    height: 100%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/*אם נרצה שזה ישנה צבעים בלחיצה
+/* .home-icon-div:hover,
+.calendar-icon-div:hover,
+.user-icon-div:hover {
+    background-color: #e6e6e6;
+} */
+/* 
+.home-icon-div.active,
+.calendar-icon-div.active,
+.user-icon-div.active {
+     background-color: #d9d9d9;
+}
+
+.home-icon-div img,
+.calendar-icon-div img,
+.user-icon-div img {
+  filter: invert(24%) sepia(96%) saturate(7093%) hue-rotate(353deg) brightness(96%) contrast(93%);
+} */

@@ -21,15 +21,13 @@ const Login = () => {
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
     const loginInAccount = (event) => {
         event.preventDefault();
-        if (password == "1" && email == "1") {
-            console.log("Great");
-            const inputElement = document.getElementById('wrong-password-or-email');
-            inputElement.style.display = 'none';
-        } else {
-            console.log("NO!");
-            const inputElement = document.getElementById('wrong-password-or-email');
-            inputElement.style.display = 'block';
-        }
+        const loginData = {
+            enteredEmail: email,
+            enteredPassword:password
+        };
+        console.log(loginData);
+        seteEmail('');
+        setPassword('');
     }
     return(
         <div className="login-container-div">
@@ -44,6 +42,7 @@ const Login = () => {
                         placeHolder={inputBoxArrayLogin[0].placeHolder}
                         type={inputBoxArrayLogin[0].type}
                         autoComplete= {inputBoxArrayLogin[0].autoComplete}
+                        value={email}
                         onChange={handleEmailChange}
                     />
                     <TextBox
@@ -52,6 +51,7 @@ const Login = () => {
                         placeHolder={inputBoxArrayLogin[1].placeHolder}
                         type={inputBoxArrayLogin[1].type}
                         autoComplete= {inputBoxArrayLogin[1].autoComplete}
+                        value={password}
                         onChange={handlePasswordChange}
                     />
 
