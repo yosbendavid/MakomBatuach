@@ -19,6 +19,7 @@ const SelectBox = (props) => {
     setSelectedValue(event.target.value);
     props.onChange(event.target.value);
   };
+  
   //בגלל הגבלות של סי אס אס השתמשתי ברעיון כדי שהנראות תיהיה אחידה בצבע
   const selectClassName = selectedOption !== '' ? 'select-box-selected' : '';
 
@@ -26,7 +27,7 @@ const SelectBox = (props) => {
     <SelectOptionsCard className='select-box-item'>
       <label className="select-box-title">{props.title}:</label>
       <br />
-      <select id={`${props.id}`} value={selectedOption} onChange={handleChange} className={selectClassName}>
+      <select id={props.id} value={props.value} onChange={handleChange} className={selectClassName}>
         <option value="" disabled defaultValue>{props.placeHolder}</option>
         {options}
       </select>
