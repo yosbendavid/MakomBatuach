@@ -1,4 +1,4 @@
 .patient-container-div{
-    padding-bottom: 70px; /* same height as bottom bar */
+    padding: 90px 0; /* same height as bottom bar */
     overflow-y: auto;
 }

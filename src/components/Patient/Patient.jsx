@@ -1,13 +1,32 @@
 import React, { useState } from "react";
-import PHomePage from "./PHomePage";
+import PHomePage from "./PatientHomePage/PHomePage";
 import "../../CSS/Patient.css";
 import BottomBar from "../Template parts/BottomBar"
+import TopBar from "../Template parts/TopBar";
 
 const Patient = () => {
+
+    const [name, setName] = useState('YB');
+    const patientNameHandle = () => {
+        setName('');
+    };
+    const patientUserClick = () => {
+        
+    };
+    const patientHomeClick = () => {
+        
+    };
+    const patientCalendarClick = () => {
+        
+    };
+    const patientSideBarClick = () => {
+        
+    };
     return(
         <div className="patient-container-div">
-
-            <BottomBar />
+            <TopBar patientName={name} onSideBarClick={patientSideBarClick} />
+            <PHomePage />
+            <BottomBar onCalendarClick={patientCalendarClick} onUserClick={patientUserClick} onHomeClick={patientHomeClick} />
         </div>
     );
 }
