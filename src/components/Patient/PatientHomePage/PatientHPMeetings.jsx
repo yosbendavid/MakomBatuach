@@ -1,11 +1,13 @@
 import React from "react";
 import PMeetingItem from "./PMeetingItem"
+import MeetingItemBox from "../../Template parts/MeetingItemBox"
+
 const PatientHPMeetings = (props) => {
     return (
         <div>
             {
                 props.papatientMeetings.map((meeting) => (
-                    <PMeetingItem 
+                    <MeetingItemBox 
                         name={meeting.name}
                         date={meeting.date}
                         roomNum={meeting.roomNum}
