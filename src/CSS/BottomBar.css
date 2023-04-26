@@ -17,20 +17,20 @@
     align-items: center;
     height: 60px;
     background-color: #f5f5f5;
-    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.15);
     justify-content: space-around;
 }
 .user-icon {
-    width: 25px;
-    height: 29px;
-}
-.calendar-icon{
-    width: 24px;
+    width: 28px;
     height: 30px;
 }
-.home-icon{
+.calendar-icon{
     width: 28px;
-    height: 29px;
+    height: 32px;
+}
+.home-icon{
+    width: 30px;
+    height: 30px;
 }
 .home-icon-div,
 .calendar-icon-div,
