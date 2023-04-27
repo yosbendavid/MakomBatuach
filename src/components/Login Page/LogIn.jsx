@@ -4,6 +4,7 @@ import LoginTopPart from './LoginTopPart';
 import {inputBoxArrayLogin} from "./Login-Data/inputBoxArrayLogin";
 import ButtonCard from '../Template parts/ButtonCard'
 import '../../CSS/login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -28,7 +29,17 @@ const Login = () => {
         console.log(loginData);
         seteEmail('');
         setPassword('');
+
+      {Go2Therhome}
+
     }
+
+    const navigate = useNavigate(); 
+
+    const Go2Therhome = () => {
+      navigate("/Therapist");
+    }
+
     return(
         <div className="login-container-div">
             {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
@@ -66,9 +77,11 @@ const Login = () => {
                     </div>
                 </div>
 
+                
+
                 {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
                 <div className='login-btn-div'>
-                    <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
+                    <ButtonCard onSubmit={Go2Therhome} type="submit" className="register-submit-btn">התחבר</ButtonCard>
                     <div className='new-account-div'>
                         <p className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
                     </div>
