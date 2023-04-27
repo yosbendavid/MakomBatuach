@@ -1,0 +1,53 @@
+.PHomePage-container {
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.setMeetingBtn {
+    min-width: 300px;
+    max-width: 350px;
+    margin: 0 auto;
+}
+.setMeetBTN{
+    display: inline-block;
+    padding: 16px 45px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #ff5f6d, #ff9966);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Open-Sans', sans-serif;
+}
+.items-div{
+    min-height: 350px;
+}
+.upcoming-Meetings-title {
+    text-align: right;
+    padding-right: 5%;
+    margin: 30px 0 0 0;
+    font-family: 'Open-Sans', sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+}
+.seeAllDocuments{
+    margin-top: 30px;
+    display: inline-block;
+    font-family: 'Open-Sans', sans-serif;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #000000;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.5);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
