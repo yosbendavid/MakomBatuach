@@ -42,6 +42,35 @@ const Login = () => {
         navigate("/Register");
       }
 
+      const apiUrl="https://localhost:44380/api/patient"
+
+
+      const btndemo=()=>{
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8',
+            })
+            })
+            .then(response => {
+            console.log('res=', response);
+            console.log('res.status', response.status);
+            console.log('res.ok', response.ok);
+            return response.json()
+            })
+            .then(
+            (result) => {
+            console.log("fetch patient= ", result);
+            result.map(st => console.log(st.FirstName));
+            console.log('patinent[0].FirstName=', result[0].FirstName);
+            },
+            (error) => {
+            console.log("err post=", error);
+            });
+
+
+      }
+
     return(
         <div className="login-container-div">
             {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
@@ -89,6 +118,7 @@ const Login = () => {
                     </div>
                 </div>
             </form>
+            <button onClick={btndemo} name='get'>Get Patient</button>
         </div>
     );
 }
