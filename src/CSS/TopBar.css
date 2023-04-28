@@ -8,6 +8,8 @@
     right: 0;
     height: 80px;
     background-color: white;
+    width: 100%;
+    z-index: 5;
   }
   
   .top-bar-div {
@@ -18,7 +20,7 @@
     width: 100%;
     max-width: 400px;
     height: 100%;
-    box-shadow: 0px 0.5px 0.1px rgba(173, 173, 173, 0.1);
+    box-shadow: 0px 0.5px 0.5px rgb(99, 99, 99);
   }
   
   .name-icon-div {

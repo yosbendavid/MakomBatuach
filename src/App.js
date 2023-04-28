@@ -10,7 +10,7 @@ function App() {
       <Register />
       <Login />   
       <Patient />
-      <Therapist />
+      {/* <Therapist /> */}
     </div>
   );
 }
