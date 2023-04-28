@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import CalendarF from "../Calendar/CalendarF";
-import "../../CSS/therapistCalendar.css"
-import backArrow from "../../Photos/backArrow.svg";
+import CalendarF from "../../Calendar/CalendarF";
+import "../../../CSS/PatientNewMeeting.css"
+import backArrow from "../../../Photos/backArrow.svg";
 
 const TherapistCalendar = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
@@ -31,8 +31,9 @@ const TherapistCalendar = (props) => {
                     <p className="hour-p">בחר שעה</p>
                 </div>
             </div>
-            <div>
-
+            <div className="meeting-time-slot">
+                <div>16:00-16:45</div>
+                <div>15:00-15:45</div>
             </div>
         </div>
     );

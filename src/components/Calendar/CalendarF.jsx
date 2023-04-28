@@ -13,7 +13,7 @@ const CalendarF = (props) => {
   return (
     <div className='calendar-container'>
       <div className='calendar-div'>
-        <Calendar onClickDay={(value, event) => {setDate(value); console.log(value)}}/>
+        <Calendar calendarType="US" onClickDay={(value, event) => {setDate(value); console.log(value)}}/>
       </div>
     </div>
   );
