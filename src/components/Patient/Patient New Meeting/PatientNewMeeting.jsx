@@ -2,39 +2,69 @@ import React, { useState } from "react";
 import CalendarF from "../../Calendar/CalendarF";
 import "../../../CSS/PatientNewMeeting.css"
 import backArrow from "../../../Photos/backArrow.svg";
+import ButtonCard from "../../Template parts/ButtonCard";
 
 const TherapistCalendar = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
+    const [isSlotClick, setIsSlotClick] = useState(false);
+    const [isDateClicked, setIsDateClicked] = useState(false);
 
     const handleArrowClick = () => {
         setIsSliderOpen(!isSliderOpen);
     }
 
+    const handleSlotClick = (timeId) => {
+        const slotElements = document.querySelectorAll('.time-slot');
+        slotElements.forEach(slot => {
+            if (slot.getAttribute('id') === timeId.toString()) {
+                props.onMeetingTimeChange(slot.innerHTML);
+                slot.classList.add('clicked');
+            } else {
+                slot.classList.remove('clicked');
+            }
+        });
+        setIsSlotClick(true);
+    }
+
     return(
-        <div className="therapistCalendar-div">
-            <div className={`calendar-slider ${isSliderOpen ? 'open' : 'closed'}`}>
-                <CalendarF />
-                <div className="openClose-arrow" onClick={handleArrowClick}>
-                    <img src={backArrow} alt="closeOpenDate"/>
-                </div>
-            </div>          
-            <div className={`therapist-name-title ${isSliderOpen ? 'open' : 'closed'}`}>
-                <div className="therapist-name-title-right-div">
-                    <div className="therapist-img">
-                        <p>{props.therapistName}</p>
+        <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
+            <form onSubmit={props.setNewMeeting}>
+                <div className={`calendar-slider`}>
+                    <CalendarF date = {props.onMeetingDateChange} />
+                    <div className="openClose-arrow" onClick={handleArrowClick}>
+                        <img src={backArrow} alt="closeOpenDate"/>
                     </div>
-                    <div className="therapist-name">
-                        <p>ירון שוורץ</p>
+                </div>          
+                <div className="therapist-name-title-container">
+                    <div className= "therapist-name-title">
+                        <div className="therapist-name-title-right-div">
+                            <div className="therapist-img">
+                                <p>{props.therapistName}</p>
+                            </div>
+                            <div className="therapist-name">
+                                <p>{props.therapistName}</p>
+                            </div>
+                        </div>
+                        <div className="therapist-name-title-left-div">
+                            <p className="hour-p">בחר שעה</p>
+                        </div>
                     </div>
                 </div>
-                <div className="therapist-name-title-left-div">
-                    <p className="hour-p">בחר שעה</p>
+                <div className="meeting-time-slots-container">
+                {props.timeSlots.length > 0 && (
+                    <div className="meeting-time-slots">
+                        {props.timeSlots.map((time) => (
+                            <div className = "time-slot" key={time.id} id={time.id} onClick={() => handleSlotClick(time.id)}>{time.time}</div>
+                        ))}
+                    </div>
+                )}
                 </div>
-            </div>
-            <div className="meeting-time-slot">
-                <div>16:00-16:45</div>
-                <div>15:00-15:45</div>
-            </div>
+                {props.clickedATime !== '' && (
+                    <div className="set-meeting-button">
+                        <ButtonCard type="submit" >אישור</ButtonCard>
+                    </div>
+                )}
+            </form>
         </div>
     );
 }
