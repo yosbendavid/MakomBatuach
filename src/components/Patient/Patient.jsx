@@ -62,9 +62,8 @@ const Patient = () => {
       
     // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
     const handleMeetingDateChange = (value) => {
-        setMeetingDate(value);
-            //#region 
-       var t= format(value, 'yyyy/MM/dd');
+        var t= format(value, 'yyyy/MM/dd');
+        setMeetingDate(t);
        const tryget='https://localhost:44380/api/amen/'
        fetch(tryget+t,
        {
@@ -85,15 +84,14 @@ const Patient = () => {
                 console.log(result);
                 const indexedHours = result.map((hour, index) => {
                     return { id: index, time: hour };
-                  });                
+                  });      
+                          //לפה להכניס את הזמנים החדשים          
                   setTimeSlots(indexedHours);
                },
            (error) => {
            console.log("err post=", error);
            });    
-    //#endregion
-        //לפה להכניס את הזמנים החדשים
-        // setTimeSlots(meeting);
+
 
     }
     // הפונקציה שאני מעביר כדי לתפוס את הערך של שעות
@@ -101,53 +99,47 @@ const Patient = () => {
         setMeetingTime(value);
     }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
-    const setNewMeeting = (event) => {
+    const setNewMeeting = (event) => 
+    {
         event.preventDefault();
-        const newMeeting = {
-            date: meetingDate,
-            time: meetingTime
+        const newMeeting = 
+        {      
+                TreatmentDate : meetingDate,
+                WasDone : "n",
+                StartTime : meetingTime,
+                Room_Num :1,
+                Type_Id: 1
+            
+
         }
         console.log(newMeeting);
-        setMeetingTime('');
-        setMeetingDate('');
+
+        const apiUrl="https://localhost:44380/api/createtre"
+
+        fetch(apiUrl, 
+            {
+            method: 'POST',
+            body: JSON.stringify(newMeeting),
+            headers: new Headers({
+            'Content-type': 'application/json; charset=UTF-8' //very important to add the 'charset=UTF-8'!!!!
+            })
+            })
+            .then(res => {
+            console.log('res=', res);
+            return res.json()
+            })
+            .then(
+            (result) => {
+            console.log("fetch POST= ", result);
+            },
+            (error) => {
+            console.log("err post=", error);
+            });
+
+
+        // setMeetingTime('');
+        // setMeetingDate('');
     }
-
-    //#region 
-    // const tryget="https://localhost:44380/api/amen"
-
-    // let theraid = '1';
-
-    // const btnthre=()=>{
-    //    fetch(tryget + '/' + theraid, 
-    //    {
-    //        method: 'GET',
-    //        headers: new Headers({
-    //        'Content-Type': 'application/json; charset=UTF-8',
-    //        'Accept': 'application/json; charset=UTF-8',
-
-    //        })
-    //        })
-    //        .then(res => {
-    //        console.log('res=', res);
-    //        console.log('res.status', res.status);
-    //        console.log('res.ok', res.ok);
-    //        return res.json()
-    //        })
-    //        .then(
-    //            (result) => {
-    //            console.log("fetch patient= ", result);
-    //            result.map(st => console.log(st.FirstName));
-    //            console.log('patinent[0].FirstName=', result[0].FirstName);
-    //            },
-    //        (error) => {
-    //        console.log("err post=", error);
-    //        });
-
-    // }
-    //#endregion
-
-
-
 
     return(
         <div className="patient-container-div">
