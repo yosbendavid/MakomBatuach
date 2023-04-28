@@ -10,13 +10,6 @@ function App() {
   return (
     <div>
         <div className="App">
-      <div style={{ margin: 20, fontSize: 25 }}>
-        <Link to="/">Login</Link> |
-        <Link to="/Register">Register</Link> |
-        <Link to="Patient">Patient</Link>
-        <Link to="Therapist">Therapist</Link>
-
-      </div>
 
       <header className="App-header">
         
@@ -30,12 +23,7 @@ function App() {
         </Routes>
       </header>
       </div>
-    
-      {/* <Register />
-      <Login />   
-      <Patient />
-      <Therapist /> */}
-    </div>
+      </div>
   );
 }
 
