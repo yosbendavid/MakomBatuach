@@ -6,7 +6,6 @@ import BottomBar from "../Template parts/BottomBar"
 import TopBar from "../Template parts/TopBar";
 
 const Patient = () => {
-
     const meetings = [
         {
             id:1, 

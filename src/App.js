@@ -7,8 +7,8 @@ import Therapist from "./components/Therapist/Therapist";
 function App() {
   return (
     <div>
-      {/* <Register /> */}
-      {/* <Login />    */}
+      <Register />
+      <Login />   
       <Patient />
       {/* <Therapist /> */}
     </div>
