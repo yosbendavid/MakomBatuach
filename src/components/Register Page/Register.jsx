@@ -7,6 +7,7 @@ import {textBoxesArray} from "./Register-Data/textBoxesArray";
 import backArrow from "../../Photos/backArrow.svg";
 import ButtonCard from '../Template parts/ButtonCard';
 import '../../CSS/register.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterBoxs = () => {
 
@@ -52,7 +53,19 @@ const RegisterBoxs = () => {
         setGender('');
         setBirthDate('');
         setPassword('');
+        Go2Patient();
     };
+
+    const navigate = useNavigate(); 
+
+    const Go2Login = () => {
+      navigate("/Login");
+    }
+
+    const Go2Patient = () => {
+        navigate("/Patient");
+      }
+
 
     return(
         <div className="register-boxs-div">
@@ -108,7 +121,7 @@ const RegisterBoxs = () => {
                 <div className='register-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">צור משתמש</ButtonCard>
                     <div className='have-account-div'>
-                        <p className="have-account-p">יש לך כבר משתמש? <span className="connect-page">התחבר</span></p>
+                        <p className="have-account-p">יש לך כבר משתמש? <span className="connect-page" onClick={Go2Login}>התחבר</span></p>
                     </div>
                 </div>
             </form>

@@ -26,12 +26,10 @@ const Login = () => {
             enteredEmail: email,
             enteredPassword:password
         };
-        console.log(loginData);
+        console.log(loginData)
+        Go2Therhome();
         seteEmail('');
         setPassword('');
-
-      {Go2Therhome}
-
     }
 
     const navigate = useNavigate(); 
@@ -39,6 +37,10 @@ const Login = () => {
     const Go2Therhome = () => {
       navigate("/Therapist");
     }
+
+    const Go2Register = () => {
+        navigate("/Register");
+      }
 
     return(
         <div className="login-container-div">
@@ -81,9 +83,9 @@ const Login = () => {
 
                 {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
                 <div className='login-btn-div'>
-                    <ButtonCard onSubmit={Go2Therhome} type="submit" className="register-submit-btn">התחבר</ButtonCard>
+                    <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
                     <div className='new-account-div'>
-                        <p className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
+                        <p onClick={Go2Register} className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
                     </div>
                 </div>
             </form>
