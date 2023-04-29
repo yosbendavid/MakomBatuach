@@ -7,7 +7,6 @@ import TopBar from "../Template parts/TopBar";
 import NewApproved from './Patient New Meeting/MeetingAproved';
 
 const Patient = () => {
-
     const meetings = [
         {
             id:1, 
