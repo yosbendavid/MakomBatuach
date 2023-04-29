@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import PHomePage from "./PatientHomePage/PHomePage";
 import "../../CSS/Patient.css";
-import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting"
-import BottomBar from "../Template parts/BottomBar"
+import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting";
+import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
+import NewApproved from './Patient New Meeting/MeetingAproved';
 
 const Patient = () => {
     const meetings = [
@@ -85,17 +86,23 @@ const Patient = () => {
                 patientName={patientName} 
                 onSideBarClick={patientSideBarClick} 
             />
-
+                
+                {/* מסך הבית של מטופל */}
                 {/* <PHomePage /> */}
 
-                <PatientNewMeeting
+
+                {/* מסך תיאום פגישה חדשה */}
+                {/* <PatientNewMeeting
                     timeSlots = {timeSlots}
                     therapistName = {therapistName}
                     setNewMeeting = {setNewMeeting}
                     onMeetingDateChange = {handleMeetingDateChange}
                     onMeetingTimeChange = {handleMeetingTimeChange}
                     clickedATime = {meetingTime}
-                />
+                /> */}
+
+                {/* מסך אישור תיאום פגישה */}
+                <NewApproved />
             <BottomBar 
                 onCalendarClick={patientCalendarClick} 
                 onUserClick={patientUserClick} 

@@ -1,0 +1,52 @@
+.MeetingApproved-container {
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+.MeetingApproved-div {
+    height: auto;
+    overflow: hidden;
+    width: 300px;
+    margin: 0 auto;
+}
+.MeetingApproved-img{
+    margin-top: 60px;
+}
+.MeetingApproved-img img{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    border: 2px solid rgb(36, 223, 77);
+}
+.MeetingApproved-title {
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0 0 0;
+    font-family: 'Open-Sans', sans-serif;
+    color: #3a3a3a;
+}
+.MeetingApproved-text-div{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 255px;
+    margin: 0 auto;
+}
+.MeetingApproved-text{
+    font-size: 18px;
+    text-align: center;
+    margin: 15px 0 50px 0;
+    font-family: 'Open-Sans', sans-serif;
+    color: #3a3a3a;
+}
+.setNewMeeting{
+    margin-top: 5px;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Open-Sans', sans-serif;
+    color: blue;
+    text-decoration: none;
+}
