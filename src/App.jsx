@@ -9,6 +9,7 @@ import PatientHPMeetings from "./components/Patient/PatientHomePage/PatientHPMee
 import PatientNewMeeting from "./components/Patient/Patient New Meeting/PatientNewMeeting";
 import MeetingApproved from "./components/Patient/Patient New Meeting/MeetingAproved";
 import HomePageTherapit from "./components/Therapist/HomePageTherapist/HomePageTherapit";
+import NewMetting from "./components/Therapist/New Metting/NewMetting";
 
 
 
@@ -33,6 +34,8 @@ function App() {
         </Routes>
 
         <HomePageTherapit/>
+        <NewMetting/>
+
 
   
       </header>

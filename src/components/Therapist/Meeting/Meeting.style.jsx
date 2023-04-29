@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Icon } from '../../Img/right-arrow.svg';
+import { ReactComponent as Icon } from '../Img/right-arrow.svg';
 
 
 export const TitleWrapper = styled.div`

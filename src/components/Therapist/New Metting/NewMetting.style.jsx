@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as Icon } from '../../Img/right-arrow.svg';
-import { ReactComponent as RecordIcon } from '../../Img/record-icon.svg';
+import { ReactComponent as Icon } from '../Img/right-arrow.svg';
+import { ReactComponent as RecordIcon } from '../Img/record-icon.svg';
 
 export const TitleWrapper = styled.div`
 background-color: #F5F5DC;
