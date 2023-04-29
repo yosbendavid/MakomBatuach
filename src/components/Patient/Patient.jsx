@@ -4,12 +4,8 @@ import "../../CSS/Patient.css";
 import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting";
 import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
-<<<<<<< HEAD
-import { format } from 'date-fns'
-
-=======
 import NewApproved from './Patient New Meeting/MeetingAproved';
->>>>>>> 82a5ec6c88a18b0c4c29e865604b5c16dda10496
+import {format} from 'date-fns';
 
 const Patient = () => {
     const meetings = [
@@ -166,15 +162,10 @@ const Patient = () => {
                     onMeetingDateChange = {handleMeetingDateChange}
                     onMeetingTimeChange = {handleMeetingTimeChange}
                     clickedATime = {meetingTime}
-<<<<<<< HEAD
-                />
-                {/* <button onClick={btnthre}>Temp</button> */}
-=======
                 /> */}
 
                 {/* מסך אישור תיאום פגישה */}
                 <NewApproved />
->>>>>>> 82a5ec6c88a18b0c4c29e865604b5c16dda10496
             <BottomBar 
                 onCalendarClick={patientCalendarClick} 
                 onUserClick={patientUserClick} 
