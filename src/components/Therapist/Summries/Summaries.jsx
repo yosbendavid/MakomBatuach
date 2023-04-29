@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ContainerSummaries, LeftIcon, LeftIcon1, Navbar, ReturnIcon1, SummaryDate, SummaryDiv, SummaryNum, TitleSummary } from './Summaries.Style'
 
-const apiUrl = "https://localhost:44337/api/GetAllSummary/"
+const apiUrl = "https://localhost:44380/api/GetAllSummary/"
 
 
 export default function Summaries() {

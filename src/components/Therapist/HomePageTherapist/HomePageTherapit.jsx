@@ -27,7 +27,7 @@ import {
   TitleWrapper,
 } from "./HomePageTherapit.Style";
 
-const apiUrl = "https://localhost:44337/api/Therapist/";
+const apiUrl = "https://localhost:44380/api/Therapist/";
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);

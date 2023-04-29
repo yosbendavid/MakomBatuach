@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {Container, LeftIcon,LogoContainer,LogoText,Navbar,PatientDiv,PatientName,SearchDiv,SearchText,StyledFilterIcon,StyledIcon, TherapistDiv, TherapistName,} from "./Patients.Style";
 
-const apiUrl = "https://localhost:44337/api/Patient/"
+const apiUrl = "https://localhost:44380/api/Patient/"
 
 export default function Patients() {
   const [patients, setPatients] = useState([]);
