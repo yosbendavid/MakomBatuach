@@ -6,14 +6,15 @@
     width: 100%;
     position: fixed;
     bottom: -1px;
+    left: 0;
+    right: 0;
     z-index: 5;
 }
 .bottom-bar-div{
     display: inline-flex;
     position: fixed;
     bottom: -5px;
-    min-width: 450px;
-    max-width: 450px; /*אם נרצה שזה ישאר בגודל מסויים ולא יגדל*/
+    min-width: 400px;
     align-items: center;
     height: 60px;
     background-color: #f5f5f5;
@@ -21,12 +22,12 @@
     justify-content: space-around;
 }
 .user-icon {
-    width: 28px;
+    width: 30px;
     height: 30px;
 }
 .calendar-icon{
-    width: 28px;
-    height: 32px;
+    width: 27px;
+    height: 30px;
 }
 .home-icon{
     width: 30px;
@@ -39,7 +40,6 @@
     justify-content: center;
     align-items: center;
     width: 33.3%;
-    height: 100%;
     transition: background-color 0.2s ease-in-out;
 }
 

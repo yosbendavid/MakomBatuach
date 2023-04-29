@@ -35,7 +35,6 @@
     height: auto;
     overflow: hidden;
     max-width: 400px;
-    /* transition: transform 0.5s ease-out; */
     margin: 0 auto;
     background-color: white;
     opacity: 1;
@@ -49,7 +48,6 @@
     align-items: center;
 }
 .therapist-name-title{
-    /* background: linear-gradient(120deg, #fd8f091b, #ff2b2b09); */
     color: black;
     padding: 10px 10px;
     border-radius: 15px;
