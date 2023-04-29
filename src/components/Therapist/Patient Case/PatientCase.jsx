@@ -5,7 +5,7 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { InformationWrapper } from '../Meeting/Meeting.style'
-import {  InformationContainer, InformationDesc, InformationTitle, LogoText, TitleWrapper, LastSummary, LastSummaryTitle, LastSummaryDesc, StyledIcon, ReturnIcon, Navbar } from './PatientCase.Style'
+import {  InformationContainer, InformationDesc, InformationTitle, LogoText, TitleWrapper, LastSummary, LastSummaryTitle, LastSummaryDesc, StyledIcon, ReturnIcon, Navbar, AllSummary, AllSummaryTitle } from './PatientCase.Style'
 
 const apiUrl = "https://localhost:44337/api/patientCard/";
 
@@ -33,6 +33,25 @@ export default function PatientCase() {
   const goBack = () => {
     navigate(-1);
   };
+
+    const Go2Summaries = () => {
+      
+      const Name = {
+        Name: patient.FirstName
+      };
+
+      navigate(`/Summaries/${patient.patientId}`, { state: Name });
+    }
+
+    const go2HomePage = () => {
+    
+      navigate(`/HomePageTherapit`);
+    }
+
+    const go2Patients = () => {
+    
+      navigate(`/Patients`);
+    }
 
   return (
     <div>
@@ -65,13 +84,13 @@ export default function PatientCase() {
     </InformationWrapper>
     <LastSummary>
     <StyledIcon />
-        <LastSummaryTitle> סיכום טיפול אחרון  </LastSummaryTitle>
-        <LastSummaryDesc> להלהלהלהלהלה </LastSummaryDesc>
+        <LastSummaryTitle onClick={Go2Summaries}> תיק טיפול </LastSummaryTitle>
     </LastSummary>
+    
     <Navbar>
       <BottomNavigation>
-        <BottomNavigationAction icon={<HomeOutlinedIcon />} />
-        <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} />
+        <BottomNavigationAction icon={<HomeOutlinedIcon />} onClick={go2HomePage}/>
+        <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} onClick={go2Patients}/>
         <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
       </BottomNavigation>
     </Navbar>

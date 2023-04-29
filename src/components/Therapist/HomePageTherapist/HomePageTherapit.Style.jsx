@@ -11,9 +11,9 @@ export const TitleWrapper = styled.div`
 
 export const TitleName = styled.h1`
    font-size: 1.2em;
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: normal;
+   text-align: center;
+   margin-bottom: 10px;
+   font-weight: normal;
 `;
 
 export const MeetingDate = styled.h1`

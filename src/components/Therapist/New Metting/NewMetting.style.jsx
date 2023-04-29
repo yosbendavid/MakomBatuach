@@ -42,12 +42,14 @@ export const InformationTextArea = styled.textarea`
   margin: 0;
   width: 100%;
   height: 100%;
+  direction: rtl;
 `;
 
 export const InformationTextAreaSummery = styled.textarea`
   margin: 0;
   width: 100%;
   height: 100px;
+  direction: rtl;
 `;
 
 export const ButtonDiv = styled.div`
@@ -63,7 +65,7 @@ export const ButtonSummery = styled.button`
   font-size: 16px;
   border: none;
   cursor: pointer;
-  margin: 10px 32px 10px 5px;
+  margin: 10px 55px 10px 5px;
 `;
 
 export const SaveButton = styled.button`

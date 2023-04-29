@@ -99,3 +99,20 @@ export const Navbar = styled.div`
   width: 100%;
 `;
 
+export const AllSummary = styled.div`
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 15px auto 0 auto;
+  background-color: white;
+  max-width: 40%;
+  position: relative;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+`;
+
+export const AllSummaryTitle = styled.p`
+  margin-bottom: 3px;
+  margin-top: 0;
+  font-size: 18px;
+  text-align: center;
+`;

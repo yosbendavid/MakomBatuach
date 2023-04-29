@@ -3,10 +3,11 @@ import { ReactComponent as Icon } from '../../Img/right-arrow.svg';
 
 
 export const TitleWrapper = styled.div`
-background-color: #FCCEF9;
-display: flex;
-align-items: center;
-justify-content: space-between;
+ background-color: #FCEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 85px; /* Add margin-top */
 `;
 
 export const MeetingTitle = styled.h1`
@@ -54,4 +55,33 @@ width: 150px;
   margin: 20px;
 `;
 
+export const TherapistDiv1 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1px;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+`;
 
+export const TherapistName1 = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
+  margin: 0;
+  line-height: 50px;
+`;
+
+export const Navbar = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+`;

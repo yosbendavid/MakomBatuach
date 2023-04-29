@@ -12,7 +12,7 @@ export default function Patients() {
   const [patients, setPatients] = useState([]);
   const [query, setQuery] = useState("");
   const { therapistId } = useParams(); // get therapistId from URL
- 
+  const navigate = useNavigate(); 
   
   const getPatients = async (therapistId) => {
     const result = await fetch(apiUrl + 1)
@@ -27,6 +27,11 @@ export default function Patients() {
   const filteredPatients = query ? patients.filter(patient => {
    return patient.FirstName.toLowerCase().includes(query.toLowerCase()) || patient.LastName.toLowerCase().includes(query.toLowerCase()) 
   }) : patients
+
+  const go2HomePage = () => {
+    
+    navigate(`/HomePageTherapit`);
+  }
 
   return (
     <div> 
@@ -45,7 +50,7 @@ export default function Patients() {
       </Container>
       <Navbar>
       <BottomNavigation>
-        <BottomNavigationAction icon={<HomeOutlinedIcon />} />
+        <BottomNavigationAction  icon={<HomeOutlinedIcon />} onClick={go2HomePage} />
         <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} />
         <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
       </BottomNavigation>
