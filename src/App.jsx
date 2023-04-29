@@ -34,6 +34,8 @@ function App() {
           <Route path="/Phome" element={<PHomePage />} />
           <Route path="/Pmeeting" element={<PatientHPMeetings />} />
           <Route path="/Pnm" element={<PatientNewMeeting />} />
+          <Route path="/meetingApproved" element={<MeetingApproved/>} />
+
         </Routes>
 
         <Routes>
@@ -46,7 +48,6 @@ function App() {
         <Route path='/Patients' element={<Patients/>} />
        </Routes>
 
-  
       </header>
       </div>
       </div>
