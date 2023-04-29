@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as LeftArrowIcon } from '../../Img/left-arrow-svgrepo-com.svg';
+import { ReactComponent as LeftArrowIcon } from '../Img/left-arrow-svgrepo-com.svg';
 
 export const TitleWrapper = styled.div`
   display: flex;
