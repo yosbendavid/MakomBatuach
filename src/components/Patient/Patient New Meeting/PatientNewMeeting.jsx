@@ -4,7 +4,7 @@ import "../../../CSS/PatientNewMeeting.css"
 import backArrow from "../../../Photos/backArrow.svg";
 import ButtonCard from "../../Template parts/ButtonCard";
 
-const TherapistCalendar = (props) => {
+const PatientNewMeeting = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [isSlotClick, setIsSlotClick] = useState(false);
     const [isDateClicked, setIsDateClicked] = useState(false);
@@ -59,7 +59,7 @@ const TherapistCalendar = (props) => {
                 {props.timeSlots.length > 0 && (
                     <div className="meeting-time-slots">
                         {props.timeSlots.map((time) => (
-                            <div className = "time-slot" key={time.id} id={time.id} onClick={() => handleSlotClick(time.id)}>{time.time}</div>
+                        <div className = "time-slot" key={time.id} id={time.id} onClick={() => handleSlotClick(time.id)}>{time.time}</div>
                         ))}
                     </div>
                 )}
@@ -73,4 +73,4 @@ const TherapistCalendar = (props) => {
         </div>
     );
 }
-export default TherapistCalendar;
+export default PatientNewMeeting;

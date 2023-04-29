@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PatientHPMeetings from "./PatientHPMeetings";
 import "../../../CSS/PHomePage.css";
+import { useNavigate } from "react-router-dom";
 
 const dummy_meetings = [
     {
@@ -62,10 +63,16 @@ const PHomePage = () => {
         });
     };
 
+    const navigate = useNavigate(); 
+
+    const Go2Nemeeting = () => {
+      navigate("/Patient");
+    }
+
     return (
         <div className="PHomePage-container">
             <div className="setMeetingBtn">
-                <button className="setMeetBTN">לחץ לזימון פגישה</button>
+                <button className="setMeetBTN" onClick={Go2Nemeeting}>לחץ לזימון פגישה</button>
                 <p className="upcoming-Meetings-title">פגישות קרובות:</p>
             </div>
             <div className="items-div">
