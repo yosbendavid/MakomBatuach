@@ -26,7 +26,7 @@ function App() {
       <header className="App-header">
         
         <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
+          <Route path="/" element={<Login />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Patient" element={<Patient />} />
@@ -39,7 +39,7 @@ function App() {
         </Routes>
 
         <Routes>
-        <Route path='/' element={<HomePageTherapit />} />
+        {/* <Route path='/' element={<HomePageTherapit />} /> */}
         <Route path='/PatientCase/:patientId' element={<PatientCase/>} />
         <Route path='/NewMetting' element={<NewMetting/>} />
         <Route path='/Summaries/:patientId' element={<Summaries/>} />

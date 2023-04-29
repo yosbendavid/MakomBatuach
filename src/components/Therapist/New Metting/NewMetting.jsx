@@ -31,7 +31,6 @@ export default function NewMetting(props) {
   
   const navigate = useNavigate();
 
-  
 
   const goBack = () => {
     navigate(-1);

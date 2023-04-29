@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PatientHPMeetings from "./PatientHPMeetings";
 import "../../../CSS/PHomePage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const dummy_meetings = [
     {
@@ -69,6 +69,14 @@ const PHomePage = () => {
       navigate("/Patient");
     }
 
+    const Go2NewSummary = () => {
+        navigate("/NewMetting");
+      }
+  
+
+  
+
+  
     return (
         <div className="PHomePage-container">
             <div className="setMeetingBtn">
@@ -78,7 +86,7 @@ const PHomePage = () => {
             <div className="items-div">
                 <PatientHPMeetings papatientMeetings={patientMeetings} />
             </div>
-            <button className="seeAllDocuments">לחץ למסמכי סיכום פגישות</button>
+            <button onClick={Go2NewSummary} className="seeAllDocuments">לחץ למסמכי סיכום פגישות</button>
         </div>
     );
 }
