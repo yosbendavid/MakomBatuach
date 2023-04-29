@@ -10,11 +10,11 @@ import '../../CSS/register.css';
 
 const RegisterBoxs = () => {
 
-    const [name, setName] = useState("");
-    const [email, seteEMail] = useState("");
-    const [gender, setGender] = useState("");
-    const [birthDate, setBirthDate] = useState("");
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState('');
+    const [email, seteEMail] = useState('');
+    const [gender, setGender] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [password, setPassword] = useState('');
     
     const handleNameChange = (value) => {
         setName(value);
@@ -39,13 +39,20 @@ const RegisterBoxs = () => {
     //לוחץ על צור משתמש זה הפונקציה עם הולידציה בנוגע למידע לעדכן לולידציה רלוונטית
     const registerAcount = (event) => {
         event.preventDefault();
-        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        if (password.length > 8 && name.length > 3 && emailRegex.test(email)) {
-            console.log("Great Success!")
-        } else {
-            console.log("NO!")
-        }
-    }
+        const registerData = {
+            enteredName: name,
+            enteredEmail: email,
+            enteredGender: gender,
+            enteredBirthDay: new Date(birthDate),
+            enteredPassword:password
+        };
+        console.log(registerData);
+        setName('');
+        seteEMail('');
+        setGender('');
+        setBirthDate('');
+        setPassword('');
+    };
 
     return(
         <div className="register-boxs-div">
@@ -59,6 +66,7 @@ const RegisterBoxs = () => {
                         placeHolder={textBoxesArray[0].placeHolder}
                         type={textBoxesArray[0].type}
                         autoComplete= {textBoxesArray[0].autoComplete}
+                        value={name}
                         onChange={handleNameChange}
                     />
                     <TextBox
@@ -67,6 +75,7 @@ const RegisterBoxs = () => {
                         placeHolder={textBoxesArray[1].placeHolder}
                         type={textBoxesArray[1].type}
                         autoComplete= {textBoxesArray[0].autoComplete}
+                        value={email}
                         onChange={handleEmailChange}
                     />
                     <SelectBox
@@ -74,6 +83,7 @@ const RegisterBoxs = () => {
                         title={selectBoxArray[0].title}
                         placeHolder={selectBoxArray[0].placeHolder}
                         values={selectBoxArray[0].values}
+                        value={gender}
                         onChange={handleGenderChange}
                     />
                     <TextBox
@@ -82,6 +92,7 @@ const RegisterBoxs = () => {
                         placeHolder={textBoxesArray[2].placeHolder}
                         type={textBoxesArray[2].type}
                         autoComplete= {textBoxesArray[2].autoComplete}
+                        value={birthDate}
                         onChange={handleBirthDateChange}
                     />
                     <TextBox
@@ -90,6 +101,7 @@ const RegisterBoxs = () => {
                         placeHolder={textBoxesArray[3].placeHolder}
                         type={textBoxesArray[3].type}
                         autoComplete= {textBoxesArray[3].autoComplete}
+                        value={password}
                         onChange={handlePasswordChange}
                     />
                 </div>

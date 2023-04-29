@@ -1,0 +1,98 @@
+.therapistCalendar-div{
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    text-align: center;
+    width: 100%;
+    margin: 100px 0;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+}
+.openClose-arrow{
+    height: 35px;
+    width: 350px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.openClose-arrow img{
+    transform: rotate(270deg);
+    margin: 0 auto;
+}
+
+.calendar-slider {
+    height: auto;
+    overflow: hidden;
+    max-width: 400px;
+    transition: transform 0.5s ease-out;
+    margin: 0 auto;
+    background-color: white;
+    opacity: 1;
+    box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.calendar-slider.open {
+    transform: translateY(15%);
+    background-color: rgb(255, 255, 255);
+}
+.calendar-slider.closed{
+    transform: translateY(-75%);
+    background-color: rgb(255, 255, 255);
+}
+.calendar-slider.open .openClose-arrow img {
+    transform: rotate(90deg);
+}
+
+.therapist-name-title{
+    width: 325px;
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.208);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.208);
+    border-radius: 30px;
+    padding: 5px 5px;
+    transition: transform 0.5s ease-out;
+}
+.therapist-name-title.open{
+    transform: translateY(80px);
+}
+.therapist-name-title.closed{
+    transform: translateY(-320px);
+}
+.therapist-name-title-right-div{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+.therapist-name-title-right-div .therapist-name{
+    margin-right: 5px;
+    font-weight: bold;
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 22px;
+    text-align: right;
+}
+.therapist-name-title-left-div{
+    width: 50%;
+    box-direction: ltr;
+}
+.therapist-name-title-left-div .hour-p{
+    text-align: left;
+    margin-left: 16px;
+
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 22px;
+}
+.therapist-img {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open-Sans', sans-serif;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    background-color: #EFEFEF;
+    color: black;
+    font-weight: bold;
+}
