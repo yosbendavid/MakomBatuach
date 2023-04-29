@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as Icon } from '../../Img/left-arrow-svgrepo-com.svg';
-import { ReactComponent as BackIcon } from '../../Img/Right_arrow_back.svg.svg';
+import { ReactComponent as Icon } from '../Img/left-arrow-svgrepo-com.svg';
+import { ReactComponent as BackIcon } from '../Img/Right_arrow_back.svg.svg';
 
 
 

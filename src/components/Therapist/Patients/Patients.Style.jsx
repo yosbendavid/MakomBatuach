@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Icon } from '../../Img/search.svg';
-import { ReactComponent as IconFilter } from '../../Img/filterNew.svg';
-import { ReactComponent as LeftArrowIcon } from '../../Img/left-arrow-svgrepo-com.svg';
+import { ReactComponent as Icon } from '../Img/search.svg';
+import { ReactComponent as IconFilter } from '../Img/filterNew.svg';
+import { ReactComponent as LeftArrowIcon } from '../Img/left-arrow-svgrepo-com.svg';
 
 export const Container = styled.div`
   padding: 80px 0;
