@@ -155,17 +155,17 @@ const Patient = () => {
 
 
                 {/* מסך תיאום פגישה חדשה */}
-                {/* <PatientNewMeeting
+                <PatientNewMeeting
                     timeSlots = {timeSlots}
                     therapistName = {therapistName}
                     setNewMeeting = {setNewMeeting}
                     onMeetingDateChange = {handleMeetingDateChange}
                     onMeetingTimeChange = {handleMeetingTimeChange}
                     clickedATime = {meetingTime}
-                /> */}
+                />
 
                 {/* מסך אישור תיאום פגישה */}
-                <NewApproved />
+                {/* <NewApproved /> */}
             <BottomBar 
                 onCalendarClick={patientCalendarClick} 
                 onUserClick={patientUserClick} 
