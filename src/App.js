@@ -31,18 +31,7 @@ function App() {
           <Route path="/Pnm" element={<PatientNewMeeting />} />
         </Routes>
 
-        <p>Register:</p>
-        <Register />
-        <p>Login:</p>
-        <Login /> 
-        <p>Meeting Approved:</p>
-        <MeetingApproved/>
-        <p>Patient HomePage</p>
-        <PHomePage/>
-        <p>Therapist</p>
-        <Therapist/>
-        <p>New Meeting</p>
-        <Patient/>
+    
       
   
   
