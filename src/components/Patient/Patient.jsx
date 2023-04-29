@@ -63,7 +63,8 @@ const Patient = () => {
     // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
     const handleMeetingDateChange = (value) => {
         var t= format(value, 'yyyy/MM/dd');
-        setMeetingDate(t);
+        var v= format(value, 'yyyy/MM/dd hh:mm');
+        setMeetingDate(v);
        const tryget='https://localhost:44380/api/amen/'
        fetch(tryget+t,
        {
@@ -135,6 +136,7 @@ const Patient = () => {
             (error) => {
             console.log("err post=", error);
             });
+        
 
 
         // setMeetingTime('');

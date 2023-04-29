@@ -27,15 +27,15 @@ const Login = () => {
             enteredPassword:password
         };
         console.log(loginData)
-        Go2Therhome();
+        Go2Patienthome();
         seteEmail('');
         setPassword('');
     }
 
     const navigate = useNavigate(); 
 
-    const Go2Therhome = () => {
-      navigate("/Therapist");
+    const Go2Patienthome = () => {
+      navigate("/Phome");
     }
 
     const Go2Register = () => {
