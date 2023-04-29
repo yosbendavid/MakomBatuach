@@ -25,7 +25,12 @@ const PatientNewMeeting = (props) => {
         });
         setIsSlotClick(true);
     }
-
+    const onApproveClick= () => {
+        const slotElements = document.querySelectorAll('.time-slot');
+        slotElements.forEach(slot => {
+            slot.classList.remove('clicked');
+        });
+    }
     return(
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
             <form onSubmit={props.setNewMeeting}>
@@ -61,7 +66,7 @@ const PatientNewMeeting = (props) => {
                 </div>
                 {props.clickedATime !== '' && (
                     <div className="set-meeting-button">
-                        <ButtonCard type="submit" >אישור</ButtonCard>
+                        <ButtonCard type="submit" onClick={onApproveClick} >אישור</ButtonCard>
                     </div>
                 )}
             </form>
