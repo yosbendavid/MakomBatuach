@@ -29,6 +29,9 @@ const PatientNewMeeting = (props) => {
     const navigate = useNavigate(); 
 
     const Go2Approve = () => {
+
+        {props.setNewMeeting}
+        
         navigate("/meetingApproved");
       }
 
@@ -39,6 +42,8 @@ const PatientNewMeeting = (props) => {
 
             Go2Approve();
         });
+
+        
     }
     return(
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
