@@ -65,6 +65,7 @@ export const LastSummaryTitle = styled.p`
   margin-bottom: 3px;
   margin-top: 0;
   font-size: 18px;
+  text-align: center;
 `;
 
 export const LastSummaryDesc = styled.p`
