@@ -5,6 +5,8 @@ import {inputBoxArrayLogin} from "./Login-Data/inputBoxArrayLogin";
 import ButtonCard from '../Template parts/ButtonCard'
 import '../../CSS/login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -20,14 +22,32 @@ const Login = () => {
         setPassword(value);
     }
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
-    const loginInAccount = (event) => {
+    const loginInAccount = async (event) => {
         event.preventDefault();
-        const loginData = {
-            enteredEmail: email,
-            enteredPassword:password
-        };
-        console.log(loginData)
-        Go2Patienthome();
+         try {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                enteredEmail: email,
+                enteredPassword:password
+            });
+            if (response.status === 200) 
+            {
+                Swal.fire(
+                    'Welcome',
+                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    'success'
+                  )
+                  Go2Patienthome();
+            }
+            else if (response.status === 400){
+                Swal.fire({
+                    icon:'error',
+                    title: 'Oops...',
+                    text: 'Email is Already Register, Please Try Other Email'
+                })
+            }
+        } catch (error) {
+            console.error('Request failed with status code', error.response.status);
+        }
         seteEmail('');
         setPassword('');
     }

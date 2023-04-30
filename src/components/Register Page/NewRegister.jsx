@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import TextBox from "../Template parts/TextBox";
 import SelectBox from "../Template parts/SelectBox";
 import RegisterTitle from "./RegisterTitle";
-import { selectBoxArray } from "./Register-Data/selectBoxArray";
-import { textBoxesArray } from "./Register-Data/textBoxesArray";
+import { selectBoxArray } from "./NewRegisterData/selectBoxArray";
+import { textBoxesArray } from "./NewRegisterData/textBoxesArray";
 import backArrow from "../../Photos/backArrow.svg";
 import ButtonCard from '../Template parts/ButtonCard';
 import '../../CSS/register.css';
 import axios from 'axios'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterBoxs = () => {
 
@@ -28,11 +29,18 @@ const RegisterBoxs = () => {
         setUserType(value);
         console.log(value);
     }
+
+    
+    const navigate = useNavigate(); 
+
+    const Go2Login = () => {
+      navigate("/Login");
+    }
     //לוחץ על צור משתמש זה הפונקציה עם הולידציה בנוגע למידע לעדכן לולידציה רלוונטית
     const registerAccount = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:50867/api/SignInUser/SignUp', {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/SignUp', {
                 Email: email,
                 PhoneNumber: phone_number,
                 UserType: user_type
@@ -55,6 +63,8 @@ const RegisterBoxs = () => {
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
+
+        Go2Login();
 
     };
 
@@ -93,9 +103,9 @@ const RegisterBoxs = () => {
                 </div>
                 <div className='register-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">צור משתמש</ButtonCard>
-                    <div className='have-account-div'>
+                    {/* <div className='have-account-div'>
                         <p className="have-account-p">יש לך כבר משתמש? <span className="connect-page">התחבר</span></p>
-                    </div>
+                    </div> */}
                 </div>
             </form>
         </div>
