@@ -8,6 +8,13 @@ import PHomePage from "./components/Patient/PatientHomePage/PHomePage";
 import PatientHPMeetings from "./components/Patient/PatientHomePage/PatientHPMeetings";
 import PatientNewMeeting from "./components/Patient/Patient New Meeting/PatientNewMeeting";
 import MeetingApproved from "./components/Patient/Patient New Meeting/MeetingAproved";
+import HomePageTherapit from "./components/Therapist/HomePageTherapist/HomePageTherapit";
+import NewMetting from "./components/Therapist/New Metting/NewMetting";
+import PatientCase from "./components/Therapist/Patient Case/PatientCase";
+import Patients from "./components/Therapist/Patients/Patients";
+import Summaries from "./components/Therapist/Summries/Summaries";
+import Metting from "./components/Therapist/Meeting/Metting";
+
 
 
 
@@ -24,17 +31,23 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/Patient" element={<Patient />} />
           <Route path="/Therapist" element={<Therapist />} />
-
-
           <Route path="/Phome" element={<PHomePage />} />
           <Route path="/Pmeeting" element={<PatientHPMeetings />} />
           <Route path="/Pnm" element={<PatientNewMeeting />} />
+          <Route path="/meetingApproved" element={<MeetingApproved/>} />
+
         </Routes>
 
-    
-      
-  
-  
+        <Routes>
+        {/* <Route path='/' element={<HomePageTherapit />} /> */}
+        <Route path='/PatientCase/:patientId' element={<PatientCase/>} />
+        <Route path='/NewMetting' element={<NewMetting/>} />
+        <Route path='/Summaries/:patientId' element={<Summaries/>} />
+        <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} />
+        <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
+        <Route path='/Patients' element={<Patients/>} />
+       </Routes>
+
       </header>
       </div>
       </div>

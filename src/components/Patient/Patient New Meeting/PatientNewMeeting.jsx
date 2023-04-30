@@ -3,6 +3,7 @@ import CalendarF from "../../Calendar/CalendarF";
 import "../../../CSS/PatientNewMeeting.css"
 import backArrow from "../../../Photos/backArrow.svg";
 import ButtonCard from "../../Template parts/ButtonCard";
+import { useNavigate } from "react-router-dom";
 
 const PatientNewMeeting = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
@@ -25,11 +26,24 @@ const PatientNewMeeting = (props) => {
         });
         setIsSlotClick(true);
     }
+    const navigate = useNavigate(); 
+
+    const Go2Approve = () => {
+
+        {props.setNewMeeting}
+        
+        navigate("/meetingApproved");
+      }
+
     const onApproveClick= () => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
             slot.classList.remove('clicked');
+
+            Go2Approve();
         });
+
+        
     }
     return(
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
