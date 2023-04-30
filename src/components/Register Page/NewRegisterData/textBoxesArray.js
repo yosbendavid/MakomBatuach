@@ -46,5 +46,12 @@ export const textBoxesArray = [
       placeHolder: 'הכנס מספרים בלבד',
       type: 'phone-number',
       autoComplete: "phone-number",
+    },
+    {
+      id: 'tb8',
+      title: 'שנות ניסיון',
+      placeHolder: 'הכנס מספר שנות ניסיון',
+      type: 'phone-number',
+      autoComplete: "phone-number",
     }
   ];

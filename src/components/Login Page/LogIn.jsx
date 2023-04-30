@@ -9,6 +9,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 
+
 const Login = () => {
 
     const [email, seteEmail] = useState("");
@@ -32,8 +33,11 @@ const Login = () => {
             });
             if (response.status === 200) 
             {
-                if (response.data == 'Change Password') {
-                    Go2Register();
+                if (response.data == 'Change Password 1' || response.data == 'Change Password 2') {
+                    Go2RegisterPatient();
+                }
+                else if (response.data == 'Change Password 0'){
+                    Go2RegisterTherapist();
                 }
                 console.log(response)
                 //Go2Patienthome();
@@ -58,8 +62,11 @@ const Login = () => {
       navigate("/Phome");
     }
 
-    const Go2Register = () => {
-        navigate("/Register");
+    const Go2RegisterPatient = () => {
+        navigate("/RegisterPatient");
+      }
+    const Go2RegisterTherapist = () => {
+        navigate("/RegisterTherapist");
       }
 
 
@@ -106,7 +113,6 @@ const Login = () => {
                 <div className='login-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
                     <div className='new-account-div'>
-                        <p onClick={Go2Register} className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
                     </div>
                 </div>
             </form>

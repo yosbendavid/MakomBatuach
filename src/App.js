@@ -1,5 +1,6 @@
 import Login from "./components/Login Page/LogIn";
-import Register from "./components/Register Page/Register";
+import RegisterPatient from "./components/Register Page/RegisterPatient";
+import RegisterTherapist from "./components/Register Page/RegisterTherapist";
 import Patient from "./components/Patient/Patient";
 import Therapist from "./components/Therapist/Therapist";
 import PatientHomePage from "./components/Patient/PatientHomePage/PatientHPMeetings";
@@ -28,7 +29,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/RegisterTherapist" element={<RegisterTherapist />} />
+          <Route path="/RegisterPatient" element={<RegisterPatient />} />
           <Route path="/Patient" element={<Patient />} />
           <Route path="/Therapist" element={<Therapist />} />
           <Route path="/Phome" element={<PHomePage />} />
