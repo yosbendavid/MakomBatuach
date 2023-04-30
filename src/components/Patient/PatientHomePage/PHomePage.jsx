@@ -1,60 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import PatientHPMeetings from "./PatientHPMeetings";
 import "../../../CSS/PHomePage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const dummy_meetings = [
     {
         id: 1,
-        name: 'אסתי גרין',
-        roomNum: 2,
-        date: '12.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
     },
-    {
-        id: 2,
-        name: 'אסתי גרין',
-        roomNum: 1,
-        date: '18.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
-    },
-    {
-        id: 3,
-        name: 'אסתי גרין',
-        roomNum: 2,
-        date: '12.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
-    },
-    {
-        id: 4,
-        name: 'אסתי גרין',
-        roomNum: 1,
-        date: '18.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
-    },
-    {
-        id: 5,
-        name: 'אסתי גרין',
-        roomNum: 2,
-        date: '12.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
-    },
-    {
-        id: 6,
-        name: 'אסתי גרין',
-        roomNum: 1,
-        date: '18.12.23',
-        sTime: '11:45',
-        eTime: '12:30',
-    },
+    
 ];
 
 const PHomePage = () => {
+
     const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
 
     const addMeetingsHandler = newPatientMeeting => {
@@ -62,6 +19,38 @@ const PHomePage = () => {
             return [newPatientMeeting, ...prevPatientMeetings]
         });
     };
+    
+    const apiUrl="https://localhost:44380/api/patientstreatment/"
+
+    useEffect(()=> {
+
+        fetch(apiUrl+1, 
+            {
+            method: 'GET',
+            headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': 'application/json; charset=UTF-8',
+            })
+            })
+            .then(res => {
+            console.log('res=', res);
+            console.log('res.status', res.status);
+            console.log('res.ok', res.ok);
+            return res.json()
+            })
+            .then(
+            (result) => {
+            result.map(tr => console.log(tr.id));
+            console.log(result);
+            setPatientMeetings(result);
+    
+            },
+            (error) => {
+            console.log("err post=", error);
+            });
+        
+        } ,[])
+        
 
     const navigate = useNavigate(); 
 
@@ -69,6 +58,10 @@ const PHomePage = () => {
       navigate("/Patient");
     }
 
+    const Go2NewSummary = () => {
+        navigate("/NewMetting");
+      }
+  
     return (
         <div className="PHomePage-container">
             <div className="setMeetingBtn">
@@ -78,7 +71,7 @@ const PHomePage = () => {
             <div className="items-div">
                 <PatientHPMeetings papatientMeetings={patientMeetings} />
             </div>
-            <button className="seeAllDocuments">לחץ למסמכי סיכום פגישות</button>
+            <button className="seeAllDocuments">לחץ לפגישות קומות</button>
         </div>
     );
 }
