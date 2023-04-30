@@ -9,7 +9,7 @@ import { StyledIcon } from '../Meeting/Meeting.style';
 import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper } from './NewMetting.style';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-const apiUrl = 'https://localhost:44337/api/PostSummary'; 
+const apiUrl = 'https://localhost:44380/api/PostSummary'; 
 
 export default function NewMetting(props) {
   
@@ -47,7 +47,7 @@ export default function NewMetting(props) {
   }
 
   const location = useLocation();
-  const { Date1, Time} = location.state;
+  const { Date1, Time, numOfMeeting} = location.state;
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState('');
@@ -77,11 +77,10 @@ export default function NewMetting(props) {
       WrittenBy: 't',
       Content: fileContent ? fileContent : transcript, 
       Summary_Date: formattedDate,
-      ImportentToNote: ImportanttoNote
-
-      
+      ImportanttoNote: ImportanttoNote,
+      Treatment_Id: numOfMeeting
     };
-    if (postBody.WrittenBy && postBody.Content && postBody.Summary_Date && postBody.ImportentToNote) {
+    if (postBody.WrittenBy && postBody.Content && postBody.Summary_Date && postBody.ImportanttoNote) {
       // All required fields have a value, so send the POST request
       fetch(apiUrl, {
         method: 'POST',
@@ -131,6 +130,10 @@ export default function NewMetting(props) {
     <InformationContainer> 
     <InformationTitle> שעה </InformationTitle>
     <InformationDesc> {Time} </InformationDesc>
+    </InformationContainer>
+    <InformationContainer> 
+    <InformationTitle> מספר פגישה </InformationTitle>
+    <InformationDesc> {numOfMeeting} </InformationDesc>
     </InformationContainer>
     <InformationContainer> 
     <InformationTitle> חשוב לציין </InformationTitle>
