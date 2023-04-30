@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+
 const Login = () => {
 
     const [email, seteEmail] = useState("");
@@ -26,17 +27,16 @@ const Login = () => {
         event.preventDefault();
          try {
             const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
-                enteredEmail: email,
-                enteredPassword:password
+                Email: email,
+                Password:password
             });
             if (response.status === 200) 
             {
-                Swal.fire(
-                    'Welcome',
-                    `${email} ${password} You Have Signed In to Makom Batuach`,
-                    'success'
-                  )
-                  Go2Patienthome();
+                if (response.data == 'Change Password') {
+                    Go2Register();
+                }
+                console.log(response)
+                //Go2Patienthome();
             }
             else if (response.status === 400){
                 Swal.fire({

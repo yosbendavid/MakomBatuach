@@ -51,13 +51,13 @@ const RegisterBoxs = () => {
     const registerAcount = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('https://localhost:44380/api/SignInUser/SignIn', {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/SignUpUser', {
                 FirstName: firstName,
                 LastName: lastName,
                 BirthDate: birthDate,
                 Email: email,
                 Gender: gender,
-                Patient_Id: id,
+                user_id: id,
                 Password: password,
                 StartDate: new Date()
             });

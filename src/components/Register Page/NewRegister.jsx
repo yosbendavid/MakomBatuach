@@ -40,7 +40,7 @@ const RegisterBoxs = () => {
     const registerAccount = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('https://localhost:44380/api/SignInUser/SignUp', {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/SignUpManager', {
                 Email: email,
                 PhoneNumber: phone_number,
                 UserType: user_type
@@ -52,6 +52,7 @@ const RegisterBoxs = () => {
                     `${email} You Have Signed In to Makom Batuach`,
                     'success'
                   )
+                Go2Login();
             }
             else if (response.status === 400){
                 Swal.fire({
@@ -64,7 +65,7 @@ const RegisterBoxs = () => {
             console.error('Request failed with status code', error.response.status);
         }
 
-        Go2Login();
+        
 
     };
 
