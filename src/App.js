@@ -13,7 +13,6 @@ import NewMetting from "./components/Therapist/New Metting/NewMetting";
 import PatientCase from "./components/Therapist/Patient Case/PatientCase";
 import Patients from "./components/Therapist/Patients/Patients";
 import Summaries from "./components/Therapist/Summries/Summaries";
-import Metting from "./components/Therapist/Meeting/Metting";
 
 
 
@@ -41,7 +40,6 @@ function App() {
         <Routes>
         {/* <Route path='/' element={<HomePageTherapit />} /> */}
         <Route path='/PatientCase/:patientId' element={<PatientCase/>} />
-        <Route path='/NewMetting' element={<NewMetting/>} />
         <Route path='/Summaries/:patientId' element={<Summaries/>} />
         <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} />
         <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
