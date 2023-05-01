@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-
-
 const Login = () => {
 
     const [email, seteEmail] = useState("");
@@ -33,22 +31,31 @@ const Login = () => {
             });
             if (response.status === 200) 
             {
-                if (response.data == 'Change Password 1' || response.data == 'Change Password 2') {
-                    Go2RegisterPatient();
-                }
-                else if (response.data == 'Change Password 0'){
-                    Go2RegisterTherapist();
-                }
-                console.log(response)
-                //Go2Patienthome();
+                    Swal.fire(
+                    'Welcome',
+                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    'success'
+                  )
+                  Go2Patienthome()
             }
-            else if (response.status === 400){
-                Swal.fire({
-                    icon:'error',
-                    title: 'Oops...',
-                    text: 'Email is Already Register, Please Try Other Email'
-                })
+            if (response.status === 201) 
+            {
+                Swal.fire(
+                    'Welcome',
+                    `${email} ${password} Please complete these details`,
+                    'success'
+                  )
+                  Go2RegisterPatient();
             }
+            if (response.status === 202) 
+            {
+                Swal.fire(
+                    'Welcome',
+                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    'success'
+                  )
+                  Go2Therahome();
+                }
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
@@ -65,9 +72,13 @@ const Login = () => {
     const Go2RegisterPatient = () => {
         navigate("/RegisterPatient");
       }
-    const Go2RegisterTherapist = () => {
-        navigate("/RegisterTherapist");
+
+      const Go2Therahome = () => {
+        navigate("/HomePageTherapit");
       }
+    // const Go2RegisterTherapist = () => {
+    //     navigate("/RegisterTherapist");
+    //   }
 
 
     return(

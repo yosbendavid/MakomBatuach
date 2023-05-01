@@ -67,7 +67,7 @@ const RegisterBoxs = () => {
                     `${firstName} ${lastName} You Have Signed In to Makom Batuach`,
                     'success'
                   )
-                  Go2Patient();
+                  Go2Login();
                   
             }
             else if (response.status === 400){
