@@ -30,7 +30,6 @@ const PatientNewMeeting = (props) => {
 
     const Go2Approve = () => {
 
-        {props.setNewMeeting}
         
         navigate("/meetingApproved");
       }

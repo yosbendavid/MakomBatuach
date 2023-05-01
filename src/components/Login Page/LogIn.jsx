@@ -5,6 +5,10 @@ import {inputBoxArrayLogin} from "./Login-Data/inputBoxArrayLogin";
 import ButtonCard from '../Template parts/ButtonCard'
 import '../../CSS/login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+
 
 const Login = () => {
 
@@ -20,14 +24,34 @@ const Login = () => {
         setPassword(value);
     }
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
-    const loginInAccount = (event) => {
+    const loginInAccount = async (event) => {
         event.preventDefault();
-        const loginData = {
-            enteredEmail: email,
-            enteredPassword:password
-        };
-        console.log(loginData)
-        Go2Patienthome();
+         try {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                Email: email,
+                Password:password
+            });
+            if (response.status === 200) 
+            {
+                if (response.data == 'Change Password 1' || response.data == 'Change Password 2') {
+                    Go2RegisterPatient();
+                }
+                else if (response.data == 'Change Password 0'){
+                    Go2RegisterTherapist();
+                }
+                console.log(response)
+                //Go2Patienthome();
+            }
+            else if (response.status === 400){
+                Swal.fire({
+                    icon:'error',
+                    title: 'Oops...',
+                    text: 'Email is Already Register, Please Try Other Email'
+                })
+            }
+        } catch (error) {
+            console.error('Request failed with status code', error.response.status);
+        }
         seteEmail('');
         setPassword('');
     }
@@ -38,8 +62,11 @@ const Login = () => {
       navigate("/Phome");
     }
 
-    const Go2Register = () => {
-        navigate("/Register");
+    const Go2RegisterPatient = () => {
+        navigate("/RegisterPatient");
+      }
+    const Go2RegisterTherapist = () => {
+        navigate("/RegisterTherapist");
       }
 
 
@@ -86,7 +113,6 @@ const Login = () => {
                 <div className='login-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
                     <div className='new-account-div'>
-                        <p onClick={Go2Register} className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
                     </div>
                 </div>
             </form>
