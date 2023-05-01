@@ -6,7 +6,7 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledIcon } from '../Meeting/Meeting.style';
-import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper } from './NewMetting.style';
+import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper, divCenter } from './NewMetting.style';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const apiUrl = 'https://localhost:44380/api/PostSummary'; 
@@ -116,7 +116,7 @@ export default function NewMetting(props) {
    
   
   return (
-    <div>
+    <div style={{padding: "40px 0"}}>
     <TitleWrapper>  
     <span></span> 
     <MeetingTitle> סיכום טיפול חדש </MeetingTitle>
@@ -145,18 +145,22 @@ export default function NewMetting(props) {
 
     </InformationContainer>
     </InformationWrapper>
-    <ButtonDiv>
-    <DeleteForeverRoundedIcon onClick={clearTranscript}> </DeleteForeverRoundedIcon>
-    <IconRecord onClick={toggleListen}>{isListening ? 'Stop' : 'Start'} </IconRecord>
-    <ButtonSummery onClick={() => fileInputRef.current.click()}> הוסף קובץ סיכום </ButtonSummery>
-    <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleFileChange} />
-    </ButtonDiv>
+    <div style={{textAlign:"center"}}>
+      <ButtonDiv>
+      <DeleteForeverRoundedIcon onClick={clearTranscript}> </DeleteForeverRoundedIcon>
+      <IconRecord style={{marginRight: "50px"}} onClick={toggleListen}>{isListening ? 'Stop' : 'Start'} </IconRecord>
+      <ButtonSummery onClick={() => fileInputRef.current.click()}> הוסף קובץ סיכום </ButtonSummery>
+      <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleFileChange} />
+      </ButtonDiv>
+    
     <ButtonDiv>
     <ButtonAddFiles> + הוסף קובץ למטופל  </ButtonAddFiles>
     </ButtonDiv>
     <ButtonDiv>
     <SaveButton onClick={btnPost}> שמור </SaveButton>
+    
     </ButtonDiv>
+    </div>
 
     <Navbar>
       <BottomNavigation>
