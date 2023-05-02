@@ -14,6 +14,7 @@ export const MeetingTitle = styled.h1`
   font-size: 1.5em;
   text-align: center;
   color: black;
+  width: 100%;
 `;
 
 export const StyledIcon = styled(Icon)`
@@ -40,7 +41,7 @@ export const InformationDesc = styled.p`
 `;
 
 export const ButtonDiv = styled.div`
-
+   text-align: center;
 `;
 
 export const ButtonFiles = styled.button`
