@@ -48,6 +48,7 @@ function App() {
         {/* <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} /> */}
         <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
         <Route path='/Patients' element={<Patients/>} />
+        <Route path='/NewMetting' element={<NewMetting/>} />
        </Routes>
 
       </header>
