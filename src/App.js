@@ -1,5 +1,6 @@
 import Login from "./components/Login Page/LogIn";
-import Register from "./components/Register Page/Register";
+import RegisterPatient from "./components/Register Page/RegisterPatient";
+import RegisterTherapist from "./components/Register Page/RegisterTherapist";
 import Patient from "./components/Patient/Patient";
 import Therapist from "./components/Therapist/Therapist";
 import PatientHomePage from "./components/Patient/PatientHomePage/PatientHPMeetings";
@@ -13,7 +14,7 @@ import NewMetting from "./components/Therapist/New Metting/NewMetting";
 import PatientCase from "./components/Therapist/Patient Case/PatientCase";
 import Patients from "./components/Therapist/Patients/Patients";
 import Summaries from "./components/Therapist/Summries/Summaries";
-import Metting from "./components/Therapist/Meeting/Metting";
+import NewRegister from "./components/Register Page/NewRegister";
 
 
 
@@ -28,24 +29,26 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/RegisterTherapist" element={<RegisterTherapist />} />
+          <Route path="/RegisterPatient" element={<RegisterPatient />} />
           <Route path="/Patient" element={<Patient />} />
           <Route path="/Therapist" element={<Therapist />} />
           <Route path="/Phome" element={<PHomePage />} />
           <Route path="/Pmeeting" element={<PatientHPMeetings />} />
           <Route path="/Pnm" element={<PatientNewMeeting />} />
           <Route path="/meetingApproved" element={<MeetingApproved/>} />
+          <Route path="/NewRegister" element={<NewRegister/>}/>
 
         </Routes>
 
         <Routes>
         {/* <Route path='/' element={<HomePageTherapit />} /> */}
         <Route path='/PatientCase/:patientId' element={<PatientCase/>} />
-        <Route path='/NewMetting' element={<NewMetting/>} />
         <Route path='/Summaries/:patientId' element={<Summaries/>} />
-        <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} />
+        {/* <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} /> */}
         <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
         <Route path='/Patients' element={<Patients/>} />
+        <Route path='/NewMetting' element={<NewMetting/>} />
        </Routes>
 
       </header>

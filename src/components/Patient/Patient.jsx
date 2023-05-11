@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import PHomePage from "./PatientHomePage/PHomePage";
 import "../../CSS/Patient.css";
 import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting";
 import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
-import NewApproved from './Patient New Meeting/MeetingAproved';
 import {format} from 'date-fns';
+import { useNavigate } from "react-router-dom";
 
 const Patient = () => {
     const meetings = [
@@ -100,6 +99,13 @@ const Patient = () => {
         setMeetingTime(value);
     }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
+
+    const navigate = useNavigate(); 
+        
+    const Go2Approve = () => {
+        navigate("/meetingApproved");
+      }
+
     const setNewMeeting = (event) => 
     {
         event.preventDefault();
@@ -117,17 +123,23 @@ const Patient = () => {
 
         const apiUrl="https://localhost:44380/api/createtre"
 
+        try {
+
         fetch(apiUrl, 
             {
             method: 'POST',
             body: JSON.stringify(newMeeting),
             headers: new Headers({
-            'Content-type': 'application/json; charset=UTF-8' //very important to add the 'charset=UTF-8'!!!!
+            'Content-type': 'application/json; charset=UTF-8' 
             })
             })
             .then(res => {
             console.log('res=', res);
-            return res.json()
+            if(res.status === 200)
+            Go2Approve();
+            {
+                
+            }
             })
             .then(
             (result) => {
@@ -136,8 +148,11 @@ const Patient = () => {
             (error) => {
             console.log("err post=", error);
             });
-        
 
+        }
+        catch (error) {
+            console.error('Request failed with status code', error.response.status);
+        }
 
         // setMeetingTime('');
         // setMeetingDate('');
