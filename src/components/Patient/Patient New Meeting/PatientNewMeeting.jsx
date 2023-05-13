@@ -32,6 +32,7 @@ const PatientNewMeeting = (props) => {
         navigate("/meetingApproved");
       }
 
+
     const onApproveClick= () => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
