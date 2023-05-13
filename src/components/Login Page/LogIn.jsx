@@ -4,6 +4,9 @@ import LoginTopPart from './LoginTopPart';
 import {inputBoxArrayLogin} from "./Login-Data/inputBoxArrayLogin";
 import ButtonCard from '../Template parts/ButtonCard'
 import '../../CSS/login.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -19,16 +22,65 @@ const Login = () => {
         setPassword(value);
     }
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
-    const loginInAccount = (event) => {
+    const loginInAccount = async (event) => {
         event.preventDefault();
-        const loginData = {
-            enteredEmail: email,
-            enteredPassword:password
-        };
-        console.log(loginData);
+         try {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                Email: email,
+                Password:password
+            });
+            if (response.status === 200) 
+            {
+                    Swal.fire(
+                    'Welcome',
+                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    'success'
+                  )
+                  Go2Patienthome()
+            }
+            if (response.status === 201) 
+            {
+                Swal.fire(
+                    'Welcome',
+                    `${email} ${password} Please complete these details`,
+                    'success'
+                  )
+                  Go2RegisterPatient();
+            }
+            if (response.status === 202) 
+            {
+                Swal.fire(
+                    'Welcome',
+                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    'success'
+                  )
+                  Go2Therahome();
+                }
+        } catch (error) {
+            console.error('Request failed with status code', error.response.status);
+        }
         seteEmail('');
         setPassword('');
     }
+
+    const navigate = useNavigate(); 
+
+    const Go2Patienthome = () => {
+      navigate("/Phome");
+    }
+
+    const Go2RegisterPatient = () => {
+        navigate("/RegisterPatient");
+      }
+
+      const Go2Therahome = () => {
+        navigate("/HomePageTherapit");
+      }
+    // const Go2RegisterTherapist = () => {
+    //     navigate("/RegisterTherapist");
+    //   }
+
+
     return(
         <div className="login-container-div">
             {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
@@ -66,14 +118,16 @@ const Login = () => {
                     </div>
                 </div>
 
+                
+
                 {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
                 <div className='login-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
                     <div className='new-account-div'>
-                        <p className="register-account-p">אין לך משתמש? <span className="register-page">הירשם</span></p>
                     </div>
                 </div>
             </form>
+         
         </div>
     );
 }

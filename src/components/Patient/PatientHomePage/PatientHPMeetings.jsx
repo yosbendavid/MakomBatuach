@@ -1,5 +1,5 @@
 import React from "react";
-import PMeetingItem from "./PMeetingItem"
+// import PMeetingItem from "./PMeetingItem"
 import MeetingItemBox from "../../Template parts/MeetingItemBox"
 
 const PatientHPMeetings = (props) => {
@@ -8,12 +8,12 @@ const PatientHPMeetings = (props) => {
             {
                 props.papatientMeetings.map((meeting) => (
                     <MeetingItemBox 
-                        name={meeting.name}
-                        date={meeting.date}
-                        roomNum={meeting.roomNum}
-                        sTime={meeting.sTime}
-                        eTime={meeting.eTime}
-                        key={meeting.id}
+                        key={meeting.Treatment_id}
+                        name={meeting.TherapistName}
+                        date={meeting.datetemp}
+                        roomNum={meeting.Room_Num}
+                        sTime={meeting.startTimetemp}
+                        eTime={meeting.endtimetemp}
                     />
                 ))}
         </div>
