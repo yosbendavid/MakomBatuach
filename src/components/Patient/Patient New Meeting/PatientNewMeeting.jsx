@@ -29,9 +29,6 @@ const PatientNewMeeting = (props) => {
     const navigate = useNavigate(); 
 
     const Go2Approve = () => {
-
-        // {props.setNewMeeting}
-        
         navigate("/meetingApproved");
       }
 
@@ -40,7 +37,6 @@ const PatientNewMeeting = (props) => {
         slotElements.forEach(slot => {
             slot.classList.remove('clicked');
 
-            Go2Approve();
         });
 
         
