@@ -41,6 +41,7 @@ const Patient = () => {
   const [meetingDate, setMeetingDate] = useState("");
   const [meetingTime, setMeetingTime] = useState("");
   const [timeSlots, setTimeSlots] = useState("");
+  const [roomNum, setRoomNum] = useState("");
   const [meet, setMeet] = useState("");
 
 
@@ -85,10 +86,11 @@ const Patient = () => {
                (result) => {
                 console.log(result);
                 const indexedHours = result.map((hour, index) => {
-                    return { id: index, time: hour };
+                    return {id: index, time:hour, room:hour.Room_Num};
                   });      
                           //לפה להכניס את הזמנים החדשים          
                   setTimeSlots(indexedHours);
+                  setRoomNum(indexedHours)
                },
            (error) => {
            console.log("err post=", error);
@@ -99,6 +101,10 @@ const Patient = () => {
     // הפונקציה שאני מעביר כדי לתפוס את הערך של שעות
     const handleMeetingTimeChange = (value) => {
         setMeetingTime(value);
+    }
+
+    const handleRoomNum = (value) => {
+        setRoomNum(value);
     }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 
@@ -116,7 +122,7 @@ const Patient = () => {
                 TreatmentDate : meetingDate,
                 WasDone : "n",
                 StartTime : meetingTime,
-                Room_Num :1,
+                Room_Num :roomNum.Room_Num,
                 Type_Id: 1
             
 
