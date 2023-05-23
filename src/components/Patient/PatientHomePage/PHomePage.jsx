@@ -24,7 +24,7 @@ const PHomePage = () => {
 
     useEffect(()=> {
 
-        fetch(apiUrl+1, 
+        fetch(apiUrl+2, 
             {
             method: 'GET',
             headers: new Headers({

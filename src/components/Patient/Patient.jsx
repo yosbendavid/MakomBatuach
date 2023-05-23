@@ -40,7 +40,7 @@ const Patient = () => {
   const [therapistName, setTherapistName] = useState("");
   const [meetingDate, setMeetingDate] = useState("");
   const [meetingTime, setMeetingTime] = useState("");
-  const [timeSlots, setTimeSlots] = useState("");
+  const [timeSlots, setTimeSlots] = useState([]);
   const [roomNum, setRoomNum] = useState("");
   const [meet, setMeet] = useState("");
 
@@ -85,13 +85,14 @@ const Patient = () => {
            .then(
                (result) => {
                 console.log(result);
-                const indexedHours = result.map((hour, index) => {
-                    return {id: index, time:hour, room:hour.Room_Num};
-                  });      
+                // const indexedHours = result.map((hour, index) => {
+                //     return {id: index, time:hour};
+                //   });      
                           //לפה להכניס את הזמנים החדשים          
-                  setTimeSlots(indexedHours);
-                  setRoomNum(indexedHours)
+                  setTimeSlots(result);
+                  setRoomNum(result[2].Room_Num);
                },
+               //////Not Good!!! "result[2].Room_Num" points to a specific place. Maybe Map functiom?
            (error) => {
            console.log("err post=", error);
            });    
@@ -122,7 +123,7 @@ const Patient = () => {
                 TreatmentDate : meetingDate,
                 WasDone : "n",
                 StartTime : meetingTime,
-                Room_Num :roomNum.Room_Num,
+                Room_Num :roomNum,
                 Type_Id: 1
             
 
