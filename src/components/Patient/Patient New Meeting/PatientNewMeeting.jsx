@@ -20,6 +20,7 @@ const PatientNewMeeting = (props) => {
             if (slot.getAttribute('id') === timeId.toString()) {
                 console.log(timeId);
                 props.onMeetingTimeChange(slot.innerHTML);
+                props.RoomPicked(timeId);
                 slot.classList.add('clicked');
             } else {
                 slot.classList.remove('clicked');

@@ -85,12 +85,12 @@ const Patient = () => {
            .then(
                (result) => {
                 console.log(result);
-                // const indexedHours = result.map((hour, index) => {
-                //     return {id: index, time:hour};
-                //   });      
+                const indexedHours = result.map((roomNum, index) => {
+                    return {id: index, room:roomNum.Room_Num};
+                  });      
                           //לפה להכניס את הזמנים החדשים          
                   setTimeSlots(result);
-                  setRoomNum(result[2].Room_Num);
+                  setRoomNum(indexedHours);
                },
                //////Not Good!!! "result[2].Room_Num" points to a specific place. Maybe Map functiom?
            (error) => {
@@ -105,7 +105,7 @@ const Patient = () => {
     }
 
     const handleRoomNum = (value) => {
-        setRoomNum(value);
+        setRoomNum(roomNum[value].room);
     }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 
@@ -181,6 +181,7 @@ const Patient = () => {
         setNewMeeting={setNewMeeting}
         onMeetingDateChange={handleMeetingDateChange}
         onMeetingTimeChange={handleMeetingTimeChange}
+        RoomPicked={handleRoomNum}
         clickedATime={meetingTime}
       />
 
