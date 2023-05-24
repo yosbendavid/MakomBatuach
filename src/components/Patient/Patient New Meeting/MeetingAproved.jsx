@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../../CSS/NewMeetingApproved.css";
 import ButtonCard from "../../Template parts/ButtonCard";
 import Checked from "../../../Photos/Checked.svg"
+
 import { useNavigate } from "react-router-dom";
 
 const MeetingApproved = (props) => {
@@ -26,6 +27,7 @@ const MeetingApproved = (props) => {
     const Go2NewMetting = () => {
         navigate("/Patient");
       }
+
     return(
         <div className="MeetingApproved-container">
             <div className="MeetingApproved-div">
@@ -38,7 +40,9 @@ const MeetingApproved = (props) => {
                         <p className="MeetingApproved-text">נא לוודא להודיע 48 שעות מראש אם את/ה מעוניין/ת לבטל את הפגישה</p>
                     </div>
                     <ButtonCard type="submit">למסך הבית</ButtonCard>
+
                     <a className="setNewMeeting" onClick={Go2NewMetting} href="">לקביעת תור נוסף</a>
+
                 </form>
             </div>
         </div>

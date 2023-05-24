@@ -18,7 +18,9 @@ const PatientNewMeeting = (props) => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
             if (slot.getAttribute('id') === timeId.toString()) {
+                console.log(timeId);
                 props.onMeetingTimeChange(slot.innerHTML);
+                props.RoomPicked(timeId);
                 slot.classList.add('clicked');
             } else {
                 slot.classList.remove('clicked');
@@ -29,18 +31,17 @@ const PatientNewMeeting = (props) => {
     const navigate = useNavigate(); 
 
     const Go2Approve = () => {
-
-        // {props.setNewMeeting}
-        
         navigate("/meetingApproved");
       }
+
 
     const onApproveClick= () => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
             slot.classList.remove('clicked');
 
-            Go2Approve();
+            
+
         });
 
         
@@ -72,8 +73,12 @@ const PatientNewMeeting = (props) => {
                 <div className="meeting-time-slots-container">
                 {props.timeSlots.length > 0 && (
                     <div className="meeting-time-slots">
-                        {props.timeSlots.map((time) => (
-                        <div className = "time-slot" key={time.id} id={time.id} onClick={() => handleSlotClick(time.id)}>{time.time}</div>
+                        {props.timeSlots.map((time, index) => (
+                        <div 
+                        className = "time-slot"
+                         key={index} 
+                         id={index} 
+                         onClick={() => handleSlotClick(index)}>{time.startTimetemp}</div>
                         ))}
                     </div>
                 )}

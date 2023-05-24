@@ -8,6 +8,8 @@ const TextBox = (props) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [className, setClassName] = useState('');
 
+
+//לשנות את הכתיבה לא לכתוב עם גט אלמנט!
   const showPassword = () => {
     const inputElement = document.getElementById(`my-input-${props.id}`);
     setPasswordVisible(!passwordVisible);

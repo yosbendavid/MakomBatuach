@@ -1,5 +1,5 @@
 import React from "react";
-import PMeetingItem from "./PMeetingItem"
+// import PMeetingItem from "./PMeetingItem"
 import MeetingItemBox from "../../Template parts/MeetingItemBox"
 
 const PatientHPMeetings = (props) => {

@@ -1,46 +1,48 @@
 import React, { useState } from "react";
-import PHomePage from "./PatientHomePage/PHomePage";
 import "../../CSS/Patient.css";
 import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting";
 import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
-import NewApproved from './Patient New Meeting/MeetingAproved';
 import {format} from 'date-fns';
+import { useNavigate } from "react-router-dom";
+
+
 
 const Patient = () => {
-    const meetings = [
-        {
-            id:1, 
-            time:'11:45-12:30'
-        },
-        {
-            id:2, 
-            time:'11:45-12:30'
-        },
-        {
-            id:3, 
-            time:'11:45-12:30'
-        },
-        {
-            id:4, 
-            time:'11:45-12:30'
-        },
-        {
-            id:5, 
-            time:'11:45-12:30'
-        },
-        {
-            id:6, 
-            time:'11:45-12:30'
-        },
-    ];
+  const meetings = [
+    {
+      id: 1,
+      time: "11:45-12:30",
+    },
+    {
+      id: 2,
+      time: "11:45-12:30",
+    },
+    {
+      id: 3,
+      time: "11:45-12:30",
+    },
+    {
+      id: 4,
+      time: "11:45-12:30",
+    },
+    {
+      id: 5,
+      time: "11:45-12:30",
+    },
+    {
+      id: 6,
+      time: "11:45-12:30",
+    },
+  ];
 
-    const [patientName, setPatientName] = useState('');
-    const [therapistName, setTherapistName] = useState('');
-    const [meetingDate, setMeetingDate] = useState('');
-    const [meetingTime, setMeetingTime] = useState('');
-    const [timeSlots, setTimeSlots] = useState('');
-    const [meet, setMeet] = useState('');
+  const [patientName, setPatientName] = useState("");
+  const [therapistName, setTherapistName] = useState("");
+  const [meetingDate, setMeetingDate] = useState("");
+  const [meetingTime, setMeetingTime] = useState("");
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [roomNum, setRoomNum] = useState("");
+  const [meet, setMeet] = useState("");
 
 
     const patientNameHandle = () => {
@@ -83,12 +85,14 @@ const Patient = () => {
            .then(
                (result) => {
                 console.log(result);
-                const indexedHours = result.map((hour, index) => {
-                    return { id: index, time: hour };
+                const indexedHours = result.map((roomNum, index) => {
+                    return {id: index, room:roomNum.Room_Num};
                   });      
                           //לפה להכניס את הזמנים החדשים          
-                  setTimeSlots(indexedHours);
+                  setTimeSlots(result);
+                  setRoomNum(indexedHours);
                },
+               //////Not Good!!! "result[2].Room_Num" points to a specific place. Maybe Map functiom?
            (error) => {
            console.log("err post=", error);
            });    
@@ -99,7 +103,18 @@ const Patient = () => {
     const handleMeetingTimeChange = (value) => {
         setMeetingTime(value);
     }
+
+    const handleRoomNum = (value) => {
+        setRoomNum(roomNum[value].room);
+    }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
+
+    const navigate = useNavigate(); 
+        
+    const Go2Approve = () => {
+        navigate("/meetingApproved");
+      }
+
     const setNewMeeting = (event) => 
     {
         event.preventDefault();
@@ -108,26 +123,32 @@ const Patient = () => {
                 TreatmentDate : meetingDate,
                 WasDone : "n",
                 StartTime : meetingTime,
-                Room_Num :1,
+                Room_Num :roomNum,
                 Type_Id: 1
             
 
         }
         console.log(newMeeting);
 
-        const apiUrl="https://localhost:44380/api/createtre"
+    const apiUrl = "https://localhost:44380/api/createtre";
+
+        try {
 
         fetch(apiUrl, 
             {
             method: 'POST',
             body: JSON.stringify(newMeeting),
             headers: new Headers({
-            'Content-type': 'application/json; charset=UTF-8' //very important to add the 'charset=UTF-8'!!!!
+            'Content-type': 'application/json; charset=UTF-8' 
             })
             })
             .then(res => {
             console.log('res=', res);
-            return res.json()
+            if(res.status === 200)
+            Go2Approve();
+            {
+                
+            }
             })
             .then(
             (result) => {
@@ -136,42 +157,42 @@ const Patient = () => {
             (error) => {
             console.log("err post=", error);
             });
-        
 
+        }
+        catch (error) {
+            console.error('Request failed with status code', error.response.status);
+        }
 
         // setMeetingTime('');
         // setMeetingDate('');
     }
 
-    return(
-        <div className="patient-container-div">
-            <TopBar 
-                patientName={patientName} 
-                onSideBarClick={patientSideBarClick} 
-            />
-                
-                {/* מסך הבית של מטופל */}
-                {/* <PHomePage /> */}
+  return (
+    <div className="patient-container-div">
+      <TopBar patientName={patientName} onSideBarClick={patientSideBarClick} />
 
+      {/* מסך הבית של מטופל */}
+      {/* <PHomePage /> */}
 
-                {/* מסך תיאום פגישה חדשה */}
-                <PatientNewMeeting
-                    timeSlots = {timeSlots}
-                    therapistName = {therapistName}
-                    setNewMeeting = {setNewMeeting}
-                    onMeetingDateChange = {handleMeetingDateChange}
-                    onMeetingTimeChange = {handleMeetingTimeChange}
-                    clickedATime = {meetingTime}
-                />
+      {/* מסך תיאום פגישה חדשה */}
+      <PatientNewMeeting
+        timeSlots={timeSlots}
+        therapistName={therapistName}
+        setNewMeeting={setNewMeeting}
+        onMeetingDateChange={handleMeetingDateChange}
+        onMeetingTimeChange={handleMeetingTimeChange}
+        RoomPicked={handleRoomNum}
+        clickedATime={meetingTime}
+      />
 
-                {/* מסך אישור תיאום פגישה */}
-                {/* <NewApproved /> */}
-            <BottomBar 
-                onCalendarClick={patientCalendarClick} 
-                onUserClick={patientUserClick} 
-                onHomeClick={patientHomeClick} 
-            />
-        </div>
-    );
-}
+      {/* מסך אישור תיאום פגישה */}
+      {/* <NewApproved /> */}
+      <BottomBar
+        onCalendarClick={patientCalendarClick}
+        onUserClick={patientUserClick}
+        onHomeClick={patientHomeClick}
+      />
+    </div>
+  );
+};
 export default Patient;
