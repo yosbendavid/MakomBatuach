@@ -12,6 +12,12 @@ const dummy_meetings = [
 
 const PHomePage = () => {
 
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    // const email = queryParams.get('email');
+    // console.log('email=',email)
+  
+
     const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
 
     const addMeetingsHandler = newPatientMeeting => {
@@ -20,11 +26,13 @@ const PHomePage = () => {
         });
     };
     
-    const apiUrl="https://localhost:44380/api/patientstreatment/"
+    const apiUrl="https://localhost:44380/api/patientstreatment/?email="
 
     useEffect(()=> {
 
-        fetch(apiUrl+2, 
+        const email = queryParams.get('email');
+
+        fetch(apiUrl+email, 
             {
             method: 'GET',
             headers: new Headers({
