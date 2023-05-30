@@ -54,7 +54,7 @@ const Login = () => {
                     `${email} ${password} You Have Signed In to Makom Batuach`,
                     'success'
                   )
-                  Go2Therahome();
+                  Go2Therahome(email);
                 }
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
@@ -77,7 +77,7 @@ const Login = () => {
       }
 
       const Go2Therahome = () => {
-        navigate("/HomePageTherapit");
+        navigate(`/HomePageTherapit/?email=${email}`);
       }
     // const Go2RegisterTherapist = () => {
     //     navigate("/RegisterTherapist");
