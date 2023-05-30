@@ -3,7 +3,7 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {
   GreenStripe,
   LastMeetingContainer,
@@ -27,15 +27,20 @@ import {
   TitleWrapper,
 } from "./HomePageTherapit.Style";
 
-const apiUrl = "https://localhost:44380/api/Therapist/";
+const apiUrl = "https://localhost:44380/api/Therapist/?email=";
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
   const { therapistId } = useParams(); // get therapistId from URL
   const navigate = useNavigate();
 
   const GetMeeting = async (therapistId) => {
-    const result = await fetch(apiUrl + 1);
+    const email = queryParams.get('email');
+    console.log('email=',email)
+    const result = await fetch(apiUrl + email);
     const json = await result.json();
     setPaMeeting(json);
   };

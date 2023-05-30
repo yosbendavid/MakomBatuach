@@ -4,7 +4,7 @@ import LoginTopPart from './LoginTopPart';
 import {inputBoxArrayLogin} from "./Login-Data/inputBoxArrayLogin";
 import ButtonCard from '../Template parts/ButtonCard'
 import '../../CSS/login.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useNavigation } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -36,7 +36,7 @@ const Login = () => {
                     `${email} ${password} You Have Signed In to Makom Batuach`,
                     'success'
                   )
-                  Go2Patienthome()
+                  Go2Patienthome(email)
             }
             if (response.status === 201) 
             {
@@ -54,27 +54,30 @@ const Login = () => {
                     `${email} ${password} You Have Signed In to Makom Batuach`,
                     'success'
                   )
-                  Go2Therahome();
+                  Go2Therahome(email);
                 }
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
-        seteEmail('');
-        setPassword('');
+       
     }
 
-    const navigate = useNavigate(); 
+    const navigate=useNavigate();
 
-    const Go2Patienthome = () => {
-      navigate("/Phome");
-    }
+    // const Go2Patienthome = (email) => {
+    //    navigate ("/Phome",email);
+    // }
+
+    const Go2Patienthome = (email) => {
+        navigate(`/Phome?email=${email}`);
+      };
 
     const Go2RegisterPatient = () => {
         navigate("/RegisterPatient");
       }
 
       const Go2Therahome = () => {
-        navigate("/HomePageTherapit");
+        navigate(`/HomePageTherapit/?email=${email}`);
       }
     // const Go2RegisterTherapist = () => {
     //     navigate("/RegisterTherapist");
