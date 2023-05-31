@@ -12,26 +12,16 @@ const dummy_meetings = [
 
 const PHomePage = () => {
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    // const email = queryParams.get('email');
-    // console.log('email=',email)
-  
-
-    const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
-
-    const addMeetingsHandler = newPatientMeeting => {
-        setPatientMeetings(prevPatientMeetings => {
-            return [newPatientMeeting, ...prevPatientMeetings]
-        });
-    };
-    
     const apiUrl="https://localhost:44380/api/patientstreatment/?email="
 
-    useEffect(()=> {
-
-        const email = queryParams.get('email');
-
+    const navigate = useNavigate(); 
+    const {state}=useLocation();
+    
+    useEffect(()=>{
+        const email=state;
+        console.log(email)
+        setEmail(email)
+        console.log(email);
         fetch(apiUrl+email, 
             {
             method: 'GET',
@@ -55,15 +45,23 @@ const PHomePage = () => {
             },
             (error) => {
             console.log("err post=", error);
-            });
-        
-        } ,[])
-        
+            });             
+      },[])
 
-    const navigate = useNavigate(); 
+    const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
+    const [email, setEmail] = useState('')
 
+
+
+
+    const addMeetingsHandler = newPatientMeeting => {
+        setPatientMeetings(prevPatientMeetings => {
+            return [newPatientMeeting, ...prevPatientMeetings]
+        });
+    };
+    
     const Go2Nemeeting = () => {
-      navigate("/Patient");
+      navigate('/Patient',{state:email})
     }
 
     const Go2NewSummary = () => {

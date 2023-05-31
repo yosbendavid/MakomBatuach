@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../../CSS/Patient.css";
 import PatientNewMeeting from "./Patient New Meeting/PatientNewMeeting";
 import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
 import {format} from 'date-fns';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, } from "react-router-dom";
 
 
 
@@ -36,6 +36,14 @@ const Patient = () => {
     },
   ];
 
+  const navigate=useNavigate();
+  const {state}=useLocation();
+  useEffect(()=>{
+      const email=state;
+      setEmail(email)
+      console.log(email)
+    
+  },[])
 
   const [patientName, setPatientName] = useState("");
   const [therapistName, setTherapistName] = useState("");
@@ -44,6 +52,8 @@ const Patient = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [roomNum, setRoomNum] = useState("");
   const [meet, setMeet] = useState("");
+  const [email, setEmail] = useState("");
+
 
 
     const patientNameHandle = () => {
@@ -66,10 +76,11 @@ const Patient = () => {
     // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
     const handleMeetingDateChange = (value) => {
         var t= format(value, 'yyyy/MM/dd');
+        console.log(email);
         var v= format(value, 'yyyy/MM/dd hh:mm');
         setMeetingDate(v);
        const tryget='https://localhost:44380/api/amen/'
-       fetch(tryget+t,
+       fetch(tryget+t+'/?email='+email,
        {
            method: 'GET',
            headers: new Headers({
@@ -109,8 +120,6 @@ const Patient = () => {
         setRoomNum(roomNum[value].room);
     }
     //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
-
-    const navigate = useNavigate(); 
         
     const Go2Approve = () => {
         navigate("/meetingApproved");
@@ -125,10 +134,9 @@ const Patient = () => {
                 WasDone : "n",
                 StartTime : meetingTime,
                 Room_Num :roomNum,
-                Type_Id: 1
-            
-
-        }
+                Type_Id: 1,
+                Patient_Email:email,
+          }
         console.log(newMeeting);
 
     const apiUrl = "https://localhost:44380/api/createtre";
@@ -163,9 +171,6 @@ const Patient = () => {
         catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
-
-        // setMeetingTime('');
-        // setMeetingDate('');
     }
 
   return (
