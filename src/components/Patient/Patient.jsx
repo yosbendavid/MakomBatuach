@@ -52,7 +52,7 @@ const Patient = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [roomNum, setRoomNum] = useState("");
   const [meet, setMeet] = useState("");
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
 
 
 
@@ -134,10 +134,9 @@ const Patient = () => {
                 WasDone : "n",
                 StartTime : meetingTime,
                 Room_Num :roomNum,
-                Type_Id: 1
-            
-
-        }
+                Type_Id: 1,
+                Patient_Email:email,
+          }
         console.log(newMeeting);
 
     const apiUrl = "https://localhost:44380/api/createtre";
@@ -172,9 +171,6 @@ const Patient = () => {
         catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
-
-        // setMeetingTime('');
-        // setMeetingDate('');
     }
 
   return (
