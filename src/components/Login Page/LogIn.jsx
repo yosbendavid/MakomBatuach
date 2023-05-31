@@ -64,12 +64,8 @@ const Login = () => {
 
     const navigate=useNavigate();
 
-    // const Go2Patienthome = (email) => {
-    //    navigate ("/Phome",email);
-    // }
-
     const Go2Patienthome = (email) => {
-        navigate(`/Phome?email=${email}`);
+        navigate('/Phome',{state:email})
       };
 
     const Go2RegisterPatient = () => {
@@ -79,10 +75,6 @@ const Login = () => {
       const Go2Therahome = () => {
         navigate(`/HomePageTherapit/?email=${email}`);
       }
-    // const Go2RegisterTherapist = () => {
-    //     navigate("/RegisterTherapist");
-    //   }
-
 
     return(
         <div className="login-container-div">
