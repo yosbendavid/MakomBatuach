@@ -15,6 +15,7 @@ import PatientCase from "./components/Therapist/Patient Case/PatientCase";
 import Patients from "./components/Therapist/Patients/Patients";
 import Summaries from "./components/Therapist/Summries/Summaries";
 import NewRegister from "./components/Register Page/NewRegister";
+import ForgotMyPassword from "./components/Forgot Password Page/ForgotMyPassword";
 
 
 
@@ -38,6 +39,8 @@ function App() {
           <Route path="/Pnm" element={<PatientNewMeeting />} />
           <Route path="/meetingApproved" element={<MeetingApproved/>} />
           <Route path="/NewRegister" element={<NewRegister/>}/>
+          <Route path="/Forgot" element={<ForgotMyPassword/>}/>
+
 
         </Routes>
 
