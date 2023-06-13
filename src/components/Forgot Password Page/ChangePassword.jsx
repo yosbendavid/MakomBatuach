@@ -5,24 +5,22 @@ import TextBox from '../Template parts/TextBox';
 import '../../CSS/ForgotMyPassword.css';
 import { Navigate, useNavigate, useNavigation } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import axios from 'axios';
 
 
-const ForgotMyPassword = () => {
+const ChangePassword = () => {
   const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [response, setResponse] = useState(false);
-  const newPassword = 'deafult_pass_please_change';
-
-
-
-  const form = useRef()
 
   const handleEmailChange = (value) => {
     setEmail(value);
+  };
+
+  
+  const handlePasswordChange = (value) => {
+    setPassword(value);
   };
 
   const handleSubmit = (event) => {
@@ -32,15 +30,6 @@ const ForgotMyPassword = () => {
     if(response===200)
     {
       change(); 
-
-      setIsSubmitted(true);
-      emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      }); 
-      
     }
     else
     {
@@ -98,36 +87,47 @@ const ForgotMyPassword = () => {
     }
   }
 
-  const change =  () => { //change Password to default one
+  // const change =  () => { //change Password to default one
+  //   try {
+  //       const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
+  //           Email: email,
+  //           Password: password,
+  //       });
+  //       if (response.status === 200) {
+  //           Swal.fire(
+  //               'You can log in',
+  //               'success'
+  //             )              
+  //       }
+  //   } catch (error) {
+  //       console.error('Request failed with status code', error.response.status);
+  //   }
+
+  const change = async () => {
     try {
-        const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
-            Email: email,
-            Password: newPassword,
-        });
-        if (response.status === 200) {
-            Swal.fire(
-                'Please check your email',
-                'success'
-              )              
-        }
+      const response = await fetch('https://localhost:44380/api/SignInUser/Changepa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          Email: email,
+          Password: password
+        })
+      });
+  
+      if (response.ok) {
+        Swal.fire(
+          'You can log in',
+          'success'
+        );
+        Go2Login();
+      }
     } catch (error) {
-        console.error('Request failed with status code', error.response.status);
+      console.error('Request failed with status code', error.response.status);
     }
-
-
-};
-
-
-  // function sendEmail(event) {
-  //   event.preventDefault();
-  //   emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-  //   .then((result) => {
-  //     console.log(result.text);
-  //   }, (error) => {
-  //     console.log(error.text);
-  //   });
-
-  // };
+  };
+  
 
 
   return (
@@ -143,9 +143,9 @@ const ForgotMyPassword = () => {
               
             </div>
           ) : (
-            <form ref={form} onSubmit={handleSubmit}>
-              <p className="FPQ-txt">שכחת את הסיסמא?</p>
-              <p className="FPQ-txt-two">מלא את המייל שלך ותישלח לך הסיסמא לשם</p>
+            <form onSubmit={handleSubmit}>
+              <p className="FPQ-txt">החלף סיסמה</p>
+              <p className="FPQ-txt-two">מלא את המייל והסיסמה </p>
               <TextBox
                 id={1}
                 title="אימייל"
@@ -155,11 +155,18 @@ const ForgotMyPassword = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-              <input type="hidden" name="user_email" value={email}/>
-              <input type="hidden" name="user_password" value={newPassword}/>
+                <TextBox
+                id={2}
+                title="סיסמה"
+                placeHolder="הכנס סיסמה כאן"
+                type="password"
+                name='user_password'
+                value={password}
+                onChange={handlePasswordChange}
+              />
 
-
-
+              
+     
               <button className="FMPSubmit" type="submit">
                 שלח
               </button>
@@ -170,4 +177,4 @@ const ForgotMyPassword = () => {
   );
 };
 
-export default ForgotMyPassword;
+export default ChangePassword;

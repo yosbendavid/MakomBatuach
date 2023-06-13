@@ -29,11 +29,23 @@ const Login = () => {
                 Email: email,
                 Password:password
             });
+
+            if(password=="deafult_pass_please_change")
+            {
+                Swal.fire(
+                    'Welcome',
+                    `You need to change your Password `                   
+                  )
+                  Go2Patienthome(email)
+
+            }
+            else
+            {
             if (response.status === 200) 
             {
                     Swal.fire(
                     'Welcome',
-                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    `${email} You Have Signed In to Makom Batuach`,
                     'success'
                   )
                   Go2Patienthome(email)
@@ -56,6 +68,7 @@ const Login = () => {
                   )
                   Go2Therahome(email);
                 }
+            }
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
         }
@@ -74,6 +87,10 @@ const Login = () => {
 
       const Go2Therahome = () => {
         navigate(`/HomePageTherapit/?email=${email}`);
+      }
+
+      const Go2Forgot = () => {
+        navigate("/Forgot");
       }
 
     return(
@@ -104,7 +121,7 @@ const Login = () => {
 
                     {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
                     <div className='forgot-password-div'>
-                        <p className='forgot-password-p'>שכחת סיסמה?</p>
+                        <p onClick={Go2Forgot}  className='forgot-password-p'>שכחת סיסמה?</p>
                     </div>
 
                     {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
