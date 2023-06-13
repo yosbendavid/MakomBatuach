@@ -5,8 +5,7 @@ import TextBox from '../Template parts/TextBox';
 import '../../CSS/ForgotMyPassword.css';
 import { Navigate, useNavigate, useNavigation } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import axios from 'axios';
 
 
 const ChangePassword = () => {
@@ -15,15 +14,14 @@ const ChangePassword = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [response, setResponse] = useState(false);
 
-
   const handleEmailChange = (value) => {
     setEmail(value);
   };
 
-  const handlepasswordChange=(value)=>
-  {
+  
+  const handlePasswordChange = (value) => {
     setPassword(value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +29,8 @@ const ChangePassword = () => {
     userexist(); 
     if(response===200)
     {
-        }
+      change(); 
+    }
     else
     {
       Swal.fire(
@@ -48,10 +47,6 @@ const ChangePassword = () => {
   };
 
   const navigate = useNavigate();
-
-  const Go2RegisterPatient = () => {
-    navigate("/RegisterPatient");
-  }
 
 
   const Go2Login = () => {
@@ -90,8 +85,49 @@ const ChangePassword = () => {
     catch (error) {
       console.error('Request failed with status code', error.response.status);
     }
-  };
+  }
 
+  // const change =  () => { //change Password to default one
+  //   try {
+  //       const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
+  //           Email: email,
+  //           Password: password,
+  //       });
+  //       if (response.status === 200) {
+  //           Swal.fire(
+  //               'You can log in',
+  //               'success'
+  //             )              
+  //       }
+  //   } catch (error) {
+  //       console.error('Request failed with status code', error.response.status);
+  //   }
+
+  const change = async () => {
+    try {
+      const response = await fetch('https://localhost:44380/api/SignInUser/Changepa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          Email: email,
+          Password: password
+        })
+      });
+  
+      if (response.ok) {
+        Swal.fire(
+          'You can log in',
+          'success'
+        );
+        Go2Login();
+      }
+    } catch (error) {
+      console.error('Request failed with status code', error.response.status);
+    }
+  };
+  
 
 
   return (
@@ -104,11 +140,12 @@ const ChangePassword = () => {
               <p>סיסמא נשלחה לכתובת - {email}.</p>
               <p>בדוק את המייל שלך.</p>
               <ButtonCard>חזור לעמוד הבית</ButtonCard>
+              
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
-              <p className="FPQ-txt">החלפת סיסמא</p>
-              <p className="FPQ-txt-two">מלא את הסיסמא החדשה</p>
+              <p className="FPQ-txt">החלף סיסמה</p>
+              <p className="FPQ-txt-two">מלא את המייל והסיסמה </p>
               <TextBox
                 id={1}
                 title="אימייל"
@@ -118,18 +155,18 @@ const ChangePassword = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-               <TextBox
-                id={1}
-                title="סיסמא"
-                placeHolder="הכנס סיסמא כאן"
+                <TextBox
+                id={2}
+                title="סיסמה"
+                placeHolder="הכנס סיסמה כאן"
                 type="password"
                 name='user_password'
                 value={password}
-                onChange={handlepasswordChange}
+                onChange={handlePasswordChange}
               />
-      
 
-
+              
+     
               <button className="FMPSubmit" type="submit">
                 שלח
               </button>

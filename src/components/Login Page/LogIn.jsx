@@ -29,25 +29,26 @@ const Login = () => {
                 Email: email,
                 Password:password
             });
+
+            if(password=="deafult_pass_please_change")
+            {
+                Swal.fire(
+                    'Welcome',
+                    `You need to change your Password `                   
+                  )
+                  Go2Patienthome(email)
+
+            }
+            else
+            {
             if (response.status === 200) 
             {
                     Swal.fire(
                     'Welcome',
-                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    `${email} You Have Signed In to Makom Batuach`,
                     'success'
                   )
                   Go2Patienthome(email)
-            }
-            if(response.status==300)
-            {
-                {
-                    Swal.fire(
-                    'Hey',
-                    `Please change your default password `,
-                    'success'
-                  )
-                  Go2Patienthome(email)
-            }
             }
             if (response.status === 201) 
             {
@@ -67,6 +68,7 @@ const Login = () => {
                   )
                   Go2Therahome(email);
                 }
+            }
         } catch (error) {
             console.error('Request failed with status code', error.response.status);
         }

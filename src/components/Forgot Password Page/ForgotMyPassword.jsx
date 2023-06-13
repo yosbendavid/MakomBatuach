@@ -7,6 +7,7 @@ import { Navigate, useNavigate, useNavigation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import axios from 'axios';
 
 
 const ForgotMyPassword = () => {
@@ -30,13 +31,17 @@ const ForgotMyPassword = () => {
     userexist(); 
     if(response===200)
     {
+      change(); 
+
       setIsSubmitted(true);
       emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
       .then((result) => {
         console.log(result.text);
       }, (error) => {
         console.log(error.text);
-      });    }
+      }); 
+      
+    }
     else
     {
       Swal.fire(
@@ -53,10 +58,6 @@ const ForgotMyPassword = () => {
   };
 
   const navigate = useNavigate();
-
-  const Go2RegisterPatient = () => {
-    navigate("/RegisterPatient");
-  }
 
 
   const Go2Login = () => {
@@ -97,17 +98,36 @@ const ForgotMyPassword = () => {
     }
   }
 
+  const change =  () => { //change Password to default one
+    try {
+        const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
+            Email: email,
+            Password: newPassword,
+        });
+        if (response.status === 200) {
+            Swal.fire(
+                'Please check your email',
+                'success'
+              )              
+        }
+    } catch (error) {
+        console.error('Request failed with status code', error.response.status);
+    }
 
-  function sendEmail(event) {
-    event.preventDefault();
-    emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-    .then((result) => {
-      console.log(result.text);
-    }, (error) => {
-      console.log(error.text);
-    });
 
-  };
+};
+
+
+  // function sendEmail(event) {
+  //   event.preventDefault();
+  //   emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
+  //   .then((result) => {
+  //     console.log(result.text);
+  //   }, (error) => {
+  //     console.log(error.text);
+  //   });
+
+  // };
 
 
   return (
@@ -120,6 +140,7 @@ const ForgotMyPassword = () => {
               <p>סיסמא נשלחה לכתובת - {email}.</p>
               <p>בדוק את המייל שלך.</p>
               <ButtonCard>חזור לעמוד הבית</ButtonCard>
+              
             </div>
           ) : (
             <form ref={form} onSubmit={handleSubmit}>
