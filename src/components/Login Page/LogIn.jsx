@@ -38,6 +38,17 @@ const Login = () => {
                   )
                   Go2Patienthome(email)
             }
+            if(response.status==300)
+            {
+                {
+                    Swal.fire(
+                    'Hey',
+                    `Please change your default password `,
+                    'success'
+                  )
+                  Go2Patienthome(email)
+            }
+            }
             if (response.status === 201) 
             {
                 Swal.fire(
@@ -76,6 +87,10 @@ const Login = () => {
         navigate(`/HomePageTherapit/?email=${email}`);
       }
 
+      const Go2Forgot = () => {
+        navigate("/Forgot");
+      }
+
     return(
         <div className="login-container-div">
             {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
@@ -104,7 +119,7 @@ const Login = () => {
 
                     {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
                     <div className='forgot-password-div'>
-                        <p className='forgot-password-p'>שכחת סיסמה?</p>
+                        <p onClick={Go2Forgot}  className='forgot-password-p'>שכחת סיסמה?</p>
                     </div>
 
                     {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}

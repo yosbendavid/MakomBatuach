@@ -9,20 +9,21 @@ import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 
-const ForgotMyPassword = () => {
+const ChangePassword = () => {
   const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [response, setResponse] = useState(false);
-  const newPassword = 'deafult_pass_please_change';
 
-
-
-  const form = useRef()
 
   const handleEmailChange = (value) => {
     setEmail(value);
   };
+
+  const handlepasswordChange=(value)=>
+  {
+    setPassword(value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,13 +31,7 @@ const ForgotMyPassword = () => {
     userexist(); 
     if(response===200)
     {
-      setIsSubmitted(true);
-      emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });    }
+        }
     else
     {
       Swal.fire(
@@ -95,19 +90,8 @@ const ForgotMyPassword = () => {
     catch (error) {
       console.error('Request failed with status code', error.response.status);
     }
-  }
-
-
-  function sendEmail(event) {
-    event.preventDefault();
-    emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-    .then((result) => {
-      console.log(result.text);
-    }, (error) => {
-      console.log(error.text);
-    });
-
   };
+
 
 
   return (
@@ -122,9 +106,9 @@ const ForgotMyPassword = () => {
               <ButtonCard>חזור לעמוד הבית</ButtonCard>
             </div>
           ) : (
-            <form ref={form} onSubmit={handleSubmit}>
-              <p className="FPQ-txt">שכחת את הסיסמא?</p>
-              <p className="FPQ-txt-two">מלא את המייל שלך ותישלח לך הסיסמא לשם</p>
+            <form onSubmit={handleSubmit}>
+              <p className="FPQ-txt">החלפת סיסמא</p>
+              <p className="FPQ-txt-two">מלא את הסיסמא החדשה</p>
               <TextBox
                 id={1}
                 title="אימייל"
@@ -134,9 +118,16 @@ const ForgotMyPassword = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-              <input type="hidden" name="user_email" value={email}/>
-              <input type="hidden" name="user_password" value={newPassword}/>
-
+               <TextBox
+                id={1}
+                title="סיסמא"
+                placeHolder="הכנס סיסמא כאן"
+                type="password"
+                name='user_password'
+                value={password}
+                onChange={handlepasswordChange}
+              />
+      
 
 
               <button className="FMPSubmit" type="submit">
@@ -149,4 +140,4 @@ const ForgotMyPassword = () => {
   );
 };
 
-export default ForgotMyPassword;
+export default ChangePassword;

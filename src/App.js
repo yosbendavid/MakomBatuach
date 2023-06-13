@@ -16,6 +16,8 @@ import Patients from "./components/Therapist/Patients/Patients";
 import Summaries from "./components/Therapist/Summries/Summaries";
 import NewRegister from "./components/Register Page/NewRegister";
 import ForgotMyPassword from "./components/Forgot Password Page/ForgotMyPassword";
+import ChangePassword from "./components/Forgot Password Page/ChangePassword";
+
 
 
 
@@ -40,6 +42,8 @@ function App() {
           <Route path="/meetingApproved" element={<MeetingApproved/>} />
           <Route path="/NewRegister" element={<NewRegister/>}/>
           <Route path="/Forgot" element={<ForgotMyPassword/>}/>
+          <Route path="/Change" element={<ChangePassword/>}/>
+
 
 
         </Routes>
