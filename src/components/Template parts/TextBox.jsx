@@ -7,13 +7,12 @@ const TextBox = (props) => {
   const [text, setText] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [className, setClassName] = useState('');
+  
 
 
 //לשנות את הכתיבה לא לכתוב עם גט אלמנט!
   const showPassword = () => {
-    const inputElement = document.getElementById(`my-input-${props.id}`);
     setPasswordVisible(!passwordVisible);
-    inputElement.type = passwordVisible ? "password" : "text";
   }
 
   const handleChange = (event) => {
@@ -28,28 +27,40 @@ const TextBox = (props) => {
     <InputCard className='text-box-item'>
       <label className='text-box-title'>{props.title}:</label>
       <div className='input-wrapper'>
-        <input
-          type={props.type}
-          id={`my-input-${props.id}`}
-          placeholder={props.placeHolder}
-          onChange={handleChange}
-          autoComplete= {props.autoComplete}
-          value={props.value}
-          className={className}
-        />
         {props.type === "password" && (
-          <img
-            className='password-toggle'
-            src={passwordVisible ? eyeForPasswordOff : eyeForPassword}
-            alt={passwordVisible ? 'Hide password' : 'Show password'}
-            onClick={() => {
-              showPassword();
-            }}
+          <>
+            <input
+              type={passwordVisible ? "text" : "password"}
+              id={`my-input-${props.id}`}
+              placeholder={props.placeHolder}
+              onChange={handleChange}
+              autoComplete={props.autoComplete}
+              value={props.value}
+              className={className}
+            />
+            <img
+              className='password-toggle'
+              src={passwordVisible ? eyeForPasswordOff : eyeForPassword}
+              alt={passwordVisible ? 'Hide password' : 'Show password'}
+              onClick={showPassword}
+            />
+          </>
+        )}
+        {props.type != "password" && (
+          <input
+            type={props.type}
+            id={`my-input-${props.id}`}
+            placeholder={props.placeHolder}
+            onChange={handleChange}
+            autoComplete={props.autoComplete}
+            value={props.value}
+            className={className}
           />
         )}
       </div>
     </InputCard>
   );
+  
 };
 
 export default TextBox;
