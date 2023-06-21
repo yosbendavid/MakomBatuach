@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {Container, LeftIcon,LogoContainer,LogoText,Navbar,PatientDiv,PatientName,SearchDiv,SearchText,StyledFilterIcon,StyledIcon, TherapistDiv, TherapistName,} from "./Patients.Style";
 
+
 const apiUrl = "https://localhost:44380/api/Patient/"
 
 export default function Patients() {
@@ -33,6 +34,10 @@ export default function Patients() {
     navigate(`/HomePageTherapit`);
   }
 
+  const Go2NewRegister = (email) => {
+      navigate('/NewRegister',{state:email})
+    };
+
   return (
     <div> 
         <Container>
@@ -48,6 +53,7 @@ export default function Patients() {
           <PatientCard key={patient.Patient_Id} patient={patient} />
         ))}
       </Container>
+      <button onClick={Go2NewRegister}>Add Patient</button>
       <Navbar>
       <BottomNavigation>
         <BottomNavigationAction  icon={<HomeOutlinedIcon />} onClick={go2HomePage} />

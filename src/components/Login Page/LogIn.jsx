@@ -54,7 +54,7 @@ const Login = () => {
             {
                 Swal.fire(
                     'Welcome',
-                    `${email} ${password} Please complete these details`,
+                    `${email} Please complete these details`,
                     'success'
                   )
                   Go2RegisterPatient();
@@ -63,7 +63,7 @@ const Login = () => {
             {
                 Swal.fire(
                     'Welcome',
-                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    `${email} You Have Signed In to Makom Batuach`,
                     'success'
                   )
                   Go2Therahome(email);

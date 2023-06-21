@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 
+
 const ChangePassword = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,22 +87,6 @@ const ChangePassword = () => {
       console.error('Request failed with status code', error.response.status);
     }
   }
-
-  // const change =  () => { //change Password to default one
-  //   try {
-  //       const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
-  //           Email: email,
-  //           Password: password,
-  //       });
-  //       if (response.status === 200) {
-  //           Swal.fire(
-  //               'You can log in',
-  //               'success'
-  //             )              
-  //       }
-  //   } catch (error) {
-  //       console.error('Request failed with status code', error.response.status);
-  //   }
 
   const change = async () => {
     try {
