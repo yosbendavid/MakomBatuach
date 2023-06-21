@@ -4,7 +4,7 @@ import RegisterTherapist from "./components/Register Page/RegisterTherapist";
 import Patient from "./components/Patient/Patient";
 import Therapist from "./components/Therapist/Therapist";
 import PatientHomePage from "./components/Patient/PatientHomePage/PatientHPMeetings";
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from "react-router-dom";
 import PHomePage from "./components/Patient/PatientHomePage/PHomePage";
 import PatientHPMeetings from "./components/Patient/PatientHomePage/PatientHPMeetings";
 import PatientNewMeeting from "./components/Patient/Patient New Meeting/PatientNewMeeting";
@@ -17,50 +17,40 @@ import Summaries from "./components/Therapist/Summries/Summaries";
 import NewRegister from "./components/Register Page/NewRegister";
 import ForgotMyPassword from "./components/Forgot Password Page/ForgotMyPassword";
 import ChangePassword from "./components/Forgot Password Page/ChangePassword";
-
-
-
-
+import Schedule from "./components/Therapist/New Schedule/Schedule";
 
 function App() {
   return (
     <div>
-        <div className="App">
-
-      <header className="App-header">
-        
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/RegisterTherapist" element={<RegisterTherapist />} />
-          <Route path="/RegisterPatient" element={<RegisterPatient />} />
-          <Route path="/Patient" element={<Patient />} />
-          <Route path="/Therapist" element={<Therapist />} />
-          <Route path="/Phome" element={<PHomePage />} />
-          <Route path="/Pmeeting" element={<PatientHPMeetings />} />
-          <Route path="/Pnm" element={<PatientNewMeeting />} />
-          <Route path="/meetingApproved" element={<MeetingApproved/>} />
-          <Route path="/NewRegister" element={<NewRegister/>}/>
-          <Route path="/Forgot" element={<ForgotMyPassword/>}/>
-          <Route path="/Change" element={<ChangePassword/>}/>
-
-
-
-        </Routes>
-
-        <Routes>
-        {/* <Route path='/' element={<HomePageTherapit />} /> */}
-        <Route path='/PatientCase/:patientId' element={<PatientCase/>} />
-        <Route path='/Summaries/:patientId' element={<Summaries/>} />
-        {/* <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} /> */}
-        <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
-        <Route path='/Patients' element={<Patients/>} />
-        <Route path='/NewMetting' element={<NewMetting/>} />
-       </Routes>
-
-      </header>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/Login" element={<Login />} />
+            {/* <Route path="/RegisterTherapist" element={<RegisterTherapist />} /> */}
+            <Route path="/RegisterPatient" element={<RegisterPatient />} />
+            <Route path="/Patient" element={<Patient />} />
+            <Route path="/Therapist" element={<Therapist />} />
+            <Route path="/Phome" element={<PHomePage />} />
+            <Route path="/Pmeeting" element={<PatientHPMeetings />} />
+            <Route path="/Pnm" element={<PatientNewMeeting />} />
+            <Route path="/meetingApproved" element={<MeetingApproved />} />
+            <Route path="/NewRegister" element={<NewRegister />} />
+            <Route path="/Forgot" element={<ForgotMyPassword />} />
+            <Route path="/Change" element={<ChangePassword />} />
+          </Routes>
+          <Routes>
+            {/* <Route path='/' element={<HomePageTherapit />} /> */}
+            <Route path="/PatientCase/:patientId" element={<PatientCase />} />
+            <Route path="/Summaries/:patientId" element={<Summaries />} />
+            {/* <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} /> */}
+            <Route path="/HomePageTherapit" element={<HomePageTherapit />} />
+            <Route path="/Patients" element={<Patients />} />
+            <Route path="/NewMetting" element={<NewMetting />} />
+          </Routes>
+        </header>
       </div>
-      </div>
+    </div>
   );
 }
 

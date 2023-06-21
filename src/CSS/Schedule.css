@@ -1,0 +1,63 @@
+.daysOff-container form .add-days .calendar-container {
+  background-color: #f5f5f5;
+}
+.daysOff-container form .add-days .calendar-container .calendar-div {
+  background-color: #f5f5f5;
+}
+.daysOff-container
+  form
+  .add-days
+  .calendar-container
+  .calendar-div
+  .react-calendar {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+}
+.add-days {
+  text-align: center;
+  direction: rtl;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-days-title-one {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.add-days-title-two {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.add-days-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.add-days-item {
+  font-family: "Open Sans", sans-serif;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  padding: 8px 8px;
+  margin: 5px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.btn-div {
+  text-align: center;
+  width: 100%;
+}
