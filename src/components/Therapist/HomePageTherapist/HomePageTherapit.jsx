@@ -46,8 +46,8 @@ export default function HomePageTherapit() {
   };
 
   useEffect(() => {
-    GetMeeting(therapistId);
-  }, [therapistId]);
+    GetMeeting(email);
+  }, [email]);
 
   const go2Patients = () => {
     navigate(`/Patients`);

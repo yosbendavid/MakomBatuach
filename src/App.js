@@ -38,6 +38,8 @@ function App() {
             <Route path="/NewRegister" element={<NewRegister />} />
             <Route path="/Forgot" element={<ForgotMyPassword />} />
             <Route path="/Change" element={<ChangePassword />} />
+            <Route path="/Schedule" element={<Schedule />} />
+
           </Routes>
           <Routes>
             {/* <Route path='/' element={<HomePageTherapit />} /> */}

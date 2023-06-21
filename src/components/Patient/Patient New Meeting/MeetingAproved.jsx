@@ -2,38 +2,46 @@ import React, { useState } from "react";
 import "../../../CSS/NewMeetingApproved.css";
 import ButtonCard from "../../Template parts/ButtonCard";
 import Checked from "../../../Photos/Checked.svg"
+import { useNavigate, useLocation} from "react-router-dom";
+import { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+const MeetingApproved = () => {
 
-const MeetingApproved = (props) => {
-    // const [meetingTitle, setMeetingTitle] = useState("");
+    const [email, setEmail] = useState('')
 
-    // const handleMeetingTitleChange = (event) => {
-    //     setMeetingTitle(event.target.value);
-    // }
+
+    const { state } = useLocation();
+    useEffect(() => {
+        const email = state;
+        setEmail(email);
+        console.log(email);
+    }, []);
+
     const finished = (event) => {
         event.preventDefault();
 
         Go2PatHome();
-        
+
     }
 
-    const navigate = useNavigate(); 
+
+
+    const navigate = useNavigate();
 
     const Go2PatHome = () => {
-      navigate("/phome");
+        navigate('/Phome', { state: email })
     }
 
     const Go2NewMetting = () => {
-        navigate("/Patient");
-      }
+        navigate("/Patient",{state: email});
+    }
 
-    return(
+    return (
         <div className="MeetingApproved-container">
             <div className="MeetingApproved-div">
                 <form onSubmit={finished}>
                     <div className="MeetingApproved-img">
-                        <img src={Checked} alt="checked"/>
+                        <img src={Checked} alt="checked" />
                     </div>
                     <p className="MeetingApproved-title">הפגישה נקבעה!</p>
                     <div className="MeetingApproved-text-div">
