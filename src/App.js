@@ -30,7 +30,7 @@ function App() {
             {/* <Route path="/RegisterTherapist" element={<RegisterTherapist />} /> */}
             <Route path="/RegisterPatient" element={<RegisterPatient />} />
             <Route path="/Patient" element={<Patient />} />
-            <Route path="/Therapist" element={<Therapist />} />
+            {/* <Route path="/Therapist" element={<Therapist />} /> */}
             <Route path="/Phome" element={<PHomePage />} />
             <Route path="/Pmeeting" element={<PatientHPMeetings />} />
             <Route path="/Pnm" element={<PatientNewMeeting />} />

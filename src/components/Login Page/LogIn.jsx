@@ -70,7 +70,7 @@ const Login = () => {
                 }
             }
         } catch (error) {
-            console.error('Request failed with status code', error.response.status);
+            console.error('Request failed with status code', error.response);
         }
        
     }
@@ -85,8 +85,8 @@ const Login = () => {
         navigate("/RegisterPatient");
       }
 
-      const Go2Therahome = () => {
-        navigate(`/HomePageTherapit/?email=${email}`);
+      const Go2Therahome = (email) => {
+        navigate("/HomePageTherapit",{state:email});
       }
 
       const Go2Forgot = () => {

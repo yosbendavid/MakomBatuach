@@ -3,9 +3,23 @@ import CalendarF from "../../Calendar/CalendarF";
 import { format } from "date-fns";
 import "../../../CSS/Schedule.css";
 import ButtonCard from "../../Template parts/ButtonCard";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const Schedule = () => {
+
+const Schedule = (props) => {
   const [selectedDates, setSelectedDates] = useState([]);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    const email = state;
+    setEmail(email)
+    console.log(email);
+
+  }, []);
+
 
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [

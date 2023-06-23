@@ -32,26 +32,36 @@ const apiUrl = "https://localhost:44380/api/Therapist/?email=";
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const { therapistId } = useParams(); // get therapistId from URL
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+  const {state}=useLocation();
 
-  const GetMeeting = async (therapistId) => {
-    const email = queryParams.get('email');
+  const [email, setEmail] = useState('')
+
+  useEffect(()=>{
+    const email=state;
+    setEmail(email)
+    GetMeeting(email)
+    console.log(email);
+
+},[]);
+
+  const location = useLocation();
+
+  const GetMeeting = async (email) => {
     console.log('email=',email)
     const result = await fetch(apiUrl + email);
     const json = await result.json();
     setPaMeeting(json);
   };
 
-  useEffect(() => {
-    GetMeeting(email);
-  }, [email]);
-
   const go2Patients = () => {
     navigate(`/Patients`);
   }
+
+  const Go2FreeTime = () => {
+    console.log(email)
+    navigate('/Schedule',{state:email})
+  };
 
   const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
 
@@ -90,6 +100,8 @@ export default function HomePageTherapit() {
           )}
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
+      <button onClick={Go2FreeTime}>Free Time</button>
+
       <Navbar>
         <BottomNavigation>
           <BottomNavigationAction icon={<HomeOutlinedIcon />} />
