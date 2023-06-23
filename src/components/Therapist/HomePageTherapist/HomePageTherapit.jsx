@@ -55,7 +55,7 @@ export default function HomePageTherapit() {
   };
 
   const go2Patients = () => {
-    navigate(`/Patients`);
+    navigate('/Patients',{state:email});
   }
 
   const Go2FreeTime = () => {

@@ -40,7 +40,7 @@ export default function Summaries() {
 
   const go2HomePage = () => {
     
-    navigate(`/HomePageTherapit`);
+    navigate('/HomePageTherapit');
   }
 
   const go2Patients = () => {
@@ -52,7 +52,7 @@ export default function Summaries() {
     <div>
         <ContainerSummaries>
         <ReturnIcon1 onClick={goBack}/>
-            <TitleSummary> {name} הטיפולים של </TitleSummary>
+            <TitleSummary> {name} הסיכומים של </TitleSummary>
             {summaries.map((summary, index) => (
             <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} />
         ))}    
