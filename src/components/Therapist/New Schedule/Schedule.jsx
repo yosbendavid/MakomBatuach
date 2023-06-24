@@ -4,6 +4,8 @@ import { format } from "date-fns";
 import "../../../CSS/Schedule.css";
 import ButtonCard from "../../Template parts/ButtonCard";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from 'axios'
+import Swal from 'sweetalert2';
 
 
 const Schedule = (props) => {
@@ -19,7 +21,6 @@ const Schedule = (props) => {
     console.log(email);
 
   }, []);
-
 
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [
@@ -60,9 +61,30 @@ const Schedule = (props) => {
   };
 
   //פונקציה לאישור ימי החופש המבוקשים שרצה כאשר לוחצים על אישור ימי חופש
-  const submitTakeDaysOff = (event) => {
+  const submitTakeDaysOff = async (event) => {
     event.preventDefault();
     console.log(selectedDates);
+    try {
+      const response = await axios.post('https://localhost:44380/api/Daysoff', {
+          Free: selectedDates,
+          Email: email,
+      });
+      if (response.status === 200) {
+          Swal.fire(
+              'Days Off Submitted ',
+              'success'
+            )            
+      }
+      else if (response.status === 400){
+          Swal.fire({
+              icon:'error',
+              title: 'Oops...',
+              text: 'Email is Already Register, Please Try Other Email'
+          })
+      }
+  } catch (error) {
+      console.error('Request failed with status code', error.response.status);
+  }
   };
 
   return (
