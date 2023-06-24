@@ -9,6 +9,8 @@ const PatientNewMeeting = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [isSlotClick, setIsSlotClick] = useState(false);
     const [isDateClicked, setIsDateClicked] = useState(false);
+    const [email, setEmail] = useState("");
+
 
     const handleArrowClick = () => {
         setIsSliderOpen(!isSliderOpen);
@@ -31,16 +33,15 @@ const PatientNewMeeting = (props) => {
     const navigate = useNavigate(); 
 
     const Go2Approve = () => {
-        navigate("/meetingApproved");
+        console.log({state:email})
+        navigate("/meetingApproved",{state:email});
       }
 
 
     const onApproveClick= () => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
-            slot.classList.remove('clicked');
-
-            
+            slot.classList.remove('clicked');     
 
         });
 

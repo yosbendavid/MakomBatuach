@@ -106,7 +106,8 @@ const Patient = () => {
   //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 
   const Go2Approve = () => {
-    navigate("/meetingApproved");
+    console.log({state:email})
+    navigate("/meetingApproved",{state:email});
   };
 
   const setNewMeeting = (event) => {

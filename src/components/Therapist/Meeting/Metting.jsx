@@ -106,6 +106,6 @@ const endTimeOnly = new Date(summary.EndTime).toLocaleTimeString([], {
       </BottomNavigation>
     </Navbar>
     </div>
-  )
-}
+  );
+};
 

@@ -54,7 +54,7 @@ const Login = () => {
             {
                 Swal.fire(
                     'Welcome',
-                    `${email} ${password} Please complete these details`,
+                    `${email} Please complete these details`,
                     'success'
                   )
                   Go2RegisterPatient();
@@ -63,14 +63,14 @@ const Login = () => {
             {
                 Swal.fire(
                     'Welcome',
-                    `${email} ${password} You Have Signed In to Makom Batuach`,
+                    `${email} You Have Signed In to Makom Batuach`,
                     'success'
                   )
                   Go2Therahome(email);
                 }
             }
         } catch (error) {
-            console.error('Request failed with status code', error.response.status);
+            console.error('Request failed with status code', error.response);
         }
        
     }
@@ -85,8 +85,8 @@ const Login = () => {
         navigate("/RegisterPatient");
       }
 
-      const Go2Therahome = () => {
-        navigate(`/HomePageTherapit/?email=${email}`);
+      const Go2Therahome = (email) => {
+        navigate("/HomePageTherapit",{state:email});
       }
 
       const Go2Forgot = () => {
