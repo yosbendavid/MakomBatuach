@@ -51,7 +51,7 @@ const PatientNewMeeting = (props) => {
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
             <form onSubmit={props.setNewMeeting}>
                 <div className={`calendar-slider`}>
-                    <CalendarF date = {props.onMeetingDateChange} />
+                    <CalendarF date = {props.onMeetingDateChange} blockedDates={props.blockedDates}/>
                     <div className="openClose-arrow" onClick={handleArrowClick}>
                         <img src={backArrow} alt="closeOpenDate"/>
                     </div>

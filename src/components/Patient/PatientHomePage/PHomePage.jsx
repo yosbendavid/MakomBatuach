@@ -39,7 +39,7 @@ const PHomePage = () => {
             .then(
             (result) => {
             result.map(tr => console.log(tr.id));
-            console.log(result);
+            console.log("patientmeeting",result);
             setPatientMeetings(result);
     
             },
@@ -50,9 +50,7 @@ const PHomePage = () => {
 
     const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
     const [email, setEmail] = useState('')
-
-
-
+    const [Freedays, setFreedays] = useState([]);
 
     const addMeetingsHandler = newPatientMeeting => {
         setPatientMeetings(prevPatientMeetings => {
@@ -61,7 +59,30 @@ const PHomePage = () => {
     };
     
     const Go2Nemeeting = () => {
-      navigate('/Patient',{state:email})
+        const tryget = "https://localhost:44380/api/getdayoff";
+        fetch(tryget + "/?email=" + email, {
+          method: "GET",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            Accept: "application/json; charset=UTF-8",
+          }),
+        })
+          .then((res) => {
+            console.log("res=", res);
+            return res.json();
+          })
+          .then(
+            (result) => {
+                console.log("re", result)
+              const dates = result.map((item) => item.Treatment_Date);
+              setFreedays(dates);
+              console.log("date",dates)
+            },
+            (error) => {
+              console.log("err post=", error);
+            }
+          );
+      navigate('/Patient',{ state: { email, Freedays }})
     }
 
     const Go2NewSummary = () => {
