@@ -41,12 +41,12 @@ export default function Patients() {
    return patient.FirstName.toLowerCase().includes(query.toLowerCase()) || patient.LastName.toLowerCase().includes(query.toLowerCase()) 
   }) : patients
 
-  const go2HomePage = (email) => {
+  const go2HomePage = () => {
     
     navigate('/HomePageTherapit',{state:email});
   }
 
-  const Go2NewRegister = (email) => {
+  const Go2NewRegister = () => {
       navigate('/NewRegister',{state:email})
     };
 

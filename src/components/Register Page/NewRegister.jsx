@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextBox from "../Template parts/TextBox";
 import SelectBox from "../Template parts/SelectBox";
 import RegisterTitle from "./RegisterTitle";
@@ -9,17 +9,32 @@ import ButtonCard from '../Template parts/ButtonCard';
 import '../../CSS/register.css';
 import axios from 'axios'
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 const RegisterBoxs = () => {
 
-    const [email, seteEMail] = useState('');
+    const [email, setEmail] = useState('');
     const [phone_number, setPhoneNumber] = useState('');
     const [user_type, setUserType] = useState('');
 
+    const [Thermail, setTherEmail] = useState('')
+    const { state } = useLocation();
+
+
+    useEffect(() => {
+        const Thermail = state;
+        setTherEmail(Thermail)
+        console.log(Thermail);
+    }, []);
+
+
     const handleEmailChange = (value) => {
-        seteEMail(value);
-    }
+        setEmail(value);
+        setUserType('מטופל');
+        console.log(user_type)
+
+    };
 
     const handlePhoneNumberChange = (value) => {
         setPhoneNumber(value);
@@ -30,11 +45,11 @@ const RegisterBoxs = () => {
         console.log(value);
     }
 
-    
-    const navigate = useNavigate(); 
+
+    const navigate = useNavigate();
 
     const Go2Login = () => {
-      navigate("/Login");
+        navigate("/Login");
     }
     //לוחץ על צור משתמש זה הפונקציה עם הולידציה בנוגע למידע לעדכן לולידציה רלוונטית
     const registerAccount = async (event) => {
@@ -43,20 +58,20 @@ const RegisterBoxs = () => {
             const response = await axios.post('https://localhost:44380/api/SignInUser/SignUp', {
                 Email: email,
                 PhoneNumber: phone_number,
-                UserType: user_type
-                
-            });
+                UserType: user_type,
+                TherEmail:Thermail }
+            );
             if (response.status === 200) {
                 Swal.fire(
                     'Welcome',
                     `${email} You Have Signed In to Makom Batuach`,
                     'success'
-                  )
+                )
                 Go2Login();
             }
-            else if (response.status === 400){
+            else if (response.status === 400) {
                 Swal.fire({
-                    icon:'error',
+                    icon: 'error',
                     title: 'Oops...',
                     text: 'Email is Already Register, Please Try Other Email'
                 })
@@ -65,7 +80,7 @@ const RegisterBoxs = () => {
             console.error('Request failed with status code', error.response.status);
         }
 
-        
+
 
     };
 
@@ -93,14 +108,15 @@ const RegisterBoxs = () => {
                         value={phone_number}
                         onChange={handlePhoneNumberChange}
                     />
-                    <SelectBox
-                        id={selectBoxArray[1].id}
-                        title={selectBoxArray[1].title}
-                        placeHolder={selectBoxArray[1].placeHolder}
-                        values={selectBoxArray[1].values}
-                        value={user_type}
-                        onChange={handleUserTypeChange}
-                    />
+                    {Thermail === "admin@gmail.com" && (
+                        <SelectBox
+                            id={selectBoxArray[1].id}
+                            title={selectBoxArray[1].title}
+                            placeHolder={selectBoxArray[1].placeHolder}
+                            values={selectBoxArray[1].values}
+                            value={user_type}
+                            onChange={handleUserTypeChange}
+                        />)}
                 </div>
                 <div className='register-btn-div'>
                     <ButtonCard type="submit" className="register-submit-btn">צור משתמש</ButtonCard>
