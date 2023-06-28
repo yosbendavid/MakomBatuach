@@ -82,9 +82,8 @@ const PHomePage = () => {
         }
       );
   }
-
-  const Go2NewSummary = () => {
-    navigate("/NewMetting");
+  const Go2PrevTreat = () => {
+    navigate("/Prev",{ state: email });
   }
 
   return (
@@ -96,7 +95,7 @@ const PHomePage = () => {
       <div className="items-div">
         <PatientHPMeetings papatientMeetings={patientMeetings} />
       </div>
-      <button className="seeAllDocuments">לחץ לפגישות קומות</button>    
+      <button className="seeAllDocuments" onClick={Go2PrevTreat}>לחץ לפגישות קודמות</button>    
     </div>
   );
 }

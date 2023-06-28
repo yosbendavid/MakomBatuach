@@ -58,4 +58,18 @@
     font-size: 14px;
     color: #aaa;
   }
+
+  .add-summary-button {
+    color: #272424;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  
+  .add-summary-button:hover {
+    background-color: #27ae60;
+  }
   
