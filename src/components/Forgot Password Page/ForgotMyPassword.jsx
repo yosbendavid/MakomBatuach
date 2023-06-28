@@ -25,35 +25,27 @@ const ForgotMyPassword = () => {
     setEmail(value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-    userexist(); 
-    if(response===200)
-    {
-      change(); 
-
-      setIsSubmitted(true);
-      emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      }); 
-      
-    }
-    else
-    {
-      Swal.fire(
-        'You dont have a user',
-        'Please Contact Your Therapist '
-      )
-      setIsSubmitted(false);
-    }
-
-    }
-    catch (error) {
-      console.error('Request failed with status code', error.response.status);
+    try {
+      await userexist(); // Wait for userexist() to complete before proceeding
+      if (userexist) {
+        await change(); // Wait for change() to complete before proceeding
+  
+        setIsSubmitted(true);
+        emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
+          .then((result) => {
+            console.log(result.text);
+          })
+          .catch((error) => {
+            console.log(error.text);
+          });
+      } else {
+        Swal.fire('You dont have a user', 'Please Contact Your Therapist ');
+        setIsSubmitted(false);
+      }
+    } catch (error) {
+      console.error('Error occurred:', error);
     }
   };
 
@@ -63,71 +55,43 @@ const ForgotMyPassword = () => {
   const Go2Login = () => {
     navigate("/Login");
   }
-
-  const userexist = () => {
-    const apiUrl = "https://localhost:44380/api/SignInUser/userexist/?email=";
-
+  const userexist = async () => {
+    const apiUrl = 'https://localhost:44380/api/SignInUser/userexist/?email=';
+  
     try {
-
-      fetch(apiUrl + email,
-        {
-          method: 'GET',
-          headers: new Headers({
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Accept': 'application/json; charset=UTF-8',
-          })
-        })
-        .then(res => {
-          console.log('res=', res);
-          if (res.status === 200) {
-            setResponse(res.status)
-          }
-          if (res.status === 400) {
-            Swal.fire(
-              'You dont have a user',
-              'Please Contact Your Therapist '
-            )
-            setResponse(res.status)
-            
-          }
-        })
-
-    }
-    catch (error) {
-      console.error('Request failed with status code', error.response.status);
-    }
-  }
-
-  const change =  () => { //change Password to default one
-    try {
-        const response =  axios.post('https://localhost:44380/api/SignInUser/Changepa', {
-            Email: email,
-            Password: newPassword,
-        });
-        if (response.status === 200) {
-            Swal.fire(
-                'Please check your email',
-                'success'
-              )              
-        }
+      const res = await fetch(apiUrl + email, {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application/json; charset=UTF-8',
+          Accept: 'application/json; charset=UTF-8',
+        }),
+      });
+      console.log('res=', res);
+      if (res.status === 200) {
+        setResponse(res.status);
+      }
+      if (res.status === 400) {
+        Swal.fire('You dont have a user', 'Please Contact Your Therapist ');
+        setResponse(res.status);
+      }
     } catch (error) {
-        console.error('Request failed with status code', error.response.status);
+      console.error('Error occurred:', error);
     }
+  };
 
-
-};
-
-
-  // function sendEmail(event) {
-  //   event.preventDefault();
-  //   emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
-  //   .then((result) => {
-  //     console.log(result.text);
-  //   }, (error) => {
-  //     console.log(error.text);
-  //   });
-
-  // };
+  const change = async () => {
+    try {
+      const response = await axios.post('https://localhost:44380/api/SignInUser/Changepa', {
+        Email: email,
+        Password: newPassword,
+      });
+      if (response.status === 200) {
+        Swal.fire('Please check your email', 'success');
+      }
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  };
 
 
   return (

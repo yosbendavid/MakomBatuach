@@ -6,39 +6,15 @@ import TopBar from "../Template parts/TopBar";
 import { format } from "date-fns";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Patient = () => {
-  const meetings = [
-    {
-      id: 1,
-      time: "11:45-12:30",
-    },
-    {
-      id: 2,
-      time: "11:45-12:30",
-    },
-    {
-      id: 3,
-      time: "11:45-12:30",
-    },
-    {
-      id: 4,
-      time: "11:45-12:30",
-    },
-    {
-      id: 5,
-      time: "11:45-12:30",
-    },
-    {
-      id: 6,
-      time: "11:45-12:30",
-    },
-  ];
+const Patient = (props) => {
 
   const navigate = useNavigate();
   const { state } = useLocation();
   useEffect(() => {
-    const email = state;
+    const { email, Freedays } = state;
     setEmail(email);
+    setFreedays(Freedays);
+    console.log(Freedays);
     console.log(email);
   }, []);
 
@@ -48,8 +24,9 @@ const Patient = () => {
   const [meetingTime, setMeetingTime] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
   const [roomNum, setRoomNum] = useState("");
-  const [meet, setMeet] = useState("");
   const [email, setEmail] = useState("");
+  const [Freedays, setFreedays] = useState([]);
+
 
   const patientNameHandle = () => {
     setPatientName("");
@@ -167,6 +144,7 @@ const Patient = () => {
         onMeetingTimeChange={handleMeetingTimeChange}
         RoomPicked={handleRoomNum}
         clickedATime={meetingTime}
+        blockedDates={Freedays}
       />
 
       {/* מסך אישור תיאום פגישה */}
