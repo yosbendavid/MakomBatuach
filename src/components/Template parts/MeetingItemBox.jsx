@@ -19,7 +19,7 @@ const MeetingItemBox = (props) => {
             </div>
             <div className="notification-room-divider" style={styles}></div>
             <div className="notification-left">
-              <button onClick={() => props.onSummaryButtonClick(props.id)} style={styles} className="add-summary-button">סיכום</button>
+              <button onClick={() => props.onSummaryButtonClick(props.key, props.name, props.date)} style={styles} className="add-summary-button">סיכום</button>
             </div>
           </>
         ) : (

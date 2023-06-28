@@ -50,6 +50,7 @@ export default function NewMetting(props) {
 
   const location = useLocation();
   const { Date1, Time, numOfMeeting} = location.state;
+  console.log("location",location.state)
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState('');

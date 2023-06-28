@@ -15,8 +15,8 @@ const PatientHPMeetings = (props) => {
                         sTime={meeting.startTimetemp}
                         eTime={meeting.endtimetemp}
                         isPastAppointment={isPastAppointment(meeting.datetemp)} // Add isPastAppointment prop
-                        onSummaryButtonClick={props.onSummaryButtonClick}
-                    />
+                        onSummaryButtonClick={(key, name, date) => props.onSummaryButtonClick(key, name, date)}
+                        />
                 ))}
         </div>
     );

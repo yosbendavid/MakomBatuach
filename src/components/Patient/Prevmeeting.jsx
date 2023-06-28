@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PatientHPMeetings from "./PatientHomePage/PatientHPMeetings";
+import MeetingItemBox from "../Template parts/MeetingItemBox";
 import "../../../src/CSS/PHomePage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -58,19 +59,18 @@ const PrevPatientMeetings = () => {
   }; 
 
 
-  const handleSummaryButtonClick = () => {
-    const date = new Date(patientMeetings.Treatment_Date).toLocaleDateString();
-    // const time = `${startTimeOnly} - ${endTimeOnly}`;
 
+  const handleSummaryButtonClick = (key, name, date) => {
     const DateTime = {
-      Date1: date,
-    //   Time: time,
-    //   numOfMeeting: patientMeetings.Treatment_Id
+      key,
+      name,
+      date
     };
-
+  
+    console.log(DateTime)
     navigate("/NewMetting", { state: DateTime });
-    // console.log(`Button clicked for meeting ID: ${meetingId}`);
   };
+  
   
   return (
     <div className="PHomePage-container">
