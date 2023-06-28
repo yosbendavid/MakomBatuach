@@ -22,6 +22,12 @@ const Schedule = (props) => {
 
   }, []);
 
+  const go2HomePage = () => {
+    
+    navigate(`/HomePageTherapit`, {state:email});
+  }
+
+
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [
     { english: "Sunday", hebrew: "יום ראשון" },
@@ -74,6 +80,7 @@ const Schedule = (props) => {
               'Days Off Submitted ',
               'success'
             )   
+            go2HomePage();
       }
       else if (response.status === 400){
           Swal.fire({

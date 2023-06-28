@@ -18,6 +18,9 @@ import NewRegister from "./components/Register Page/NewRegister";
 import ForgotMyPassword from "./components/Forgot Password Page/ForgotMyPassword";
 import ChangePassword from "./components/Forgot Password Page/ChangePassword";
 import Schedule from "./components/Therapist/New Schedule/Schedule";
+import Metting from "./components/Therapist/Meeting/Metting";
+
+
 
 function App() {
   return (
@@ -45,7 +48,7 @@ function App() {
             {/* <Route path='/' element={<HomePageTherapit />} /> */}
             <Route path="/PatientCase/:patientId" element={<PatientCase />} />
             <Route path="/Summaries/:patientId" element={<Summaries />} />
-            {/* <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} /> */}
+            <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} />
             <Route path="/HomePageTherapit" element={<HomePageTherapit />} />
             <Route path="/Patients" element={<Patients />} />
             <Route path="/NewMetting" element={<NewMetting />} />
