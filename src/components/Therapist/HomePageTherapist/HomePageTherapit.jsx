@@ -28,9 +28,13 @@ import {
 } from "./HomePageTherapit.Style";
 
 const apiUrl = "https://localhost:44380/api/Therapist/?email=";
+const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
+
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
+  const [Lastmeeting, setLastmeeting] = useState([]);
+
 
   const navigate = useNavigate(); 
   const {state}=useLocation();
@@ -41,6 +45,7 @@ export default function HomePageTherapit() {
     const email=state;
     setEmail(email)
     GetMeeting(email)
+    GetLastMeeting(email)
     console.log(email);
 
 },[]);
@@ -52,6 +57,13 @@ export default function HomePageTherapit() {
     const result = await fetch(apiUrl + email);
     const json = await result.json();
     setPaMeeting(json);
+  };
+
+  const GetLastMeeting = async (email) => {
+    console.log('email=',email)
+    const result = await fetch(apiUrll + email);
+    const json = await result.json();
+    setLastmeeting(json);
   };
 
   const go2Patients = () => {
@@ -93,8 +105,8 @@ export default function HomePageTherapit() {
       <RecentMeetingsContainer>
         <RecentMeetingsTitle> :פגישות אחרונות </RecentMeetingsTitle>
         <LastMeetingsWrapper>
-          {Meeting != null && Meeting.length > 0 ? (
-            Meeting.map((meeting) => <LastMeetingCard meeting={meeting} />)
+          {Lastmeeting != null && Lastmeeting.length > 0 ? (
+            Lastmeeting.map((meet) => <LastMeetingCard meeting={meet} />)
           ) : (
             <div> לא התקיימו פגישות היום </div>
           )}
@@ -106,7 +118,7 @@ export default function HomePageTherapit() {
         <BottomNavigation>
           <BottomNavigationAction icon={<HomeOutlinedIcon />} />
           <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} onClick={go2Patients} />
-          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />}  />
         </BottomNavigation>
       </Navbar>
     </div>
