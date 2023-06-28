@@ -48,7 +48,7 @@ const PrevPatientMeetings = () => {
         });
   }, [])
 
-  const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
+  const [patientMeetings, setPatientMeetings] = useState([])
   const [email, setEmail] = useState('')
 
   const addMeetingsHandler = newPatientMeeting => {
@@ -57,17 +57,28 @@ const PrevPatientMeetings = () => {
     });
   }; 
 
-  const Go2NewSummary = () => {
-    navigate("/NewMetting");
-  }
 
+  const handleSummaryButtonClick = () => {
+    const date = new Date(patientMeetings.Treatment_Date).toLocaleDateString();
+    // const time = `${startTimeOnly} - ${endTimeOnly}`;
+
+    const DateTime = {
+      Date1: date,
+    //   Time: time,
+    //   numOfMeeting: patientMeetings.Treatment_Id
+    };
+
+    navigate("/NewMetting", { state: DateTime });
+    // console.log(`Button clicked for meeting ID: ${meetingId}`);
+  };
+  
   return (
     <div className="PHomePage-container">
       <div className="setMeetingBtn">
         <p className="upcoming-Meetings-title"> פגישות קודמות</p>
       </div>
       <div className="items-div">
-        <PatientHPMeetings papatientMeetings={patientMeetings}  />
+        <PatientHPMeetings papatientMeetings={patientMeetings} onSummaryButtonClick={handleSummaryButtonClick} />
       </div>
     </div>
   );
