@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CalendarF from "../../Calendar/CalendarF";
 import "../../../CSS/PatientNewMeeting.css"
 import backArrow from "../../../Photos/backArrow.svg";
@@ -10,6 +10,8 @@ const PatientNewMeeting = (props) => {
     const [isSlotClick, setIsSlotClick] = useState(false);
     const [isDateClicked, setIsDateClicked] = useState(false);
     const [email, setEmail] = useState("");
+    const [isCalendarReady, setIsCalendarReady] = useState(false); // Added state for calendar readiness
+
 
 
     const handleArrowClick = () => {
@@ -30,34 +32,40 @@ const PatientNewMeeting = (props) => {
         });
         setIsSlotClick(true);
     }
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const Go2Approve = () => {
-        console.log({state:email})
-        navigate("/meetingApproved",{state:email});
-      }
+        console.log({ state: email })
+        navigate("/meetingApproved", { state: email });
+    }
 
 
-    const onApproveClick= () => {
+    const onApproveClick = () => {
         const slotElements = document.querySelectorAll('.time-slot');
         slotElements.forEach(slot => {
-            slot.classList.remove('clicked');     
+            slot.classList.remove('clicked');
 
         });
-
-        
     }
-    return(
+
+    useEffect(() => {
+        setIsCalendarReady(
+            props.blockedDates && props.blockedDates.length > 0 && props.blockedDates.length
+          );
+        }, [props.blockedDates]);
+
+    return (
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
             <form onSubmit={props.setNewMeeting}>
                 <div className={`calendar-slider`}>
-                    <CalendarF date = {props.onMeetingDateChange} blockedDates={props.blockedDates}/>
-                    <div className="openClose-arrow" onClick={handleArrowClick}>
-                        <img src={backArrow} alt="closeOpenDate"/>
+                    {isCalendarReady && ( // Conditional rendering based on calendar readiness
+                        <CalendarF date={props.onMeetingDateChange} blockedDates={props.blockedDates} />   )}                   
+                     <div className="openClose-arrow" onClick={handleArrowClick}>
+                        <img src={backArrow} alt="closeOpenDate" />
                     </div>
-                </div>          
+                </div>
                 <div className="therapist-name-title-container">
-                    <div className= "therapist-name-title">
+                    <div className="therapist-name-title">
                         <div className="therapist-name-title-right-div">
                             <div className="therapist-img">
                                 <p>{props.therapistName}</p>
@@ -72,17 +80,17 @@ const PatientNewMeeting = (props) => {
                     </div>
                 </div>
                 <div className="meeting-time-slots-container">
-                {props.timeSlots.length > 0 && (
-                    <div className="meeting-time-slots">
-                        {props.timeSlots.map((time, index) => (
-                        <div 
-                        className = "time-slot"
-                         key={index} 
-                         id={index} 
-                         onClick={() => handleSlotClick(index)}>{time.startTimetemp}</div>
-                        ))}
-                    </div>
-                )}
+                    {props.timeSlots.length > 0 && (
+                        <div className="meeting-time-slots">
+                            {props.timeSlots.map((time, index) => (
+                                <div
+                                    className="time-slot"
+                                    key={index}
+                                    id={index}
+                                    onClick={() => handleSlotClick(index)}>{time.startTimetemp}</div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 {props.clickedATime !== '' && (
                     <div className="set-meeting-button">

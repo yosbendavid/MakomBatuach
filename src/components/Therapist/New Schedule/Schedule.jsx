@@ -73,13 +73,13 @@ const Schedule = (props) => {
           Swal.fire(
               'Days Off Submitted ',
               'success'
-            )            
+            )   
       }
       else if (response.status === 400){
           Swal.fire({
               icon:'error',
               title: 'Oops...',
-              text: 'Email is Already Register, Please Try Other Email'
+              text: 'Something went wrong '
           })
       }
   } catch (error) {
@@ -92,7 +92,7 @@ const Schedule = (props) => {
       <form onSubmit={submitTakeDaysOff}>
         <div className="add-days">
           <p className="add-days-title-one">בחר את ימי החופש המבוקשים</p>
-          <CalendarF date={handleDateSelect} />
+          <CalendarF date={handleDateSelect}  blockedDates={null}/>
           <p className="add-days-title-two">ימים נבחרים</p>
           <div className="add-days-list">
             {selectedDates.map((date, index) => (

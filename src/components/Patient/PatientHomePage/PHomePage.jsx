@@ -68,22 +68,19 @@ const PHomePage = () => {
         Accept: "application/json; charset=UTF-8",
       }),
     })
-      .then((res) => {
-        console.log("res=", res);
-        return res.json();
-      })
-      .then(
-        (result) => {
-          console.log("re", result)
-          const dates = result.map((item) => item.Treatment_Date);
-          setFreedays(dates);
-          console.log("date", dates)
-        },
+    .then((res) => res.json()) // Parse the response body as JSON
+    .then(
+      (result) => {
+        console.log("result:", result);
+        const dates = result.map((item) => new Date(item.Dayoff).toLocaleDateString()); // Convert to local date string
+        setFreedays(dates);
+        console.log("dates:", Freedays);
+        navigate('/Patient', { state: { email, Freedays: dates } }); // Pass the correct variable name "dates"
+      },
         (error) => {
           console.log("err post=", error);
         }
       );
-    navigate('/Patient', { state: { email, Freedays } })
   }
 
   const Go2NewSummary = () => {

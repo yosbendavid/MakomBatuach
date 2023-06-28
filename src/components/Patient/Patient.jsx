@@ -12,8 +12,8 @@ const Patient = (props) => {
   const { state } = useLocation();
   useEffect(() => {
     const { email, Freedays } = state;
-    setEmail(email);
-    setFreedays(Freedays);
+    setEmail(state.email);
+    setFreedays(state.Freedays);
     console.log(Freedays);
     console.log(email);
   }, []);
@@ -132,9 +132,6 @@ const Patient = (props) => {
     <div className="patient-container-div">
       <TopBar patientName={patientName} onSideBarClick={patientSideBarClick} />
 
-      {/* מסך הבית של מטופל */}
-      {/* <PHomePage /> */}
-
       {/* מסך תיאום פגישה חדשה */}
       <PatientNewMeeting
         timeSlots={timeSlots}
@@ -145,6 +142,7 @@ const Patient = (props) => {
         RoomPicked={handleRoomNum}
         clickedATime={meetingTime}
         blockedDates={Freedays}
+        email={email}
       />
 
       {/* מסך אישור תיאום פגישה */}
