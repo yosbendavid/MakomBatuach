@@ -5,12 +5,14 @@ import backArrow from "../../../Photos/backArrow.svg";
 import ButtonCard from "../../Template parts/ButtonCard";
 import { useNavigate } from "react-router-dom";
 
+
 const PatientNewMeeting = (props) => {
     const [isSliderOpen, setIsSliderOpen] = useState(false);
     const [isSlotClick, setIsSlotClick] = useState(false);
     const [isDateClicked, setIsDateClicked] = useState(false);
     const [email, setEmail] = useState("");
     const [isCalendarReady, setIsCalendarReady] = useState(false); // Added state for calendar readiness
+
 
 
 
@@ -55,6 +57,7 @@ const PatientNewMeeting = (props) => {
         }, [props.blockedDates]);
 
     return (
+        <div className="patient-container-div">
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
             <form onSubmit={props.setNewMeeting}>
                 <div className={`calendar-slider`}>
@@ -98,6 +101,8 @@ const PatientNewMeeting = (props) => {
                     </div>
                 )}
             </form>
+            
+        </div>
         </div>
     );
 }

@@ -16,6 +16,7 @@ export default function Metting() {
 
   const location = useLocation();
   const { Num } = location.state;
+  const TherId=location.state.TherId
 
   const {Patient_Id, Summary_Date} = useParams();
   const [summary, setSummary] = useState(null);

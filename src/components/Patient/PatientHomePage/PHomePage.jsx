@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PatientHPMeetings from "./PatientHPMeetings";
 import "../../../CSS/PHomePage.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import BottomBar from "../../Template parts/BottomBar";
+import TopBar from "../../Template parts/TopBar";
 
 
 const dummy_meetings = [
@@ -51,7 +53,18 @@ const PHomePage = () => {
 
   const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
   const [email, setEmail] = useState('')
-  const [Freedays, setFreedays] = useState([]);
+  const [Freedays, setFreedays] = useState([]);  
+  const [patientName, setPatientName] = useState("");
+
+  const patientUserClick = () => {};
+  const patientHomeClick = () => {};
+  const patientCalendarClick = () => 
+  {
+    navigate("/PaSummaries")
+
+  };
+
+
 
   const addMeetingsHandler = newPatientMeeting => {
     setPatientMeetings(prevPatientMeetings => {
@@ -88,6 +101,8 @@ const PHomePage = () => {
 
   return (
     <div className="PHomePage-container">
+       <div className="patient-container-div">
+      <TopBar patientName={patientName}  />
       <div className="setMeetingBtn">
         <button className="setMeetBTN" onClick={Go2Nemeeting}>לחץ לזימון פגישה</button>
         <p className="upcoming-Meetings-title">פגישות קרובות:</p>
@@ -96,6 +111,12 @@ const PHomePage = () => {
         <PatientHPMeetings papatientMeetings={patientMeetings} />
       </div>
       <button className="seeAllDocuments" onClick={Go2PrevTreat}>לחץ לפגישות קודמות</button>    
+    </div>
+    <BottomBar
+        onCalendarClick={patientCalendarClick}
+        onUserClick={patientUserClick}
+        onHomeClick={patientHomeClick}
+      />
     </div>
   );
 }

@@ -36,11 +36,13 @@ export default function PatientCase() {
 
     const Go2Summaries = () => {
       
-      const Name = {
-        Name: patient.FirstName
+      const Data = {
+        Name: patient.FirstName,
+        TherId: patient.TherapistId
       };
+      console.log(Data)
 
-      navigate(`/Summaries/${patient.patientId}`, { state: Name });
+      navigate(`/Summaries/${patient.patientId}`, { state: Data });
     }
 
     const go2HomePage = () => {

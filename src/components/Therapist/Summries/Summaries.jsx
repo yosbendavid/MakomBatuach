@@ -13,6 +13,7 @@ export default function Summaries() {
 
   const location = useLocation();
   const name = location.state.Name;
+  const therid = location.state.TherId;
   const [summaries, setSummaries] = useState([]);
   const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ export default function Summaries() {
         <ReturnIcon1 onClick={goBack}/>
             <TitleSummary> {name} הסיכומים של </TitleSummary>
             {summaries.map((summary, index) => (
-            <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} />
+            <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} therid={therid} />
         ))}    
         </ContainerSummaries>
 
@@ -71,14 +72,15 @@ export default function Summaries() {
 
 
 
-const SummaryCard = ({ summary, index }) => {
+const SummaryCard = ({ summary, index, therid }) => {
 
   const navigate = useNavigate(); 
 
     const Go2Summary = () => {
 
       const Num = {
-        Num: index
+        Num: index,
+        TherId:therid
       };
 
       navigate(`/Metting/${summary.Patient_Id}/${summary.Summary_Date}`, { state: Num });
