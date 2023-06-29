@@ -19,7 +19,7 @@ import ForgotMyPassword from "./components/Forgot Password Page/ForgotMyPassword
 import ChangePassword from "./components/Forgot Password Page/ChangePassword";
 import Schedule from "./components/Therapist/New Schedule/Schedule";
 import Metting from "./components/Therapist/Meeting/Metting";
-
+import PrevPatientMeetings from "./components/Patient/Prevmeeting";
 
 
 function App() {
@@ -42,6 +42,8 @@ function App() {
             <Route path="/Forgot" element={<ForgotMyPassword />} />
             <Route path="/Change" element={<ChangePassword />} />
             <Route path="/Schedule" element={<Schedule />} />
+            <Route path="/Prev" element={<PrevPatientMeetings />} />
+
 
           </Routes>
           <Routes>

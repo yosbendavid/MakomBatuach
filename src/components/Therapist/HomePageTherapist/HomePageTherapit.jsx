@@ -34,12 +34,12 @@ const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
   const [Lastmeeting, setLastmeeting] = useState([]);
+  const [email, setEmail] = useState('')
 
 
   const navigate = useNavigate(); 
   const {state}=useLocation();
 
-  const [email, setEmail] = useState('')
 
   useEffect(()=>{
     const email=state;
@@ -106,13 +106,13 @@ export default function HomePageTherapit() {
         <RecentMeetingsTitle> :פגישות אחרונות </RecentMeetingsTitle>
         <LastMeetingsWrapper>
           {Lastmeeting != null && Lastmeeting.length > 0 ? (
-            Lastmeeting.map((meet) => <LastMeetingCard meeting={meet} />)
+            Lastmeeting.map((meet) => <LastMeetingCard meeting={meet} email={email} />)
           ) : (
             <div> לא התקיימו פגישות היום </div>
           )}
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
-      <button onClick={Go2FreeTime}>Free Time</button>
+      <button onClick={Go2FreeTime}>ימי חופש</button>
 
       <Navbar>
         <BottomNavigation>
@@ -153,7 +153,8 @@ const MeetingCard = ({ meeting }) => {
     );
 };
 
-const LastMeetingCard = ({ meeting }) => {
+const LastMeetingCard = ({ meeting , email}) => {
+
   const date = new Date(meeting.Treatment_Date).toLocaleDateString();
   const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
     hour: "2-digit",
@@ -171,11 +172,13 @@ const LastMeetingCard = ({ meeting }) => {
   const Go2MeetingSummary = () => {
     const date = new Date(meeting.Treatment_Date).toLocaleDateString();
     const time = `${startTimeOnly} - ${endTimeOnly}`;
+    
 
     const DateTime = {
       Date1: date,
       Time: time,
-      numOfMeeting: meeting.Treatment_Id
+      numOfMeeting: meeting.Treatment_Id,
+      Email:email
     };
 
     navigate("/NewMetting", { state: DateTime });

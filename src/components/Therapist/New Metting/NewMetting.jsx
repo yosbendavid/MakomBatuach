@@ -49,7 +49,8 @@ export default function NewMetting(props) {
   }
 
   const location = useLocation();
-  const { Date1, Time, numOfMeeting} = location.state;
+  const { Date1, Time, numOfMeeting, Email} = location.state;
+  console.log("location",location.state)
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState('');
@@ -76,7 +77,7 @@ export default function NewMetting(props) {
     console.log(formattedDate);
 
     const postBody = {
-      WrittenBy: 't',
+      WrittenBy:Email,
       Content: fileContent ? fileContent : transcript, 
       Summary_Date: formattedDate,
       ImportanttoNote: ImportanttoNote,
