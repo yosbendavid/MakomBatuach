@@ -8,14 +8,15 @@ const PatientHPMeetings = (props) => {
             {
                 props.papatientMeetings.map((meeting) => (
                     <MeetingItemBox 
-                        key={meeting.Treatment_id}
+                        key={meeting.Treatment_Id}
                         name={meeting.TherapistName}
                         date={meeting.datetemp}
                         roomNum={meeting.Room_Num}
                         sTime={meeting.startTimetemp}
                         eTime={meeting.endtimetemp}
+                        id={meeting.Treatment_Id}
                         isPastAppointment={isPastAppointment(meeting.datetemp)} // Add isPastAppointment prop
-                        onSummaryButtonClick={(key, name, date) => props.onSummaryButtonClick(key, name, date)}
+                        onSummaryButtonClick={(id, sTime, eTime, date) => props.onSummaryButtonClick(id, sTime, eTime, date)}
                         />
                 ))}
         </div>

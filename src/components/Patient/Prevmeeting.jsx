@@ -60,11 +60,13 @@ const PrevPatientMeetings = () => {
 
 
 
-  const handleSummaryButtonClick = (key, name, date) => {
+  const handleSummaryButtonClick = (id, sTime, eTime, date) => {
+
     const DateTime = {
-      key,
-      name,
-      date
+      Date1:date, 
+      Time:`${sTime} - ${eTime}`,
+      numOfMeeting:id,
+      Email:email
     };
   
     console.log(DateTime)
