@@ -4,6 +4,7 @@ import "../../../CSS/PHomePage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import BottomBar from "../../Template parts/BottomBar";
 import TopBar from "../../Template parts/TopBar";
+import PrevPatientMeetings from "../Prevmeeting";
 
 
 const dummy_meetings = [
@@ -53,23 +54,19 @@ const PHomePage = () => {
 
   const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
   const [email, setEmail] = useState('')
-  const [Freedays, setFreedays] = useState([]);  
+  const [Freedays, setFreedays] = useState([]);
   const [patientName, setPatientName] = useState("");
 
-  const patientUserClick = () => {};
-  const patientHomeClick = () =>
-   {
+  const patientUserClick = () => { };
+  const patientHomeClick = () => {
     navigate("/Phome", { state: email })
 
-   };
-  const patientCalendarClick = () => 
-  {
-    console.log("email pa",email)
+  };
+  const patientCalendarClick = () => {
+    console.log("email pa", email)
     navigate("/PaSummaries", { state: email })
 
   };
-
-
 
   const addMeetingsHandler = newPatientMeeting => {
     setPatientMeetings(prevPatientMeetings => {
@@ -86,38 +83,53 @@ const PHomePage = () => {
         Accept: "application/json; charset=UTF-8",
       }),
     })
-    .then((res) => res.json()) // Parse the response body as JSON
-    .then(
-      (result) => {
-        console.log("result:", result);
-        const dates = result.map((item) => new Date(item.Dayoff).toLocaleDateString()); // Convert to local date string
-        setFreedays(dates);
-        console.log("dates:", Freedays);
-        navigate('/Patient', { state: { email, Freedays: dates } }); // Pass the correct variable name "dates"
-      },
+      .then((res) => res.json()) // Parse the response body as JSON
+      .then(
+        (result) => {
+          console.log("result:", result);
+          const dates = result.map((item) => new Date(item.Dayoff).toLocaleDateString()); // Convert to local date string
+          setFreedays(dates);
+          console.log("dates:", Freedays);
+          navigate('/Patient', { state: { email, Freedays: dates } }); // Pass the correct variable name "dates"
+        },
         (error) => {
           console.log("err post=", error);
         }
       );
   }
   const Go2PrevTreat = () => {
-    navigate("/Prev",{ state: email });
+    navigate("/Prev", { state: email });
   }
+
+  const [showPrevMeetings, setShowPrevMeetings] = useState(true); // State for showing previous meetings
+
+  const togglePrevMeetings = () => {
+    setShowPrevMeetings(!showPrevMeetings);
+  };
+
+  const buttonLabel = showPrevMeetings ? "סגור פגישות קודמות" : "לחץ לפגישות קודמות";
+
 
   return (
     <div className="PHomePage-container">
-       <div className="patient-container-div">
-      <TopBar patientName={patientName}  />
-      <div className="setMeetingBtn">
-        <button className="setMeetBTN" onClick={Go2Nemeeting}>לחץ לזימון פגישה</button>
-        <p className="upcoming-Meetings-title">פגישות קרובות:</p>
+      <div className="patient-container-div">
+        <TopBar patientName={patientName} />
+        <div className="setMeetingBtn">
+          <p className="upcoming-Meetings-title">פגישות קרובות:</p>
+        </div>
+        <div className="items-div">
+          <PatientHPMeetings papatientMeetings={patientMeetings} />
+        </div>
+        <button className="setMeetBTN" onClick={Go2Nemeeting}> לזימון פגישה</button>  
+        <br></br> 
+        <button className="seeAllDocuments" onClick={togglePrevMeetings}>
+        {buttonLabel}
+        </button>
+        {showPrevMeetings && <PrevPatientMeetings />}
+        {/* <button className="seeAllDocuments" onClick={Go2PrevTreat}>לחץ לפגישות קודמות</button>    
+   <prevPatientMeetings/> */}
       </div>
-      <div className="items-div">
-        <PatientHPMeetings papatientMeetings={patientMeetings} />
-      </div>
-      <button className="seeAllDocuments" onClick={Go2PrevTreat}>לחץ לפגישות קודמות</button>    
-    </div>
-    <BottomBar
+      <BottomBar
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
         onHomeClick={patientHomeClick}
