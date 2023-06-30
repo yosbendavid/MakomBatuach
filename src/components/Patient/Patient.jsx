@@ -27,25 +27,18 @@ const Patient = (props) => {
   const [email, setEmail] = useState("");
   const [Freedays, setFreedays] = useState([]);
 
-  // const patientNameHandle = () => {
-  //   setPatientName("");
-  // };
-  // const patientUserClick = () => {};
-  // const patientHomeClick = () => {};
-  // const patientCalendarClick = () => {};
-  // const patientSideBarClick = () => {};
 
-  // const patientNameHandle = () => {
-  //   setPatientName("");
-  // };
-  // const patientUserClick = () => { };
-  // const patientHomeClick = () => {
-  //   navigate("/Phome", { state: email })
-  // };
-  // const patientCalendarClick = () => {
-  //   navigate("/PaSummaries", { state: email })
-  // };
-  // const patientSideBarClick = () => { };
+  const patientNameHandle = () => {
+    setPatientName("");
+  };
+  const patientUserClick = () => { };
+  const patientHomeClick = () => {
+    navigate("/Phome", { state: email })
+  };
+  const patientCalendarClick = () => {
+    navigate("/PaSummaries", { state: email })
+  };
+  const patientSideBarClick = () => { };
 
   // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
   const handleMeetingDateChange = (value) => {
