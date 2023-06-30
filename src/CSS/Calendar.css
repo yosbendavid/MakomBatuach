@@ -123,3 +123,23 @@ abbr[title] {
   background: #e40000;
   color: rgb(255, 255, 255);
 }
+
+/* Style for blocked dates */
+.blocked-date {
+  background-color: red;
+  /* add any other styles you want for blocked dates */
+}
+
+/* Style for past dates */
+.past-date {
+  background-color: gray;
+  /* add any other styles you want for past dates */
+}
+
+/* Style for blocked dates that are disabled */
+.react-calendar__tile--disabled.blocked-date {
+  background-color: #e40000; /* Update with your desired color */
+  color: #ffffff; /* Update with your desired color */
+  border-radius: 100%;
+}
+

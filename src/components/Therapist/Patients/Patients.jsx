@@ -3,26 +3,39 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {Container, LeftIcon,LogoContainer,LogoText,Navbar,PatientDiv,PatientName,SearchDiv,SearchText,StyledFilterIcon,StyledIcon, TherapistDiv, TherapistName,} from "./Patients.Style";
 
-const apiUrl = "https://localhost:44380/api/Patient/"
+
+const apiUrl = "https://localhost:44380/api/getpatient/?email="
 
 export default function Patients() {
   const [patients, setPatients] = useState([]);
   const [query, setQuery] = useState("");
-  const { therapistId } = useParams(); // get therapistId from URL
+  // const { therapistId } = useParams(); // get therapistId from URL
   const navigate = useNavigate(); 
+
+  const [email, setEmail] = useState('')
+  const { state } = useLocation();
+
+
+  useEffect(() => {
+    const email = state;
+    setEmail(email)
+    console.log(email);
+    getPatients(email);
+
+  }, []);
   
-  const getPatients = async (therapistId) => {
-    const result = await fetch(apiUrl + 1)
+  const getPatients = async (email) => {
+    const result = await fetch(apiUrl + email)
     const json = await result.json() 
     setPatients(json);
   }
 
-  useEffect(() => {
-    getPatients(therapistId) // call getPatients with therapistId
-  }, [therapistId]); // add therapistId as a dependency to useEffect
+  // useEffect(() => {
+  //   getPatients(therapistId) // call getPatients with therapistId
+  // }, [therapistId]); // add therapistId as a dependency to useEffect
 
   const filteredPatients = query ? patients.filter(patient => {
    return patient.FirstName.toLowerCase().includes(query.toLowerCase()) || patient.LastName.toLowerCase().includes(query.toLowerCase()) 
@@ -30,8 +43,12 @@ export default function Patients() {
 
   const go2HomePage = () => {
     
-    navigate(`/HomePageTherapit`);
+    navigate('/HomePageTherapit',{state:email});
   }
+
+  const Go2NewRegister = () => {
+      navigate('/NewRegister',{state:email})
+    };
 
   return (
     <div> 
@@ -48,6 +65,7 @@ export default function Patients() {
           <PatientCard key={patient.Patient_Id} patient={patient} />
         ))}
       </Container>
+      <button onClick={Go2NewRegister}>Add Patient</button>
       <Navbar>
       <BottomNavigation>
         <BottomNavigationAction  icon={<HomeOutlinedIcon />} onClick={go2HomePage} />
@@ -66,10 +84,19 @@ export default function Patients() {
     const PatientCard = ({ patient }) => {
 
     const navigate = useNavigate(); 
+    const [email, setEmail] = useState('')
+    const { state } = useLocation();
+  
+  
+    useEffect(() => {
+      const email = state;
+      setEmail(email)
+      console.log(email);  
+    }, []);
 
     const Go2PatientCase = () => {
       console.log(patient);
-      navigate(`/PatientCase/${patient.patientId}`);
+      navigate(`/PatientCase/${patient.patientId}`, {state:email});
     }
 
   return (

@@ -13,6 +13,7 @@ export default function Summaries() {
 
   const location = useLocation();
   const name = location.state.Name;
+  const therid = location.state.TherId;
   const [summaries, setSummaries] = useState([]);
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export default function Summaries() {
 
   const go2HomePage = () => {
     
-    navigate(`/HomePageTherapit`);
+    navigate('/HomePageTherapit');
   }
 
   const go2Patients = () => {
@@ -52,9 +53,9 @@ export default function Summaries() {
     <div>
         <ContainerSummaries>
         <ReturnIcon1 onClick={goBack}/>
-            <TitleSummary> {name} הטיפולים של </TitleSummary>
-            {summaries.map((summary, index) => (
-            <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} />
+            <TitleSummary> {name} הסיכומים של </TitleSummary>
+            {summaries.map((summary, index, num) => (
+            <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} num={summary.Summary_Num} />
         ))}    
         </ContainerSummaries>
 
@@ -71,17 +72,22 @@ export default function Summaries() {
 
 
 
-const SummaryCard = ({ summary, index }) => {
+const SummaryCard = ({ summary, index, num }) => {
 
   const navigate = useNavigate(); 
 
     const Go2Summary = () => {
 
-      const Num = {
-        Num: index
+      const Data = {
+        in: index,
+        Num:num
       };
 
-      navigate(`/Metting/${summary.Patient_Id}/${summary.Summary_Date}`, { state: Num });
+      console.log(Data)
+
+      navigate(`/Metting/${summary.Patient_Id}/${summary.Summary_Date}`, { state: Data });
+      // navigate(`/Metting/${num}`);
+
     }
 
 return (
@@ -93,4 +99,6 @@ return (
   </SummaryDiv>   
 );
 };
+;
+
 

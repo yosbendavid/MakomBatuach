@@ -3,9 +3,30 @@ import CalendarF from "../../Calendar/CalendarF";
 import { format } from "date-fns";
 import "../../../CSS/Schedule.css";
 import ButtonCard from "../../Template parts/ButtonCard";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from 'axios'
+import Swal from 'sweetalert2';
 
-const Schedule = () => {
+
+const Schedule = (props) => {
   const [selectedDates, setSelectedDates] = useState([]);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    const email = state;
+    setEmail(email)
+    console.log(email);
+
+  }, []);
+
+  const go2HomePage = () => {
+    
+    navigate(`/HomePageTherapit`, {state:email});
+  }
+
 
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [
@@ -46,9 +67,31 @@ const Schedule = () => {
   };
 
   //פונקציה לאישור ימי החופש המבוקשים שרצה כאשר לוחצים על אישור ימי חופש
-  const submitTakeDaysOff = (event) => {
+  const submitTakeDaysOff = async (event) => {
     event.preventDefault();
     console.log(selectedDates);
+    try {
+      const response = await axios.post('https://localhost:44380/api/Daysoff', {
+          Free: selectedDates,
+          Email: email,
+      });
+      if (response.status === 200) {
+          Swal.fire(
+              'Days Off Submitted ',
+              'success'
+            )   
+            go2HomePage();
+      }
+      else if (response.status === 400){
+          Swal.fire({
+              icon:'error',
+              title: 'Oops...',
+              text: 'Something went wrong '
+          })
+      }
+  } catch (error) {
+      console.error('Request failed with status code', error.response.status);
+  }
   };
 
   return (
@@ -56,7 +99,7 @@ const Schedule = () => {
       <form onSubmit={submitTakeDaysOff}>
         <div className="add-days">
           <p className="add-days-title-one">בחר את ימי החופש המבוקשים</p>
-          <CalendarF date={handleDateSelect} />
+          <CalendarF date={handleDateSelect}  blockedDates={null}/>
           <p className="add-days-title-two">ימים נבחרים</p>
           <div className="add-days-list">
             {selectedDates.map((date, index) => (

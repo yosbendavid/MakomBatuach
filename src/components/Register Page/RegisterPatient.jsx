@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextBox from "../Template parts/TextBox";
 import SelectBox from "../Template parts/SelectBox";
 import RegisterTitle from "./RegisterTitle";
@@ -7,11 +7,11 @@ import {textBoxesArray} from "./NewRegisterData/textBoxesArray";
 import backArrow from "../../Photos/backArrow.svg";
 import ButtonCard from '../Template parts/ButtonCard';
 import '../../CSS/register.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios'
 import Swal from 'sweetalert2';
 
-const RegisterBoxs = () => {
+const RegisterBoxs = (props) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -20,6 +20,14 @@ const RegisterBoxs = () => {
     const [gender, setGender] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [password, setPassword] = useState('');
+
+    const { state } = useLocation();
+    useEffect(() => {
+      const { email, password } = state;
+      seteEMail(email);
+      setPassword(password);
+      console.log(email);
+    }, []);
 
     const handleFirstNameChange = (value) => {
         setFirstName(value);
@@ -32,7 +40,8 @@ const RegisterBoxs = () => {
     }
 
     const handleEmailChange = (value) => {
-        seteEMail(value);
+        seteEMail(props.email);
+        console.log(email)
     }
 
     const handleGenderChange = (value) => {
@@ -60,7 +69,8 @@ const RegisterBoxs = () => {
                 Patient_Id: id,
                 Password: password,
                 StartDate: new Date()
-            });
+            }
+            );
             if (response.status === 200) {
                 Swal.fire(
                     'Welcome',
@@ -119,7 +129,7 @@ const RegisterBoxs = () => {
                         value={lastName}
                         onChange={handleLastNameChange}
                     />
-                    <TextBox
+                    {/* <TextBox
                         id={textBoxesArray[2].id}
                         title={textBoxesArray[2].title}
                         placeHolder={textBoxesArray[2].placeHolder}
@@ -127,8 +137,8 @@ const RegisterBoxs = () => {
                         autoComplete={textBoxesArray[2].autoComplete}
                         value={id}
                         onChange={handleIdChange}
-                    />
-                     <TextBox
+                    /> */}
+                     {/* <TextBox
                         id={textBoxesArray[3].id}
                         title={textBoxesArray[3].title}
                         placeHolder={textBoxesArray[3].placeHolder}
@@ -136,7 +146,7 @@ const RegisterBoxs = () => {
                         autoComplete={textBoxesArray[3].autoComplete}
                         value={email}
                         onChange={handleEmailChange}
-                    />
+                    /> */}
                      <SelectBox
                         id={selectBoxArray[0].id}
                         title={selectBoxArray[0].title}

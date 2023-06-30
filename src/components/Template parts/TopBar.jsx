@@ -17,7 +17,7 @@ const TopBar = (props) => {
                     <p className="name-icon">{props.patientName}</p>
                 </div>
                 <div className="Side-Bar-div">
-                    <img className="Side-Bar-Icon" src={SideBarIcon} onClick={handleSidebarToggle} />
+                    {/* <img className="Side-Bar-Icon" src={SideBarIcon} onClick={handleSidebarToggle} /> */}
                 </div>
             </div>
             {sidebarOpen && (

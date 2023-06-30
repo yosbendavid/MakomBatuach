@@ -6,39 +6,15 @@ import TopBar from "../Template parts/TopBar";
 import { format } from "date-fns";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Patient = () => {
-  const meetings = [
-    {
-      id: 1,
-      time: "11:45-12:30",
-    },
-    {
-      id: 2,
-      time: "11:45-12:30",
-    },
-    {
-      id: 3,
-      time: "11:45-12:30",
-    },
-    {
-      id: 4,
-      time: "11:45-12:30",
-    },
-    {
-      id: 5,
-      time: "11:45-12:30",
-    },
-    {
-      id: 6,
-      time: "11:45-12:30",
-    },
-  ];
+const Patient = (props) => {
 
   const navigate = useNavigate();
   const { state } = useLocation();
   useEffect(() => {
-    const email = state;
-    setEmail(email);
+    const { email, Freedays } = state;
+    setEmail(state.email);
+    setFreedays(state.Freedays);
+    console.log(Freedays);
     console.log(email);
   }, []);
 
@@ -48,16 +24,28 @@ const Patient = () => {
   const [meetingTime, setMeetingTime] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
   const [roomNum, setRoomNum] = useState("");
-  const [meet, setMeet] = useState("");
   const [email, setEmail] = useState("");
+  const [Freedays, setFreedays] = useState([]);
 
-  const patientNameHandle = () => {
-    setPatientName("");
-  };
-  const patientUserClick = () => {};
-  const patientHomeClick = () => {};
-  const patientCalendarClick = () => {};
-  const patientSideBarClick = () => {};
+  // const patientNameHandle = () => {
+  //   setPatientName("");
+  // };
+  // const patientUserClick = () => {};
+  // const patientHomeClick = () => {};
+  // const patientCalendarClick = () => {};
+  // const patientSideBarClick = () => {};
+
+  // const patientNameHandle = () => {
+  //   setPatientName("");
+  // };
+  // const patientUserClick = () => { };
+  // const patientHomeClick = () => {
+  //   navigate("/Phome", { state: email })
+  // };
+  // const patientCalendarClick = () => {
+  //   navigate("/PaSummaries", { state: email })
+  // };
+  // const patientSideBarClick = () => { };
 
   // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
   const handleMeetingDateChange = (value) => {
@@ -106,7 +94,8 @@ const Patient = () => {
   //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 
   const Go2Approve = () => {
-    navigate("/meetingApproved");
+    console.log({ state: email })
+    navigate("/meetingApproved", { state: email });
   };
 
   const setNewMeeting = (event) => {
@@ -154,9 +143,6 @@ const Patient = () => {
     <div className="patient-container-div">
       <TopBar patientName={patientName} onSideBarClick={patientSideBarClick} />
 
-      {/* מסך הבית של מטופל */}
-      {/* <PHomePage /> */}
-
       {/* מסך תיאום פגישה חדשה */}
       <PatientNewMeeting
         timeSlots={timeSlots}
@@ -166,6 +152,8 @@ const Patient = () => {
         onMeetingTimeChange={handleMeetingTimeChange}
         RoomPicked={handleRoomNum}
         clickedATime={meetingTime}
+        blockedDates={Freedays}
+        email={email}
       />
 
       {/* מסך אישור תיאום פגישה */}

@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledIcon } from '../Meeting/Meeting.style';
 import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper, divCenter } from './NewMetting.style';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import Swal from 'sweetalert2';
+
 
 const apiUrl = 'https://localhost:44380/api/PostSummary'; 
 
@@ -47,7 +49,8 @@ export default function NewMetting(props) {
   }
 
   const location = useLocation();
-  const { Date1, Time, numOfMeeting} = location.state;
+  const { Date1, Time, numOfMeeting, Email} = location.state;
+  console.log("location",location.state)
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState('');
@@ -74,11 +77,11 @@ export default function NewMetting(props) {
     console.log(formattedDate);
 
     const postBody = {
-      WrittenBy: 't',
+      WrittenBy:Email,
       Content: fileContent ? fileContent : transcript, 
       Summary_Date: formattedDate,
       ImportanttoNote: ImportanttoNote,
-      Treatment_Id: numOfMeeting
+      Treatment_Id: numOfMeeting,
     };
     if (postBody.WrittenBy && postBody.Content && postBody.Summary_Date && postBody.ImportanttoNote) {
       // All required fields have a value, so send the POST request
@@ -98,8 +101,11 @@ export default function NewMetting(props) {
         (result) => {
           console.log("fetch POST= ", result);
           console.log(result.Name);
-          alert("נשמר")
-        },
+
+          Swal.fire(
+            'נשמר',
+            `הסיכום נשמר בהצלחה`,
+          )        },
         (error) => {
           console.log("err post=", error);
         }

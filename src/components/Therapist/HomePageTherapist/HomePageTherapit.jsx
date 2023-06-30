@@ -28,30 +28,52 @@ import {
 } from "./HomePageTherapit.Style";
 
 const apiUrl = "https://localhost:44380/api/Therapist/?email=";
+const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
+
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
+  const [Lastmeeting, setLastmeeting] = useState([]);
+  const [email, setEmail] = useState('')
+
+
+  const navigate = useNavigate(); 
+  const {state}=useLocation();
+
+
+  useEffect(()=>{
+    const email=state;
+    setEmail(email)
+    GetMeeting(email)
+    GetLastMeeting(email)
+    console.log(email);
+
+},[]);
 
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const { therapistId } = useParams(); // get therapistId from URL
-  const navigate = useNavigate();
 
-  const GetMeeting = async (therapistId) => {
-    const email = queryParams.get('email');
+  const GetMeeting = async (email) => {
     console.log('email=',email)
     const result = await fetch(apiUrl + email);
     const json = await result.json();
     setPaMeeting(json);
   };
 
-  useEffect(() => {
-    GetMeeting(therapistId);
-  }, [therapistId]);
+  const GetLastMeeting = async (email) => {
+    console.log('email=',email)
+    const result = await fetch(apiUrll + email);
+    const json = await result.json();
+    setLastmeeting(json);
+  };
 
   const go2Patients = () => {
-    navigate(`/Patients`);
+    navigate('/Patients',{state:email});
   }
+
+  const Go2FreeTime = () => {
+    console.log(email)
+    navigate('/Schedule',{state:email})
+  };
 
   const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
 
@@ -83,18 +105,20 @@ export default function HomePageTherapit() {
       <RecentMeetingsContainer>
         <RecentMeetingsTitle> :פגישות אחרונות </RecentMeetingsTitle>
         <LastMeetingsWrapper>
-          {Meeting != null && Meeting.length > 0 ? (
-            Meeting.map((meeting) => <LastMeetingCard meeting={meeting} />)
+          {Lastmeeting != null && Lastmeeting.length > 0 ? (
+            Lastmeeting.map((meet) => <LastMeetingCard meeting={meet} email={email} />)
           ) : (
             <div> לא התקיימו פגישות היום </div>
           )}
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
+      <button onClick={Go2FreeTime}>ימי חופש</button>
+
       <Navbar>
         <BottomNavigation>
           <BottomNavigationAction icon={<HomeOutlinedIcon />} />
           <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} onClick={go2Patients} />
-          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />}  />
         </BottomNavigation>
       </Navbar>
     </div>
@@ -129,7 +153,8 @@ const MeetingCard = ({ meeting }) => {
     );
 };
 
-const LastMeetingCard = ({ meeting }) => {
+const LastMeetingCard = ({ meeting , email}) => {
+
   const date = new Date(meeting.Treatment_Date).toLocaleDateString();
   const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
     hour: "2-digit",
@@ -147,11 +172,13 @@ const LastMeetingCard = ({ meeting }) => {
   const Go2MeetingSummary = () => {
     const date = new Date(meeting.Treatment_Date).toLocaleDateString();
     const time = `${startTimeOnly} - ${endTimeOnly}`;
+    
 
     const DateTime = {
       Date1: date,
       Time: time,
-      numOfMeeting: meeting.Treatment_Id
+      numOfMeeting: meeting.Treatment_Id,
+      Email:email
     };
 
     navigate("/NewMetting", { state: DateTime });
