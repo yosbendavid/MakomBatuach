@@ -6,7 +6,10 @@ import React, { useEffect, useState } from 'react'
 import {  useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ButtonDiv, ButtonFiles, InformationContainer, InformationDesc, InformationTitle, InformationWrapper, MeetingTitle, Navbar, StyledIcon, TherapistDiv1, TherapistName1, TitleWrapper } from './Meeting.style'
 
-const apiUrl = "https://localhost:44380/api/GetSummaryByDate/";
+// const apiUrl = "https://localhost:44380/api/GetSummaryByDate/";
+
+const apiUrl = "https://localhost:44380/api/GetSummaryByNumber/";
+
 
 
 export default function Metting() {
@@ -16,13 +19,15 @@ export default function Metting() {
 
   const location = useLocation();
   const { Num } = location.state;
+  const num=location.state.Num
 
   const {Patient_Id, Summary_Date} = useParams();
   const [summary, setSummary] = useState(null);
 
   useEffect(() => {
     const getPatient = async () => {
-      const result = await fetch(`${apiUrl}${Patient_Id}/${Summary_Date}`);
+      // const result = await fetch(`${apiUrl}${Patient_Id}/${Summary_Date}`);
+      const result = await fetch(`${apiUrl}${num}`);
       const json = await result.json();
       setSummary(json);
       console.log(json);

@@ -3,13 +3,9 @@ import PatientHPMeetings from "./PatientHomePage/PatientHPMeetings";
 import MeetingItemBox from "../Template parts/MeetingItemBox";
 import "../../../src/CSS/PHomePage.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import TopBar from "../Template parts/TopBar";
+import BottomBar from "../Template parts/BottomBar";
 
-const dummy_meetings = [
-  {
-    id: 1,
-  },
-
-];
 
 const PrevPatientMeetings = () => {
 
@@ -73,15 +69,34 @@ const PrevPatientMeetings = () => {
     navigate("/NewMetting", { state: DateTime });
   };
   
-  
+  const [patientName, setPatientName] = useState("");
+
+  const patientUserClick = () => {};
+  const patientHomeClick = () => 
+  {
+   navigate("/Phome", { state: email })
+  };
+  const patientCalendarClick = () => 
+  {
+    navigate("/PaSummaries", { state: email })
+
+  };
+
   return (
     <div className="PHomePage-container">
       <div className="setMeetingBtn">
+      <TopBar patientName={patientName}  />
         <p className="upcoming-Meetings-title"> פגישות קודמות</p>
       </div>
+      <div></div>
       <div className="items-div">
         <PatientHPMeetings papatientMeetings={patientMeetings} onSummaryButtonClick={handleSummaryButtonClick} />
       </div>
+      <BottomBar
+        onCalendarClick={patientCalendarClick}
+        onUserClick={patientUserClick}
+        onHomeClick={patientHomeClick}
+      />
     </div>
   );
 }

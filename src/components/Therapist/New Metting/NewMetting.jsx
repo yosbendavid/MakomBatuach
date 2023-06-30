@@ -81,7 +81,7 @@ export default function NewMetting(props) {
       Content: fileContent ? fileContent : transcript, 
       Summary_Date: formattedDate,
       ImportanttoNote: ImportanttoNote,
-      Treatment_Id: numOfMeeting
+      Treatment_Id: numOfMeeting,
     };
     if (postBody.WrittenBy && postBody.Content && postBody.Summary_Date && postBody.ImportanttoNote) {
       // All required fields have a value, so send the POST request
