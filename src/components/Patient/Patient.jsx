@@ -31,10 +31,14 @@ const Patient = (props) => {
   const patientNameHandle = () => {
     setPatientName("");
   };
-  const patientUserClick = () => {};
-  const patientHomeClick = () => {};
-  const patientCalendarClick = () => {};
-  const patientSideBarClick = () => {};
+  const patientUserClick = () => { };
+  const patientHomeClick = () => {
+    navigate("/Phome", { state: email })
+  };
+  const patientCalendarClick = () => {
+    navigate("/PaSummaries", { state: email })
+  };
+  const patientSideBarClick = () => { };
 
   // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
   const handleMeetingDateChange = (value) => {
@@ -83,8 +87,8 @@ const Patient = (props) => {
   //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 
   const Go2Approve = () => {
-    console.log({state:email})
-    navigate("/meetingApproved",{state:email});
+    console.log({ state: email })
+    navigate("/meetingApproved", { state: email });
   };
 
   const setNewMeeting = (event) => {

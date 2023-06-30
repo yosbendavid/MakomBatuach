@@ -57,10 +57,15 @@ const PHomePage = () => {
   const [patientName, setPatientName] = useState("");
 
   const patientUserClick = () => {};
-  const patientHomeClick = () => {};
+  const patientHomeClick = () =>
+   {
+    navigate("/Phome", { state: email })
+
+   };
   const patientCalendarClick = () => 
   {
-    navigate("/PaSummaries")
+    console.log("email pa",email)
+    navigate("/PaSummaries", { state: email })
 
   };
 
@@ -116,6 +121,7 @@ const PHomePage = () => {
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
         onHomeClick={patientHomeClick}
+
       />
     </div>
   );

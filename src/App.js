@@ -20,7 +20,7 @@ import ChangePassword from "./components/Forgot Password Page/ChangePassword";
 import Schedule from "./components/Therapist/New Schedule/Schedule";
 import Metting from "./components/Therapist/Meeting/Metting";
 import PrevPatientMeetings from "./components/Patient/Prevmeeting";
-import PatientSummaries from "./components/Patient/PatientSummaries";
+import PatientSummaries from "./components/Patient/Patient Summary/PatientSummaries";
 
 
 function App() {
