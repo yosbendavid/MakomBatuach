@@ -12,7 +12,6 @@ import axios from 'axios';
 
 const ForgotMyPassword = () => {
   const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [response, setResponse] = useState(false);
   const newPassword = 'deafult_pass_please_change';
@@ -27,10 +26,17 @@ const ForgotMyPassword = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!email) {
+      Swal.fire({         
+        title: '!הכנס אימייל בבקשה',
+        text: 'האימייל הכרחי לעידכון הסיסמא',
+        confirmButtonText: 'אישור',});
+      return;
+    }
     try {
-      await userexist(); // Wait for userexist() to complete before proceeding
+      await userexist(); //  חכה ל-יוזראקזיסטס() כדי לסיים לפני שתמשיך
       if (userexist) {
-        await change(); // Wait for change() to complete before proceeding
+        await change(); // חכה ל-צ'ינג'() לסיים לפני שתמשיך
   
         setIsSubmitted(true);
         emailjs.sendForm('service_btaoeiz', 'template_kro756u', form.current, 'mIY_fS4vWork1Rt6F')
@@ -41,7 +47,10 @@ const ForgotMyPassword = () => {
             console.log(error.text);
           });
       } else {
-        Swal.fire('You dont have a user', 'Please Contact Your Therapist ');
+        Swal.fire({         
+          title: 'אין לך משתמש',
+          text: 'צור קשר עם המטפל שלך',
+          confirmButtonText: 'אישור',});
         setIsSubmitted(false);
       }
     } catch (error) {
@@ -121,8 +130,6 @@ const ForgotMyPassword = () => {
               />
               <input type="hidden" name="user_email" value={email}/>
               <input type="hidden" name="user_password" value={newPassword}/>
-
-
 
               <button className="FMPSubmit" type="submit">
                 שלח

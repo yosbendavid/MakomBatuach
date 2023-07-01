@@ -17,7 +17,7 @@ export default function Summaries() {
   const [summaries, setSummaries] = useState([]);
   const navigate = useNavigate();
 
-  const { patientId } = useParams(); // get therapistId from URL
+  const { patientId } = useParams(); // השג את הID של המטפל מהיו אר אל
 
  useEffect(() => {
     const getSummary = async () => {

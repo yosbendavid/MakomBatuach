@@ -8,6 +8,7 @@
     color: rgb(0, 0, 118);
     text-align: right;
     padding-right: 10px;
+    font-family: 'Open-Sans', sans-serif;
   }
   .text-box-item input{
     width: 300px;

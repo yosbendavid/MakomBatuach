@@ -86,14 +86,14 @@ const PHomePage = () => {
         Accept: "application/json; charset=UTF-8",
       }),
     })
-    .then((res) => res.json()) // Parse the response body as JSON
+    .then((res) => res.json()) 
     .then(
       (result) => {
         console.log("result:", result);
-        const dates = result.map((item) => new Date(item.Dayoff).toLocaleDateString()); // Convert to local date string
+        const dates = result.map((item) => new Date(item.Dayoff).toLocaleDateString()); // שנה את התאריך הנוחכי לסטרינג
         setFreedays(dates);
         console.log("dates:", Freedays);
-        navigate('/Patient', { state: { email, Freedays: dates } }); // Pass the correct variable name "dates"
+        navigate('/Patient', { state: { email, Freedays: dates } }); // העבר את התאריכים הנכונים
       },
         (error) => {
           console.log("err post=", error);

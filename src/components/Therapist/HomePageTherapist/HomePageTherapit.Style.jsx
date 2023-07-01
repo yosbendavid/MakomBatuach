@@ -63,7 +63,7 @@ export const MeetingRoom = styled.p`
 export const GreenStripe = styled.div`
   position: absolute;
   top: 4px;
-  left: 95px; // adjust this value as needed
+  left: 95px;
   height: 90%;
   width: 10px;
   background-color: #87D18E;

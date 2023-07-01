@@ -11,7 +11,7 @@ const PatientNewMeeting = (props) => {
     const [isSlotClick, setIsSlotClick] = useState(false);
     const [isDateClicked, setIsDateClicked] = useState(false);
     const [email, setEmail] = useState("");
-    const [isCalendarReady, setIsCalendarReady] = useState(false); // Added state for calendar readiness
+    const [isCalendarReady, setIsCalendarReady] = useState(false); // הוסף סטייט למוכנות של הלוח השנה
 
 
 
@@ -61,7 +61,7 @@ const PatientNewMeeting = (props) => {
         <div className={`therapistMeetingCalendar-div ${isSliderOpen ? 'open' : 'closed'}`}>
             <form onSubmit={props.setNewMeeting}>
                 <div className={`calendar-slider`}>
-                    {isCalendarReady && ( // Conditional rendering based on calendar readiness
+                    {isCalendarReady && ( // רינדור בהתאם למוכנות של הלוח שנה
                         <CalendarF date={props.onMeetingDateChange} blockedDates={props.blockedDates} />   )}                   
                      <div className="openClose-arrow" onClick={handleArrowClick}>
                         <img src={backArrow} alt="closeOpenDate" />

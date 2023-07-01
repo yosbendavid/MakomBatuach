@@ -10,13 +10,13 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const [email, seteEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [loginError, setLoginError] = useState(false);
     // הפונקציה שאני מעביר כדי לתפוס את הערך של אימייל
     const handleEmailChange = (value) => {
-        seteEmail(value);
-    }
+        setEmail(value);
+    };
     // הפונקציה שאני מעביר כדי לתפוס את הערך של סיסמה
     const handlePasswordChange = (value) => {
         setPassword(value);
@@ -30,47 +30,41 @@ const Login = () => {
                 Password: password
             });
 
-            if (password == "deafult_pass_please_change") {
-                Swal.fire(
-                    'Welcome',
-                    `You need to change your Password `
-                )
+            if (password === "deafult_pass_please_change") {
+                Swal.fire({         
+                    title: 'ברוך הבא',
+                    text: 'אתה צריך לעדכן את הסיסמא שלך',
+                    confirmButtonText: 'אישור',});
                 Go2Change()
             }
             else {
                 if (response.status === 200) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} You Have Signed In to Makom Batuach`,
-                        'success'
-                    )
+                    Swal.fire({         
+                        title: 'ברוך הבא',
+                        text: `${email} אתה התחברת למקום בטוח`,
+                        confirmButtonText: 'אישור',});
+                    setLoginError(false);
                     Go2Patienthome(email)
-                }
-                if (response.status === 201) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} Please complete these details`,
-                        'success'
-                    )
+                } else if (response.status === 201) {
+                    Swal.fire({         
+                        title: 'ברוך הבא',
+                        text: `${email} בבקשה השלם את הפרטים הללו`,
+                        confirmButtonText: 'אישור',});
+                    setLoginError(false);
                     Go2RegisterPatient();
-                }
-                if (response.status === 202) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} You Have Signed In to Makom Batuach`,
-                        'success'
-                    )
+                } else if (response.status === 202) {
+                    Swal.fire({         
+                        title: 'ברוך הבא',
+                        text: `${email} אתה התחברת למקום בטוח`,
+                        confirmButtonText: 'אישור',});
+                    setLoginError(false);
                     Go2Therahome(email);
+                } else if (response.status === 400) {
+                    setLoginError(true); //יראה את ההודעה לגבי מייל לא נכון 
                 }
-                // if (response.status === 400) {
-                //     Swal.fire(
-                //         'Wrong Details',
-                //         `Please try again`,
-                //     )
-                // }
             }
         } catch (error) {
-            console.error('Request failed with status code', error.response);
+            console.error('Request failed with error:', error.response);
         }
 
     }
@@ -130,9 +124,11 @@ const Login = () => {
                     </div>
 
                     {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
-                    <div id='wrong-password-or-email'>
+                    {loginError && (
+                        <div id='wrong-password-or-email'>
                         <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
-                    </div>
+                        </div>
+                    )}
                 </div>
 
 

@@ -1,5 +1,6 @@
 .login-container-div{
     direction: rtl;
+    margin-top: 250px;
 }
 .image-container{
     display: flex;
@@ -7,6 +8,8 @@
     align-items: center;
 }
 .image-container .login-image{
+    position: absolute;
+    top: 0;
     max-width: 400px;
     max-height: 300px;
     border-radius: 100% / 0 0 50% 50%;
@@ -34,9 +37,6 @@
     margin-top: 5px;
     font-family: 'Open-Sans', sans-serif;
     cursor: pointer;
-}
-#wrong-password-or-email{
-    display: none;
 }
 #wrong-password-or-email .wrong-password-or-email-p{
     color: red;
