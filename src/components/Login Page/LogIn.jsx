@@ -44,108 +44,122 @@ const Login = () => {
                         `${email} You Have Signed In to Makom Batuach`,
                         'success'
                     )
-                    Go2Patienthome(email)
+                    Go2Patienthome(email);
                 }
-                if (response.status === 201) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} Please complete these details`,
-                        'success'
-                    )
-                    Go2RegisterPatient();
-                }
-                if (response.status === 202) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} You Have Signed In to Makom Batuach`,
-                        'success'
-                    )
-                    Go2Therahome(email);
-                }
-                // if (response.status === 400) {
-                //     Swal.fire(
-                //         'Wrong Details',
-                //         `Please try again`,
-                //     )
-                // }
+
+            if (response.status === 201) {
+                Swal.fire(
+                    'Welcome',
+                    `${email} Please complete these details`,
+                    'success'
+                )
+                Go2RegisterPatient();
             }
-        } catch (error) {
-            console.error('Request failed with status code', error.response);
+            if (response.status === 202) {
+                Swal.fire(
+                    'Welcome',
+                    `${email} You Have Signed In to Makom Batuach`,
+                    'success'
+                )
+                Go2Therahome(email);
+            }
+            if (response.status === 226) {
+                Swal.fire(
+                    'Welcome',
+                    `${email} You Have Signed In to Makom Batuach`,
+                    'success'
+                )
+                Go2AdminHome();
+            }
+            if (response.status === 400) {
+                Swal.fire(
+                    'Wrong Details',
+                    `Please try again`,
+                )
+            }
         }
-
+            
+        } catch (error) {
+        console.error('Request failed with status code', error.response);
     }
 
-    const navigate = useNavigate();
+}
 
-    const Go2Patienthome = () => {
-        navigate('/Phome', { state: email })
-    };
+const navigate = useNavigate();
 
-    const Go2RegisterPatient = () => {
-        navigate("/RegisterPatient", { state: { email, password } });
-    }
+const Go2Patienthome = () => {
+    navigate('/Phome', { state: email })
+};
 
-    const Go2Therahome = () => {
-        navigate("/HomePageTherapit", { state: email });
-    }
+const Go2RegisterPatient = () => {
+    navigate("/RegisterPatient", { state: { email, password } });
+}
 
-    const Go2Forgot = () => {
-        navigate("/Forgot", { state: email });
-    }
+const Go2Therahome = () => {
+    navigate("/HomePageTherapit", { state: email });
+}
 
-    const Go2Change = () => {
-        console.log(email)
-        navigate("/Change", { state: email });
-    }
+const Go2Forgot = () => {
+    navigate("/Forgot", { state: email });
+}
 
-    return (
-        <div className="login-container-div">
-            {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
-            <LoginTopPart />
-            <form onSubmit={loginInAccount}>
-                <div className='login-input-div'>
-                    {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
-                    <TextBox
-                        id={inputBoxArrayLogin[0].id}
-                        title={inputBoxArrayLogin[0].title}
-                        placeHolder={inputBoxArrayLogin[0].placeHolder}
-                        type={inputBoxArrayLogin[0].type}
-                        autoComplete={inputBoxArrayLogin[0].autoComplete}
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                    <TextBox
-                        id={inputBoxArrayLogin[1].id}
-                        title={inputBoxArrayLogin[1].title}
-                        placeHolder={inputBoxArrayLogin[1].placeHolder}
-                        type={inputBoxArrayLogin[1].type}
-                        autoComplete={inputBoxArrayLogin[1].autoComplete}
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
+const Go2Change = () => {
+    console.log(email)
+    navigate("/Change", { state: email });
+}
+const Go2AdminHome = () => {
+    navigate("/Admin");
+}
 
-                    {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
-                    <div className='forgot-password-div'>
-                        <p onClick={Go2Forgot} className='forgot-password-p'>שכחת סיסמה?</p>
-                    </div>
 
-                    {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
-                    <div id='wrong-password-or-email'>
-                        <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
-                    </div>
+return (
+    <div className="login-container-div">
+        {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
+        <LoginTopPart />
+        <form onSubmit={loginInAccount}>
+            <div className='login-input-div'>
+                {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
+                <TextBox
+                    id={inputBoxArrayLogin[0].id}
+                    title={inputBoxArrayLogin[0].title}
+                    placeHolder={inputBoxArrayLogin[0].placeHolder}
+                    type={inputBoxArrayLogin[0].type}
+                    autoComplete={inputBoxArrayLogin[0].autoComplete}
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+                <TextBox
+                    id={inputBoxArrayLogin[1].id}
+                    title={inputBoxArrayLogin[1].title}
+                    placeHolder={inputBoxArrayLogin[1].placeHolder}
+                    type={inputBoxArrayLogin[1].type}
+                    autoComplete={inputBoxArrayLogin[1].autoComplete}
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+
+                {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
+                <div className='forgot-password-div'>
+                    <p onClick={Go2Forgot} className='forgot-password-p'>שכחת סיסמה?</p>
                 </div>
 
-
-
-                {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
-                <div className='login-btn-div'>
-                    <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
-                    <div className='new-account-div'>
-                    </div>
+                {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
+                <div id='wrong-password-or-email'>
+                    <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
                 </div>
-            </form>
+            </div>
 
-        </div>
-    );
+
+
+            {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
+            <div className='login-btn-div'>
+                <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
+                <div className='new-account-div'>
+                </div>
+            </div>
+        </form>
+
+    </div>
+);
 }
 export default Login;

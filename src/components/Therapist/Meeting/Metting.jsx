@@ -104,11 +104,11 @@ const endTimeOnly = new Date(summary.EndTime).toLocaleTimeString([], {
       <ButtonFiles> קבצים למטופל </ButtonFiles>
     </ButtonDiv>
     <Navbar>
-      <BottomNavigation>
+      {/* <BottomNavigation>
         <BottomNavigationAction icon={<HomeOutlinedIcon />} onClick={go2HomePage}/>
         <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} onClick={go2Patients} />
         <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
-      </BottomNavigation>
+      </BottomNavigation> */}
     </Navbar>
     </div>
   );
