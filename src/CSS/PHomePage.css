@@ -26,9 +26,19 @@
     cursor: pointer;
     font-family: 'Open-Sans', sans-serif;
 }
-.items-div{
+/* .items-div{
     min-height: 350px;
-}
+} */
+.items-div {
+    min-height: 200px;
+    height: auto; /* Set height to auto to make it dynamic */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
 .upcoming-Meetings-title {
     text-align: right;
     padding-right: 5%;
