@@ -15,7 +15,7 @@
     border-radius: 100% / 0 0 50% 50%;
 }
 .login-title .login-title-text {
-    font-size: 44px;
+    font-size: 28px;
     font-weight: 700;
     font-family: 'Open-Sans', sans-serif;
     color: rgb(0, 0, 118);
@@ -37,6 +37,12 @@
     margin-top: 5px;
     font-family: 'Open-Sans', sans-serif;
     cursor: pointer;
+}
+.wrong-password-or-email .wrong-password-or-email-p{
+    color: red;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Open-Sans', sans-serif;
 }
 #wrong-password-or-email .wrong-password-or-email-p{
     color: red;
@@ -63,4 +69,13 @@
 .new-account-div .register-account-p .register-page {
     font-size: 18px;
     color: blue;
+}
+.swal2-styled.swal2-confirm {
+    font-family: 'Open-Sans', sans-serif;
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #7df4a1;
+    color: #fff;
+    font-size: 1em;
 }

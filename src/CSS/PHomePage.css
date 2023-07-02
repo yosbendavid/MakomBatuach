@@ -36,11 +36,19 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
 .upcoming-Meetings-title {
     text-align: right;
+    padding-right: 5%;
+    margin: 30px 0 0 0;
+    font-family: 'Open-Sans', sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+}
+.pName {
+    text-align: center;
     padding-right: 5%;
     margin: 30px 0 0 0;
     font-family: 'Open-Sans', sans-serif;
@@ -60,4 +68,27 @@
     border: none;
     outline: none;
     cursor: pointer;
+}
+.PHomePage-container .bottom-bar-container{
+    direction: ltr;
+}
+.PHomePage-container .top-bar-container {
+    direction: ltr;
+}
+.PHomePage-container .PHomePage-container .notification-left{
+    align-items: center;
+    display: flex;
+}
+.PHomePage-container .PHomePage-container .add-summary-button{
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
 }

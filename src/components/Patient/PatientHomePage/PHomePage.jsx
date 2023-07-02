@@ -114,6 +114,7 @@ const PHomePage = () => {
     <div className="PHomePage-container">
       <div className="patient-container-div">
         <TopBar patientName={patientName} />
+        <p className="pName">שלום, {patientName? patientName : ""}</p>
         <div className="setMeetingBtn">
           <p className="upcoming-Meetings-title">פגישות קרובות:</p>
         </div>
