@@ -21,6 +21,9 @@ import Schedule from "./components/Therapist/New Schedule/Schedule";
 import Metting from "./components/Therapist/Meeting/Metting";
 import PrevPatientMeetings from "./components/Patient/Prevmeeting";
 import PatientSummaries from "./components/Patient/Patient Summary/PatientSummaries";
+import AdminHome from "./components/Admin/AdminHome";
+import Articles from "./components/Articles/Articles";
+
 
 
 function App() {
@@ -45,6 +48,11 @@ function App() {
             <Route path="/Schedule" element={<Schedule />} />
             <Route path="/Prev" element={<PrevPatientMeetings />} />
             <Route path="/PaSummaries" element={<PatientSummaries />} />
+            <Route path="/Admin" element={<AdminHome />} />
+            <Route path="/Article" element={<Articles />} />
+
+            
+
 
 
 

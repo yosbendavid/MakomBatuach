@@ -168,13 +168,13 @@ export default function NewMetting(props) {
     </ButtonDiv>
     </div>
 
-    <Navbar>
+    {/* <Navbar>
       <BottomNavigation>
         <BottomNavigationAction icon={<HomeOutlinedIcon />} onClick={go2HomePage} />
         <BottomNavigationAction icon={<PermIdentityOutlinedIcon onClick={go2Patients} />} />
         <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
       </BottomNavigation>
-    </Navbar>
+    </Navbar> */}
 
     </div>
   );
