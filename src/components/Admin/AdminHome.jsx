@@ -39,7 +39,12 @@ export default function AdminHome() {
   }
 
   const Go2NewRegister = () => {
-    navigate('/NewRegister',{state:email})
+    navigate('/NewRegister',{state:"admin"})
+  };
+
+  
+  const Go2Dashboard = () => {
+    navigate('/Dashboard')
   };
 
 
@@ -61,6 +66,8 @@ export default function AdminHome() {
         ))}
 
         <button className="setMeetBTN" onClick={Go2NewRegister}> רישום משתמש </button>
+        <button className="setMeetBTN" onClick={Go2Dashboard}> אלמנט  </button>
+
 
       </Container>
       {/* <Navbar>
