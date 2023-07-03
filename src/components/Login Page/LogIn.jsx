@@ -76,84 +76,89 @@ const Login = () => {
         }
     }
 
-    const navigate = useNavigate();
 
-    const Go2Patienthome = () => {
-        navigate('/Phome', { state: email })
-    };
 
-    const Go2RegisterPatient = () => {
-        navigate("/RegisterPatient", { state: { email, password } });
-    }
+const navigate = useNavigate();
 
-    const Go2Therahome = () => {
-        navigate("/HomePageTherapit", { state: email });
-    }
+const Go2Patienthome = () => {
+    navigate('/Phome', { state: email })
+};
 
-    const Go2Forgot = () => {
-        navigate("/Forgot", { state: email });
-    }
+const Go2RegisterPatient = () => {
+    navigate("/RegisterPatient", { state: { email, password } });
+}
 
-    const Go2Change = () => {
-        console.log(email)
-        navigate("/Change", { state: email });
-    }
+const Go2Therahome = () => {
+    navigate("/HomePageTherapit", { state: email });
+}
 
-    return (
-        <div className="login-container-div">
-            {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
-            <LoginTopPart />
-            <form onSubmit={loginInAccount}>
-                <div className='login-input-div'>
-                    {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
-                    <TextBox
-                        id={inputBoxArrayLogin[0].id}
-                        title={inputBoxArrayLogin[0].title}
-                        placeHolder={inputBoxArrayLogin[0].placeHolder}
-                        type={inputBoxArrayLogin[0].type}
-                        autoComplete={inputBoxArrayLogin[0].autoComplete}
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                    <TextBox
-                        id={inputBoxArrayLogin[1].id}
-                        title={inputBoxArrayLogin[1].title}
-                        placeHolder={inputBoxArrayLogin[1].placeHolder}
-                        type={inputBoxArrayLogin[1].type}
-                        autoComplete={inputBoxArrayLogin[1].autoComplete}
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
+const Go2Forgot = () => {
+    navigate("/Forgot", { state: email });
+}
 
-                    {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
-                    <div className='forgot-password-div'>
-                        <p onClick={Go2Forgot} className='forgot-password-p'>שכחת סיסמה?</p>
-                    </div>
+const Go2Change = () => {
+    console.log(email)
+    navigate("/Change", { state: email });
+}
+const Go2AdminHome = () => {
+    navigate("/Admin");
+}
 
-                    {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
-                    {loginError && (
-                        <div id='wrong-password-or-email'>
-                            <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
-                        </div>
-                    )}
-                    {loginErrorTwo && (
-                        <div className='wrong-password-or-email'>
-                            <p className='wrong-password-or-email-p'>אנא הכנס מייל וסיסמא כדי להתחבר.</p>
-                        </div>
-                    )}
+
+return (
+    <div className="login-container-div">
+        {/* החלק העליון שמכיל תמונה וכותרת הוצאתי לקומופוננטה נפרדת */}
+        <LoginTopPart />
+        <form onSubmit={loginInAccount}>
+            <div className='login-input-div'>
+                {/* מעביר לקומפוננטה את הערכים שהוא צריך כדי להבדיל אותו אני מביא את הערכים מתוך מערך של אובייקטים ששמרתי בלוג אין דאטה */}
+                <TextBox
+                    id={inputBoxArrayLogin[0].id}
+                    title={inputBoxArrayLogin[0].title}
+                    placeHolder={inputBoxArrayLogin[0].placeHolder}
+                    type={inputBoxArrayLogin[0].type}
+                    autoComplete={inputBoxArrayLogin[0].autoComplete}
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+                <TextBox
+                    id={inputBoxArrayLogin[1].id}
+                    title={inputBoxArrayLogin[1].title}
+                    placeHolder={inputBoxArrayLogin[1].placeHolder}
+                    type={inputBoxArrayLogin[1].type}
+                    autoComplete={inputBoxArrayLogin[1].autoComplete}
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+
+                {/* צריך להוסיף פונקציה של און קליק שתעביר אותי לעמוד סיסמא חדשה במידה ואנחנו רוצים דבר כזה */}
+                <div className='forgot-password-div'>
+                    <p onClick={Go2Forgot} className='forgot-password-p'>שכחת סיסמה?</p>
                 </div>
 
-
-
-                {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
-                <div className='login-btn-div'>
-                    <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
-                    <div className='new-account-div'>
+                {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
+                {loginError && (
+                    <div id='wrong-password-or-email'>
+                        <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
                     </div>
-                </div>
-            </form>
+                )}
+                {loginErrorTwo && (
+                    <div className='wrong-password-or-email'>
+                        <p className='wrong-password-or-email-p'>אנא הכנס מייל וסיסמא כדי להתחבר.</p>
+                    </div>
+                )}
+            </div>
 
-        </div>
-    );
+
+
+            {/* אזור ההתבחברות עם פונקציה צריך להוסיף מעבר לעמוד הרשמה און קליק לספן */}
+            <div className='login-btn-div'>
+                <ButtonCard type="submit" className="register-submit-btn">התחבר</ButtonCard>
+                <div className='new-account-div'>
+                </div>
+            </div>
+        </form>
+    </div>
+);
 }
 export default Login;

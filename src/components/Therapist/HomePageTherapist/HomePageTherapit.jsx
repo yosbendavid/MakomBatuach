@@ -75,7 +75,11 @@ export default function HomePageTherapit() {
     navigate('/Schedule',{state:email})
   };
 
-  const currentDate = new Date().toLocaleDateString(); // השג את התאריך הנוכחי בפורמט "MM/DD/YYYY"
+  const Go2Rom = () => {
+    navigate("/Article", { state: email });
+  }
+
+  const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
 
   return (
     <div>
@@ -113,6 +117,8 @@ export default function HomePageTherapit() {
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
       <button onClick={Go2FreeTime}>ימי חופש</button>
+      <button onClick={Go2Rom}>Rom</button>
+
 
       <Navbar>
         <BottomNavigation>
