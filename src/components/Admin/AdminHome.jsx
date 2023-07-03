@@ -4,13 +4,16 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import {Container, LeftIcon,LogoContainer,LogoText,Navbar,PatientDiv,PatientName,SearchDiv,SearchText,StyledFilterIcon,StyledIcon, TherapistDiv, TherapistName,} from "../Therapist/Patients/Patients.Style";
+import {
+  Container, LeftIcon, LogoContainer, LogoText, Navbar, PatientDiv, PatientName, SearchDiv, SearchText, StyledFilterIcon,
+  StyledIcon, TherapistDiv, TherapistName,
+} from "../Therapist/Patients/Patients.Style";
+import "../../CSS/PHomePage.css"
 
 const apiUrl = "https://localhost:44380/api/GetAllTherapits/?email="
 
 
-export default function AdminHome()
-{
+export default function AdminHome() {
   const [therapists, setTherapists] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -23,26 +26,31 @@ export default function AdminHome()
     // console.log(email)
     setEmail(email)
   })
-  
+
   const getTherapists = async (email) => {
     const result = await fetch(apiUrl + email)
-    const json = await result.json() 
+    const json = await result.json()
     setTherapists(json);
   }
 
-    
+
   if (email) {
     getTherapists(email);
   }
 
+  const Go2NewRegister = () => {
+    navigate('/NewRegister',{state:email})
+  };
+
+
 
   const filteredTherapists = query ? therapists.filter(therapist => {
-   return therapist.FirstName.toLowerCase().includes(query.toLowerCase()) || therapist.LastName.toLowerCase().includes(query.toLowerCase()) 
+    return therapist.FirstName.toLowerCase().includes(query.toLowerCase()) || therapist.LastName.toLowerCase().includes(query.toLowerCase())
   }) : therapists
 
   return (
-    <div> 
-        <Container>
+    <div>
+      <Container>
         <SearchDiv>
           <SearchText onChange={event => setQuery(event.target.value)} type={"text"} placeholder="חיפוש..." />
           <StyledIcon />
@@ -51,6 +59,9 @@ export default function AdminHome()
         {filteredTherapists.map((therapist) => (
           <PatientCard key={therapist.Therapist_Id} therapist={therapist} />
         ))}
+
+        <button className="setMeetBTN" onClick={Go2NewRegister}> רישום משתמש </button>
+
       </Container>
       {/* <Navbar>
       <BottomNavigation>
@@ -68,7 +79,7 @@ export default function AdminHome()
 
 const PatientCard = ({ therapist }) => {
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const { state } = useLocation();
 
@@ -76,7 +87,7 @@ const PatientCard = ({ therapist }) => {
   useEffect(() => {
     const email = state;
     setEmail(email)
-    console.log(email);  
+    console.log(email);
   }, []);
 
   const Go2TherCard = () => {
@@ -85,21 +96,21 @@ const PatientCard = ({ therapist }) => {
   }
 
 
-return (
-  <PatientDiv onClick={Go2TherCard}>
-    <LeftIcon />
-    <PatientName>
-      {" "}
-      {therapist.FirstName} {therapist.LastName}
-    </PatientName>
-    <LogoContainer>
-      <LogoText>
+  return (
+    <PatientDiv onClick={Go2TherCard}>
+      <LeftIcon />
+      <PatientName>
         {" "}
-        {therapist.FirstName[0]} {therapist.LastName[0]}
-      </LogoText>
-    </LogoContainer>
-  </PatientDiv>
-);
+        {therapist.FirstName} {therapist.LastName}
+      </PatientName>
+      <LogoContainer>
+        <LogoText>
+          {" "}
+          {therapist.FirstName[0]} {therapist.LastName[0]}
+        </LogoText>
+      </LogoContainer>
+    </PatientDiv>
+  );
 };
 
 
