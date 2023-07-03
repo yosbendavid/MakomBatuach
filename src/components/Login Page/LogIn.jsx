@@ -63,7 +63,16 @@ const Login = () => {
                             confirmButtonText: 'אישור',});
                         setLoginError(false);
                         Go2Therahome(email);
-                    } else if (response.status === 400) {
+                    }
+                    if (response.status === 226) {
+                        Swal.fire(
+                            'Welcome',
+                            `${email} You Have Signed In to Makom Batuach`,
+                            'success'
+                        )
+                        Go2AdminHome();
+                    }
+                    else if (response.status === 400) {
                         setLoginError(true); //יראה את ההודעה לגבי מייל לא נכון 
                     }
                 }

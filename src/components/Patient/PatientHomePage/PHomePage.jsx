@@ -101,9 +101,7 @@ const PHomePage = () => {
     navigate("/Prev", { state: email });
   }
 
-  const Go2Rom = () => {
-    navigate("/Article", { state: email });
-  }
+ 
   const [showPrevMeetings, setShowPrevMeetings] = useState(true); // State for showing previous meetings
 
   const togglePrevMeetings = () => {
@@ -116,7 +114,6 @@ const PHomePage = () => {
   return (
     <div className="PHomePage-container">
       <div className="patient-container-div">
-      <button onClick={Go2Rom}>Rom</button>
         <TopBar patientName={patientName} />
         <p className="pName">שלום, {patientName? patientName : ""}</p>
         <div className="setMeetingBtn">
