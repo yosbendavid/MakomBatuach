@@ -13,9 +13,16 @@ export default function AdminHome()
 {
   const [therapists, setTherapists] = useState([]);
   const [query, setQuery] = useState("");
-  const navigate = useNavigate(); 
 
-  const email='admin@gmail.com'
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    const email = state;
+    // console.log(email)
+    setEmail(email)
+  })
   
   const getTherapists = async (email) => {
     const result = await fetch(apiUrl + email)
@@ -23,14 +30,15 @@ export default function AdminHome()
     setTherapists(json);
   }
 
-  // useEffect(() => {
-  //   getPatients(therapistId) // call getPatients with therapistId
-  // }, [therapistId]); // add therapistId as a dependency to useEffect
+    
+  if (email) {
+    getTherapists(email);
+  }
+
 
   const filteredTherapists = query ? therapists.filter(therapist => {
    return therapist.FirstName.toLowerCase().includes(query.toLowerCase()) || therapist.LastName.toLowerCase().includes(query.toLowerCase()) 
   }) : therapists
-
 
   return (
     <div> 
@@ -41,7 +49,7 @@ export default function AdminHome()
           <StyledFilterIcon />
         </SearchDiv>
         {filteredTherapists.map((therapist) => (
-          <PatientCard key={therapist.Therapist_Id} patient={therapist} />
+          <PatientCard key={therapist.Therapist_Id} therapist={therapist} />
         ))}
       </Container>
       {/* <Navbar>
@@ -60,24 +68,25 @@ export default function AdminHome()
 
 const PatientCard = ({ therapist }) => {
 
-//   const navigate = useNavigate(); 
-//   const [email, setEmail] = useState('')
-//   const { state } = useLocation();
+  const navigate = useNavigate(); 
+  const [email, setEmail] = useState('')
+  const { state } = useLocation();
 
 
-//   useEffect(() => {
-//     const email = state;
-//     setEmail(email)
-//     console.log(email);  
-//   }, []);
+  useEffect(() => {
+    const email = state;
+    setEmail(email)
+    console.log(email);  
+  }, []);
 
-  // const Go2PatientCase = () => {
-  //   console.log(patient);
-  //   navigate(`/PatientCase/${patient.patientId}`, {state:email});
-  // }
+  const Go2TherCard = () => {
+    // console.log(therapist);
+    navigate(`/Thercard/${therapist.Therapist_Id}`);
+  }
+
 
 return (
-  <PatientDiv onClick={""}>
+  <PatientDiv onClick={Go2TherCard}>
     <LeftIcon />
     <PatientName>
       {" "}

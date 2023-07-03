@@ -108,7 +108,7 @@ const Go2Change = () => {
     navigate("/Change", { state: email });
 }
 const Go2AdminHome = () => {
-    navigate("/Admin");
+    navigate("/Admin" ,{ state: email });
 }
 
 
