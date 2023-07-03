@@ -24,7 +24,7 @@ import PatientSummaries from "./components/Patient/Patient Summary/PatientSummar
 import AdminHome from "./components/Admin/AdminHome";
 import Articles from "./components/Articles/Articles";
 import Dashboard from "./components/Admin/Dashboard";
-
+import TherapistCard from "./components/Admin/TherapisCard";
 
 
 function App() {
@@ -50,8 +50,9 @@ function App() {
             <Route path="/Prev" element={<PrevPatientMeetings />} />
             <Route path="/PaSummaries" element={<PatientSummaries />} />
             <Route path="/Admin" element={<AdminHome />} />
-            <Route path="/Article" element={<Articles />} />
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
+
 
 
 
