@@ -16,10 +16,11 @@
 .add-days {
   text-align: center;
   direction: rtl;
-  margin-top: 20px;
+  margin: 20px auto;
+  max-width: 350px;
   background-color: #f5f5f5;
   border: 1px solid #ddd;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -52,7 +53,7 @@
   border-radius: 8px;
   padding: 8px 8px;
   margin: 5px;
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
   font-weight: bold;
 }
@@ -60,4 +61,14 @@
 .btn-div {
   text-align: center;
   width: 100%;
+}
+.add-days .react-calendar__tile--active:enabled:hover, .add-days .react-calendar__tile--active:enabled:focus {
+  background: #f5f5f5;
+  color: black;
+  font-weight: 100;
+}
+.add-days .react-calendar__tile--active:enabled:active {
+  background: #f5f5f5;
+  color: red;
+  font-weight: bold;
 }

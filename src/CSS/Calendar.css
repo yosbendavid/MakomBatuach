@@ -65,9 +65,9 @@ abbr[title] {
 
 .react-calendar__tile--now {
   background: #ffffff36;
-  border-radius: 100%;
   font-weight: bold;
   color: #000000;
+  border-radius: 100% 0% 0% 100%;
 }
 
 .react-calendar__tile--now:enabled:hover,
@@ -132,7 +132,7 @@ abbr[title] {
 
 /* Style for past dates */
 .past-date {
-  background-color: gray;
+  background-color: rgb(185, 185, 185);
   /* add any other styles you want for past dates */
 }
 

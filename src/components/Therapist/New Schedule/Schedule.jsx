@@ -4,29 +4,25 @@ import { format } from "date-fns";
 import "../../../CSS/Schedule.css";
 import ButtonCard from "../../Template parts/ButtonCard";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios'
-import Swal from 'sweetalert2';
-
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Schedule = (props) => {
   const [selectedDates, setSelectedDates] = useState([]);
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const email = state;
-    setEmail(email)
+    setEmail(email);
     console.log(email);
-
   }, []);
 
   const go2HomePage = () => {
-    
-    navigate(`/HomePageTherapit`, {state:email});
-  }
-
+    navigate(`/HomePageTherapit`, { state: email });
+  };
 
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [
@@ -71,27 +67,23 @@ const Schedule = (props) => {
     event.preventDefault();
     console.log(selectedDates);
     try {
-      const response = await axios.post('https://localhost:44380/api/Daysoff', {
-          Free: selectedDates,
-          Email: email,
+      const response = await axios.post("https://localhost:44380/api/Daysoff", {
+        Free: selectedDates,
+        Email: email,
       });
       if (response.status === 200) {
-          Swal.fire(
-              'Days Off Submitted ',
-              'success'
-            )   
-            go2HomePage();
+        Swal.fire("Days Off Submitted ", "success");
+        go2HomePage();
+      } else if (response.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong ",
+        });
       }
-      else if (response.status === 400){
-          Swal.fire({
-              icon:'error',
-              title: 'Oops...',
-              text: 'Something went wrong '
-          })
-      }
-  } catch (error) {
-      console.error('Request failed with status code', error.response.status);
-  }
+    } catch (error) {
+      console.error("Request failed with status code", error.response.status);
+    }
   };
 
   return (
@@ -99,11 +91,19 @@ const Schedule = (props) => {
       <form onSubmit={submitTakeDaysOff}>
         <div className="add-days">
           <p className="add-days-title-one">בחר את ימי החופש המבוקשים</p>
-          <CalendarF date={handleDateSelect}  blockedDates={null}/>
+          <CalendarF date={handleDateSelect} blockedDates={null} />
           <p className="add-days-title-two">ימים נבחרים</p>
           <div className="add-days-list">
             {selectedDates.map((date, index) => (
-              <p className="add-days-item" key={index}>
+              <p
+                className="add-days-item"
+                key={index}
+                onClick={() =>
+                  setSelectedDates((prevSelectedDates) =>
+                    prevSelectedDates.filter((selectedDate) => selectedDate !== date)
+                  )
+                }
+              >
                 {handelDateDayName(date)} {date}
               </p>
             ))}

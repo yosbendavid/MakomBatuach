@@ -10,80 +10,73 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const [email, seteEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [loginError, setLoginError] = useState(false);
+    const [loginErrorTwo, setLoginErrorTwo] = useState(false);
     // הפונקציה שאני מעביר כדי לתפוס את הערך של אימייל
     const handleEmailChange = (value) => {
-        seteEmail(value);
-    }
+        setLoginErrorTwo(false);
+        setEmail(value);
+    };
     // הפונקציה שאני מעביר כדי לתפוס את הערך של סיסמה
     const handlePasswordChange = (value) => {
+        setLoginErrorTwo(false);
         setPassword(value);
     }
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
     const loginInAccount = async (event) => {
         event.preventDefault();
-        try {
-            const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
-                Email: email,
-                Password: password
-            });
-
-            if (password == "deafult_pass_please_change") {
-                Swal.fire(
-                    'Welcome',
-                    `You need to change your Password `
-                )
-                Go2Change()
-            }
-            else {
-                if (response.status === 200) {
-                    Swal.fire(
-                        'Welcome',
-                        `${email} You Have Signed In to Makom Batuach`,
-                        'success'
-                    )
-                    Go2Patienthome(email);
+        if(password != "" && email != ""){
+            try {
+                const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                    Email: email,
+                    Password: password
+                });
+    
+                if (password === "deafult_pass_please_change") {
+                    Swal.fire({         
+                        title: 'ברוך הבא',
+                        text: 'אתה צריך לעדכן את הסיסמא שלך',
+                        confirmButtonText: 'אישור',});
+                    Go2Change()
                 }
-
-            if (response.status === 201) {
-                Swal.fire(
-                    'Welcome',
-                    `${email} Please complete these details`,
-                    'success'
-                )
-                Go2RegisterPatient();
+                else {
+                    if (response.status === 200) {
+                        Swal.fire({         
+                            title: 'ברוך הבא',
+                            text: `התחברת למקום בטוח ${email}`,
+                            confirmButtonText: 'אישור',});
+                        setLoginError(false);
+                        Go2Patienthome(email)
+                    } else if (response.status === 201) {
+                        Swal.fire({         
+                            title: 'ברוך הבא',
+                            text: `בבקשה השלם את הפרטים הללו ${email}`,
+                            confirmButtonText: 'אישור',});
+                        setLoginError(false);
+                        Go2RegisterPatient();
+                    } else if (response.status === 202) {
+                        Swal.fire({         
+                            title: 'ברוך הבא',
+                            text: `התחברת למקום בטוח ${email}`,
+                            confirmButtonText: 'אישור',});
+                        setLoginError(false);
+                        Go2Therahome(email);
+                    } else if (response.status === 400) {
+                        setLoginError(true); //יראה את ההודעה לגבי מייל לא נכון 
+                    }
+                }
+            } catch (error) {
+                console.error('Request failed with error:', error.response);
+                setLoginError(true);
             }
-            if (response.status === 202) {
-                Swal.fire(
-                    'Welcome',
-                    `${email} You Have Signed In to Makom Batuach`,
-                    'success'
-                )
-                Go2Therahome(email);
-            }
-            if (response.status === 226) {
-                Swal.fire(
-                    'Welcome',
-                    `${email} You Have Signed In to Makom Batuach`,
-                    'success'
-                )
-                Go2AdminHome();
-            }
-            if (response.status === 400) {
-                Swal.fire(
-                    'Wrong Details',
-                    `Please try again`,
-                )
-            }
+        } else{
+            setLoginErrorTwo(true);
         }
-            
-        } catch (error) {
-        console.error('Request failed with status code', error.response);
     }
 
-}
+
 
 const navigate = useNavigate();
 
@@ -144,9 +137,16 @@ return (
                 </div>
 
                 {/* loginInAccount מופיע רק אם הוא טועה בסיסמא ומייל יש פונקציה למעלה בשם */}
-                <div id='wrong-password-or-email'>
-                    <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
-                </div>
+                {loginError && (
+                    <div id='wrong-password-or-email'>
+                        <p className='wrong-password-or-email-p'>הסיסמה או האימייל שגויים, נסה שוב.</p>
+                    </div>
+                )}
+                {loginErrorTwo && (
+                    <div className='wrong-password-or-email'>
+                        <p className='wrong-password-or-email-p'>אנא הכנס מייל וסיסמא כדי להתחבר.</p>
+                    </div>
+                )}
             </div>
 
 
@@ -158,7 +158,6 @@ return (
                 </div>
             </div>
         </form>
-
     </div>
 );
 }

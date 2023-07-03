@@ -12,7 +12,7 @@ const apiUrl = "https://localhost:44380/api/getpatient/?email="
 export default function Patients() {
   const [patients, setPatients] = useState([]);
   const [query, setQuery] = useState("");
-  // const { therapistId } = useParams(); // get therapistId from URL
+  // const { therapistId } = useParams(); // השג therapistId מה יו אר אל
   const navigate = useNavigate(); 
 
   const [email, setEmail] = useState('')
