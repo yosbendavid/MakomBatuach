@@ -1,4 +1,28 @@
 .Embed-container {
   height: 896px;
-  width: 414px;
+  width: 414px; 
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.items-div {
+  min-height: 200px;
+  height: auto; /* Set height to auto to make it dynamic */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.your-analytics-container {
+  text-align: center;
+}
+
+.your-analytics-title {
+  margin-top: 30px;
 }

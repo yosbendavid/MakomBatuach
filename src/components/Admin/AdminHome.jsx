@@ -9,6 +9,7 @@ import {
   StyledIcon, TherapistDiv, TherapistName,
 } from "../Therapist/Patients/Patients.Style";
 import "../../CSS/PHomePage.css"
+import BottomBar from '../Template parts/BottomBar';
 
 const apiUrl = "https://localhost:44380/api/GetAllTherapits/?email="
 
@@ -39,10 +40,10 @@ export default function AdminHome() {
   }
 
   const Go2NewRegister = () => {
-    navigate('/NewRegister',{state:"admin"})
+    navigate('/NewRegister', { state: "admin@gmail.com" })
   };
 
-  
+
   const Go2Dashboard = () => {
     navigate('/Dashboard')
   };
@@ -70,13 +71,11 @@ export default function AdminHome() {
 
 
       </Container>
-      {/* <Navbar>
-      <BottomNavigation>
-        <BottomNavigationAction  icon={<HomeOutlinedIcon />} onClick={go2HomePage} />
-        <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} />
-        <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
-      </BottomNavigation>
-    </Navbar> */}
+
+      <BottomBar
+        onUserClick={Go2Dashboard}
+
+      />
     </div>
   )
 }
@@ -117,6 +116,7 @@ const PatientCard = ({ therapist }) => {
         </LogoText>
       </LogoContainer>
     </PatientDiv>
+
   );
 };
 
