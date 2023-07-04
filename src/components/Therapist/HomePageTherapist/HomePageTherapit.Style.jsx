@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import { ReactComponent as LeftArrowIcon } from '../Img/left-arrow-svgrepo-com.svg';
+import { ReactComponent as LeftArrowIcon } from "../Img/left-arrow-svgrepo-com.svg";
 
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 70px;
-  padding-top: 50px;
+  padding-top: 10px;
 `;
 
 export const TitleName = styled.h1`
-   font-size: 1.2em;
-   text-align: center;
-   margin-bottom: 10px;
-   font-weight: normal;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
 `;
 
 export const MeetingDate = styled.h1`
@@ -40,7 +40,6 @@ export const MeetingContainer = styled.div`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 `;
 
-
 export const MeetingText = styled.p`
   font-size: 16px;
   text-align: center;
@@ -61,12 +60,13 @@ export const MeetingRoom = styled.p`
 `;
 
 export const GreenStripe = styled.div`
+  border-radius: 20px;
   position: absolute;
-  top: 4px;
-  left: 95px;
-  height: 90%;
-  width: 10px;
-  background-color: #87D18E;
+  top: 5px;
+  left: 100px;
+  height: 50px;
+  width: 9px;
+  background-color: rgb(135, 209, 142);
 `;
 
 export const MeetingHours = styled.p`
@@ -123,7 +123,7 @@ export const RecentMeetingsTitle = styled.h1`
 export const LastMeetingsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 200px;
+  min-height: 50px;
   overflow: auto;
   flex-direction: row; /* add this line */
 `;
@@ -175,7 +175,7 @@ export const MeetingDate1 = styled.p`
 `;
 
 export const SummaryButton = styled.button`
- border-radius: 20px;
+  border-radius: 20px;
   border: none;
   background-color: red;
   color: white;
@@ -189,13 +189,13 @@ export const SummaryButton = styled.button`
 `;
 
 export const LeftIcon = styled(LeftArrowIcon)`
- position: absolute;
+  position: absolute;
   left: -16px;
   top: 8px;
   height: 14px;
   width: 50px;
 `;
- 
+
 export const Navbar = styled.div`
   position: fixed;
   bottom: 0;
