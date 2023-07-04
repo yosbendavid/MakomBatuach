@@ -30,59 +30,55 @@ import {
 const apiUrl = "https://localhost:44380/api/Therapist/?email=";
 const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
 
-
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
   const [Lastmeeting, setLastmeeting] = useState([]);
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
 
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
-  const navigate = useNavigate(); 
-  const {state}=useLocation();
-
-
-  useEffect(()=>{
-    const email=state;
-    setEmail(email)
-    GetMeeting(email)
-    GetLastMeeting(email)
+  useEffect(() => {
+    const email = state;
+    setEmail(email);
+    GetMeeting(email);
+    GetLastMeeting(email);
     console.log(email);
-
-},[]);
+  }, []);
 
   const location = useLocation();
 
   const GetMeeting = async (email) => {
-    console.log('email=',email)
+    console.log("email=", email);
     const result = await fetch(apiUrl + email);
     const json = await result.json();
     setPaMeeting(json);
   };
 
   const GetLastMeeting = async (email) => {
-    console.log('email=',email)
+    console.log("email=", email);
     const result = await fetch(apiUrll + email);
     const json = await result.json();
     setLastmeeting(json);
   };
 
   const go2Patients = () => {
-    navigate('/Patients',{state:email});
-  }
+    navigate("/Patients", { state: email });
+  };
 
   const Go2FreeTime = () => {
-    console.log(email)
-    navigate('/Schedule',{state:email})
+    console.log(email);
+    navigate("/Schedule", { state: email });
   };
 
   const Go2Rom = () => {
     navigate("/Article", { state: email });
-  }
+  };
 
   const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
 
   return (
-    <div>
+    <div style={{ padding: "50px 0" }}>
       <TitleWrapper>
         <TherapistDiv>
           <TherapistName>
@@ -110,21 +106,60 @@ export default function HomePageTherapit() {
         <RecentMeetingsTitle> :פגישות אחרונות </RecentMeetingsTitle>
         <LastMeetingsWrapper>
           {Lastmeeting != null && Lastmeeting.length > 0 ? (
-            Lastmeeting.map((meet) => <LastMeetingCard meeting={meet} email={email} />)
+            Lastmeeting.map((meet) => (
+              <LastMeetingCard meeting={meet} email={email} />
+            ))
           ) : (
             <div> לא התקיימו פגישות היום </div>
           )}
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
-      <button onClick={Go2FreeTime}>ימי חופש</button>
-      <button onClick={Go2Rom}>Rom</button>
-
-
+      <div className="add-p-btn" style={{ textAlign: "center" }}>
+        <button
+          onClick={Go2FreeTime}
+          style={{
+            margin: "10px",
+            width: "250px",
+            fontSize: "18px",
+            border: "2px solid black",
+            padding: "15px",
+            textAlign: "center",
+            color: "#FFFFFF",
+            backgroundImage: "linear-gradient(45deg, #ff0000, #FFA500)",
+            border: "none",
+            borderRadius: "15px",
+          }}
+        >
+          ימי חיפוש
+        </button>
+      </div>
+      <div className="add-p-btn" style={{ textAlign: "center" }}>
+        <button
+          onClick={Go2Rom}
+          style={{
+            margin: "10px",
+            width: "250px",
+            fontSize: "18px",
+            border: "2px solid black",
+            padding: "15px",
+            textAlign: "center",
+            color: "#FFFFFF",
+            backgroundImage: "linear-gradient(45deg, #ff0000, #FFA500)",
+            border: "none",
+            borderRadius: "15px",
+          }}
+        >
+          ROM
+        </button>
+      </div>
       <Navbar>
         <BottomNavigation>
           <BottomNavigationAction icon={<HomeOutlinedIcon />} />
-          <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} onClick={go2Patients} />
-          <BottomNavigationAction icon={<ArticleOutlinedIcon />}  />
+          <BottomNavigationAction
+            icon={<PermIdentityOutlinedIcon />}
+            onClick={go2Patients}
+          />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
         </BottomNavigation>
       </Navbar>
     </div>
@@ -132,7 +167,7 @@ export default function HomePageTherapit() {
 }
 
 const MeetingCard = ({ meeting }) => {
-    const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
+  const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -159,8 +194,7 @@ const MeetingCard = ({ meeting }) => {
     );
 };
 
-const LastMeetingCard = ({ meeting , email}) => {
-
+const LastMeetingCard = ({ meeting, email }) => {
   const date = new Date(meeting.Treatment_Date).toLocaleDateString();
   const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
     hour: "2-digit",
@@ -178,13 +212,12 @@ const LastMeetingCard = ({ meeting , email}) => {
   const Go2MeetingSummary = () => {
     const date = new Date(meeting.Treatment_Date).toLocaleDateString();
     const time = `${startTimeOnly} - ${endTimeOnly}`;
-    
 
     const DateTime = {
       Date1: date,
       Time: time,
       numOfMeeting: meeting.Treatment_Id,
-      Email:email
+      Email: email,
     };
 
     navigate("/NewMetting", { state: DateTime });

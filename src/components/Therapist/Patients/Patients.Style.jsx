@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Icon } from '../Img/search.svg';
-import { ReactComponent as IconFilter } from '../Img/filterNew.svg';
-import { ReactComponent as LeftArrowIcon } from '../Img/left-arrow-svgrepo-com.svg';
+import { ReactComponent as Icon } from "../Img/search.svg";
+import { ReactComponent as IconFilter } from "../Img/filterNew.svg";
+import { ReactComponent as LeftArrowIcon } from "../Img/left-arrow-svgrepo-com.svg";
 
 export const Container = styled.div`
   padding: 80px 0;
@@ -41,7 +41,7 @@ export const StyledFilterIcon = styled(IconFilter)`
   height: 20px;
   position: absolute; /* set position to absolute */
   left: 10; /* set left property to 0 */
-  margin-right: auto
+  margin-right: auto;
 `;
 
 export const PatientDiv = styled.div`
@@ -52,7 +52,7 @@ export const PatientDiv = styled.div`
   padding: 10px;
   border-radius: 10px;
   width: 75%;
-  margin: 40px auto 0 auto;
+  margin: 25px auto 0 auto;
   margin-left: auto;
   border: 2px solid #f2f2f2;
   height: 50px;
@@ -69,7 +69,7 @@ export const PatientName = styled.p`
 `;
 
 export const LogoContainer = styled.div`
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
@@ -103,7 +103,7 @@ export const TherapistDiv = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #986F6F;
+  background-color: rgb(242, 242, 242);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 0;
@@ -124,3 +124,5 @@ export const Navbar = styled.div`
   bottom: 0;
   width: 100%;
 `;
+
+

@@ -1,3 +1,6 @@
+body{
+    font-family: 'Open-Sans', sans-serif;
+}
 .login-container-div{
     direction: rtl;
     margin-top: 250px;
@@ -10,7 +13,7 @@
 .image-container .login-image{
     position: absolute;
     top: 0;
-    max-width: 400px;
+    max-width: 420px;
     max-height: 300px;
     border-radius: 100% / 0 0 50% 50%;
 }
@@ -75,7 +78,10 @@
     border: 0;
     border-radius: 0.25em;
     background: initial;
-    background-color: #7df4a1;
+    background-color: #00c13a;;
     color: #fff;
     font-size: 1em;
+}
+.swal2-container{
+    font-family: 'Open-Sans', sans-serif;
 }
