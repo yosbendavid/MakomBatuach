@@ -22,7 +22,6 @@ import Metting from "./components/Therapist/Meeting/Metting";
 import PrevPatientMeetings from "./components/Patient/Prevmeeting";
 import PatientSummaries from "./components/Patient/Patient Summary/PatientSummaries";
 import AdminHome from "./components/Admin/AdminHome";
-import Articles from "./components/Articles/Articles";
 import Dashboard from "./components/Admin/Dashboard";
 import TherapistCard from "./components/Admin/TherapisCard";
 
