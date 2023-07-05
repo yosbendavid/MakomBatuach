@@ -130,27 +130,10 @@ export default function HomePageTherapit() {
             borderRadius: "15px",
           }}
         >
-          ימי חיפוש
+          ימי חופש
         </button>
       </div>
       <div className="add-p-btn" style={{ textAlign: "center" }}>
-        <button
-          onClick={Go2Rom}
-          style={{
-            margin: "10px",
-            width: "250px",
-            fontSize: "18px",
-            border: "2px solid black",
-            padding: "15px",
-            textAlign: "center",
-            color: "#FFFFFF",
-            backgroundImage: "linear-gradient(45deg, #ff0000, #FFA500)",
-            border: "none",
-            borderRadius: "15px",
-          }}
-        >
-          ROM
-        </button>
       </div>
       <Navbar>
         <BottomNavigation>

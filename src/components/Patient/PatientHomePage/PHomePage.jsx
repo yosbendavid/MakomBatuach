@@ -45,6 +45,7 @@ const PHomePage = () => {
           result.map(tr => console.log(tr.id));
           console.log("patientmeeting", result);
           setPatientMeetings(result);
+          setPatientName(result[0].PatientName)
 
         },
         (error) => {
