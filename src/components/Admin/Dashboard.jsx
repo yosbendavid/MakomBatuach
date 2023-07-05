@@ -85,7 +85,7 @@ function Dashboard() {
       
 
     const Go2AdminHome = () => {
-        navigate("/admin", { state: "admin" })
+        navigate("/admin", { state: "admin@gmail.com" })
     }
 
 
