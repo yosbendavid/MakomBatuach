@@ -6,6 +6,8 @@ import ButtonCard from "../../Template parts/ButtonCard";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { ReactComponent as IconBack } from '../Img/right-arrow.svg';
+
 
 const Schedule = (props) => {
   const [selectedDates, setSelectedDates] = useState([]);
@@ -23,6 +25,11 @@ const Schedule = (props) => {
   const go2HomePage = () => {
     navigate(`/HomePageTherapit`, { state: email });
   };
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
 
   //מערך שמחזיר את שם היום בשבוע מאנגלית לעיברית
   const englishToHebrewDays = [
@@ -72,7 +79,10 @@ const Schedule = (props) => {
         Email: email,
       });
       if (response.status === 200) {
-        Swal.fire("Days Off Submitted ", "success");
+        Swal.fire({
+          title: 'ימי החופש נקלטו בהצלחה',
+          icon: 'success'
+        })
         go2HomePage();
       } else if (response.status === 400) {
         Swal.fire({
@@ -90,10 +100,11 @@ const Schedule = (props) => {
     <div className="daysOff-container">
       <form onSubmit={submitTakeDaysOff}>
         <div className="add-days">
-          <p className="add-days-title-one">בחר את ימי החופש המבוקשים</p>
-          <CalendarF date={handleDateSelect} blockedDates={null} />
-          <p className="add-days-title-two">ימים נבחרים</p>
-          <div className="add-days-list">
+        <IconBack onClick={goBack} style={{ height: "20px", width: "20px", display: "flex", justifyContent: "flex-end" }} />
+        <p className="add-days-title-one">בחר את ימי החופש המבוקשים</p>
+        <CalendarF date={handleDateSelect} blockedDates={null} />
+        <p className="add-days-title-two">ימים נבחרים</p>
+        <div className="add-days-list">
             {selectedDates.map((date, index) => (
               <p
                 className="add-days-item"

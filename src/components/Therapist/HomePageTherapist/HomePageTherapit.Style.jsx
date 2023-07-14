@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as LeftArrowIcon } from "../Img/left-arrow-svgrepo-com.svg";
+import { ReactComponent as xIcon } from "../Img/xIcon.svg";
 
 export const TitleWrapper = styled.div`
   display: flex;
@@ -200,4 +201,25 @@ export const Navbar = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
+`;
+
+export const FreeTime1 = styled.button`
+  margin: 40px;
+  width: 150px;
+  font-size: 16px;
+  border: 2px solid black;
+  padding: 15px;
+  text-align: center;
+  color: #FFFFFF;
+  background-image: linear-gradient(45deg, #ff0000, #FFA500);
+  border: none;
+  border-radius: 15px;
+`;
+
+export const XICon = styled(xIcon)`
+  position: absolute;
+  left: -10px;
+  top: 8px;
+  height: 14px;
+  width: 50px;
 `;

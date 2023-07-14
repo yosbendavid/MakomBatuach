@@ -1,7 +1,22 @@
-import React from 'react';
 import axios from 'axios';
+import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
+
+
+
 
 const handleFileChange = async (event) => {
+    // const navigate = useNavigate();
+    // const { state } = useLocation();
+    // const [email, setEmail] = useState('')
+
+    // useEffect(() => {
+    //     const email = state;
+    //     console.log(email)
+    //     setEmail(email)
+    // })
+
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -12,10 +27,11 @@ const handleFileChange = async (event) => {
             try {
                 // Sending the base64 string to the backend using Axios
                 const response = await axios.post('https://localhost:44380/api/files', {
-                    file_num: 11111,
+                    file_num: 55,
                     date_sent: new Date(),
                     file_type_num: 1,
-                    content: base64File
+                    content: base64File,
+                    ///email: 
                 });
                 // Check the response status code
                 if (response.status === 200) {

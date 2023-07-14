@@ -125,4 +125,16 @@ export const Navbar = styled.div`
   width: 100%;
 `;
 
+export const AddPatient = styled.button`
+  margin: 0px;
+  width: 120px;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: rgb(184, 134, 11);
+  border: 0;
+  border-radius: 10px;
+`;
+
 
