@@ -65,7 +65,7 @@ export const ButtonSummery = styled.button`
   font-size: 16px;
   border: none;
   cursor: pointer;
-  margin: 10px 0px 10px -40px;
+  margin: 10px 0px 10px -52px;
   
 `;
 
@@ -93,6 +93,9 @@ export const ButtonAddFiles = styled.button`
   margin: 10px;
   margin-right: -30px;
 `;
+
+
+
 
 export const IconRecord = styled(RecordIcon)`
   width: 20px;

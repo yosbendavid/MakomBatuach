@@ -9,6 +9,8 @@ import { StyledIcon } from '../Meeting/Meeting.style';
 import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper, divCenter } from './NewMetting.style';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+
 
 
 const apiUrl = 'https://localhost:44380/api/PostSummary'; 
@@ -48,9 +50,10 @@ export default function NewMetting(props) {
     navigate(`/Patients`);
   }
 
+
   const location = useLocation();
   const { Date1, Time, numOfMeeting, Email} = location.state;
-  console.log("location",location.state)
+  console.log("location",location.state);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileContent, setFileContent] = useState('');
@@ -68,13 +71,16 @@ export default function NewMetting(props) {
     };
     reader.readAsText(file);
   };
-
+    
+  
 
    const btnPost = () => { 
 
     const today = new Date();
     const formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
     console.log(formattedDate);
+
+    
 
     const postBody = {
       WrittenBy:Email,
@@ -89,8 +95,8 @@ export default function NewMetting(props) {
         method: 'POST',
         body: JSON.stringify(postBody),
         headers: new Headers({
-          'Content-type': 'application/json; charset=UTF-8', //very important to add the 'charset=UTF-8'!!!!
-          'Accept': 'application/json; charset=UTF-8'
+        'Content-type': 'application/json; charset=UTF-8', //very important to add the 'charset=UTF-8'!!!!
+        'Accept': 'application/json; charset=UTF-8'
         })
       })
       .then(res => {
@@ -101,25 +107,72 @@ export default function NewMetting(props) {
         (result) => {
           console.log("fetch POST= ", result);
           console.log(result.Name);
-
+          navigate(-1);
           Swal.fire(
             'נשמר',
             `הסיכום נשמר בהצלחה`,
           )        },
+          
         (error) => {
           console.log("err post=", error);
         }
       );
     } else {
       // Some required fields are missing a value, so show an alert message
-      alert('חסרים פרטים');
+      Swal.fire(
+        'חסרים פרטים',
+        `אנא השלם את הסיכום`,
+      )
     }
       
   }
 
    const [ImportanttoNote, setImportanttoNote] = useState('');
 
-   
+   const fileAdd = useRef(null);
+
+   const AddFile = async (event) => {
+    // const navigate = useNavigate();
+    // const { state } = useLocation();
+    // const [email, setEmail] = useState('')
+
+    // useEffect(() => {
+    //     const email = state;
+    //     console.log(email)
+    //     setEmail(email)
+    // })
+
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            const dataUrl = e.target.result;
+            const base64File = dataUrl.split(',')[1];
+
+            try {
+                // Sending the base64 string to the backend using Axios
+                const response = await axios.post('https://localhost:44380/api/files', {
+                    file_num: 76,
+                    date_sent: new Date(),
+                    file_type_num: 1,
+                    content: base64File,
+                    ///email: 
+                });
+                // Check the response status code
+                if (response.status === 200) {
+                    console.log('File uploaded successfully');
+                    alert('File uploaded successfully');
+                } else {
+                    console.error('Unexpected response:', response);
+                    alert('Unexpected response from the server');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
   
   return (
     <div style={{padding: "40px 0"}}>
@@ -160,7 +213,9 @@ export default function NewMetting(props) {
       </ButtonDiv>
     
     <ButtonDiv>
-    <ButtonAddFiles> + הוסף קובץ למטופל  </ButtonAddFiles>
+    <ButtonAddFiles onClick={() => fileAdd.current.click()}> + הוסף קובץ למטופל </ButtonAddFiles>
+    <input type="file" style={{ display: 'none' }} ref={fileAdd} onChange={AddFile} />
+    
     </ButtonDiv>
     <ButtonDiv>
     <SaveButton onClick={btnPost}> שמור </SaveButton>

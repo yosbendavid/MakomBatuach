@@ -6,6 +6,7 @@ import NewMetting from './Comp/New Metting/NewMetting';
 import PatientCase from './Comp/Patient Case/PatientCase';
 import Patients from './Comp/Patients/Patients';
 import Summaries from './Comp/Summries/Summaries';
+import FileUpload from '../Files/FileUpload';
 
 
 

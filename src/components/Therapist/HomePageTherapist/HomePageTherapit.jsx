@@ -4,7 +4,12 @@ import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import Swal from 'sweetalert2';
+import axios from 'axios';
+
 import {
+  FreeTime,
+  FreeTime1,
   GreenStripe,
   LastMeetingContainer,
   LastMeetingsWrapper,
@@ -25,6 +30,7 @@ import {
   TherapistName,
   TitleName,
   TitleWrapper,
+  XICon,
 } from "./HomePageTherapit.Style";
 
 const apiUrl = "https://localhost:44380/api/Therapist/?email=";
@@ -75,6 +81,9 @@ export default function HomePageTherapit() {
     navigate("/Article", { state: email });
   };
 
+  
+
+
   const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
 
   return (
@@ -91,7 +100,7 @@ export default function HomePageTherapit() {
         <span></span>
         <TitleName>
           {" "}
-          {Meeting && Meeting.length > 0 && `${Meeting[0].FirstName}`} היי{" "}
+          היי, {Meeting && Meeting.length > 0 && `${Meeting[0].FirstName}`} {" "}
         </TitleName>
       </TitleWrapper>
       <MeetingDate> פגישות להיום- {currentDate} </MeetingDate>
@@ -115,23 +124,9 @@ export default function HomePageTherapit() {
         </LastMeetingsWrapper>
       </RecentMeetingsContainer>
       <div className="add-p-btn" style={{ textAlign: "center" }}>
-        <button
-          onClick={Go2FreeTime}
-          style={{
-            margin: "10px",
-            width: "250px",
-            fontSize: "18px",
-            border: "2px solid black",
-            padding: "15px",
-            textAlign: "center",
-            color: "#FFFFFF",
-            backgroundImage: "linear-gradient(45deg, #ff0000, #FFA500)",
-            border: "none",
-            borderRadius: "15px",
-          }}
-        >
-          ימי חופש
-        </button>
+        <FreeTime1 onClick={Go2FreeTime}>
+        ימי חופש
+        </FreeTime1>
       </div>
       <div className="add-p-btn" style={{ textAlign: "center" }}>
       </div>
@@ -150,6 +145,47 @@ export default function HomePageTherapit() {
 }
 
 const MeetingCard = ({ meeting }) => {
+
+  const apiUrl = "https://localhost:44380/api/Update";
+  
+  const CancelMeeting = () => {
+    Swal.fire({
+      title: 'ביטול פגישה',
+      text: '?האם ברצונך לבטל את הפגישה',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'כן',
+      cancelButtonText: 'לא',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Send PUT request to update the WasDone field
+        fetch(apiUrl, {
+          method: 'PUT',
+          body: JSON.stringify(meeting.Treatment_Id),
+          headers: new Headers({
+            'Content-type': 'application/json; charset=UTF-8',
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle successful update
+            console.log('Meeting canceled');
+            Swal.fire({
+              title: 'הפגישה בוטלה',
+              icon: 'success'
+            })
+            setTimeout(() => {
+              window.location.reload(); // Reload the current page after a delay
+            }, 1000); // Set the desired delay in milliseconds (e.g., 2000ms = 2 seconds)
+          })
+          .catch((error) => {
+            // Handle error
+            console.error('Failed to cancel meeting', error);
+          });
+      }
+    });
+  };
+
   const startTimeOnly = new Date(meeting.StartTime).toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
@@ -163,10 +199,11 @@ const MeetingCard = ({ meeting }) => {
   if (meeting.WasDone === "n" || meeting.WasDone === "N")
     return (
       <MeetingContainer>
+      <XICon onClick={CancelMeeting}/>
         <GreenStripe />
         <MeetingText>
           {" "}
-          {meeting.PatientFirstName} {meeting.PatientLastName} פגישה עם{" "}
+         פגישה עם {meeting.PatientFirstName} {meeting.PatientLastName} {" "}
         </MeetingText>
         <MeetingRoom> חדר {meeting.Room_Num} </MeetingRoom>
         <MeetingHours>
@@ -176,6 +213,7 @@ const MeetingCard = ({ meeting }) => {
       </MeetingContainer>
     );
 };
+
 
 const LastMeetingCard = ({ meeting, email }) => {
   const date = new Date(meeting.Treatment_Date).toLocaleDateString();
