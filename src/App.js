@@ -24,6 +24,9 @@ import PatientSummaries from "./components/Patient/Patient Summary/PatientSummar
 import AdminHome from "./components/Admin/AdminHome";
 import Dashboard from "./components/Admin/Dashboard";
 import TherapistCard from "./components/Admin/TherapisCard";
+import FilesListRender from "./components/Files/FilesListRender";
+import FileUpload from "./components/Files/FileUpload";
+import DisplayImage from "./components/Files/DisplayFile";
 
 
 function App() {
@@ -32,7 +35,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<FilesListRender />} />
             <Route path="/Login" element={<Login />} />
             {/* <Route path="/RegisterTherapist" element={<RegisterTherapist />} /> */}
             <Route path="/RegisterPatient" element={<RegisterPatient />} />

@@ -1,22 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
-const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const dataUrl = e.target.result;
-            const base64File = dataUrl.split(',')[1];
+// Initialize Firebase
+const firebaseConfig = {
+    type: process.env.REACT_APP_TYPE,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    privateKeyId: process.env.REACT_APP_PRIVATE_KEY_ID,
+    privateKey: process.env.REACT_APP_PRIVATE_KEY,
+    clientEmail: process.env.REACT_APP_CLIENT_EMAIL,
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    authUri: process.env.REACT_APP_AUTH_URI,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    authToken: process.env.REACT_APP_AUTH_TOKEN,
+    authProviderX509CertUrl: process.env.REACT_APP_AUTH_PROVIDER_X509_CERT_URL,
+    clientX509CertUrl: process.env.REACT_APP_CLIENT_X509_CERT_URL,
+    universeDomain: process.env.REACT_APP_UNIVERSE_DOMAIN
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
+export default function FileUpload(props) {
+    const [userInputFileName, setUserInputFileName] = useState('');
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
+
+    const handleUpload = async () => {
+        if (file && userInputFileName) {
+            // Upload the file to Firebase
+            const storageRef = ref(storage, `uploads/${userInputFileName}`);
+            await uploadBytesResumable(storageRef, file);
+
+            // Get the file URL
+            const fileUrl = await getDownloadURL(storageRef);
+
+            // Send the file URL and user details to your server
             try {
-                // Sending the base64 string to the backend using Axios
                 const response = await axios.post('https://localhost:44380/api/files', {
-                    file_num: 11111,
-                    date_sent: new Date(),
-                    file_type_num: 1,
-                    content: base64File
+                    filePath: fileUrl,
+                    FileName: userInputFileName,
+                    //file_num: 111,
+                    file_type_num: 1
+                    //userId: props.userId
                 });
+
                 // Check the response status code
                 if (response.status === 200) {
                     console.log('File uploaded successfully');
@@ -28,17 +59,16 @@ const handleFileChange = async (event) => {
             } catch (error) {
                 console.error('Error:', error);
             }
-        };
-        reader.readAsDataURL(file);
-    }
-};
+        } else {
+            alert('Please choose a file and enter a file name');
+        }
+    };
 
-
-export default function FileUpload(props) {
     return (
         <div>
+            <input type="text" placeholder="Enter file name" value={userInputFileName} onChange={e => setUserInputFileName(e.target.value)} />
             <input type="file" onChange={handleFileChange} />
-            <button onClick={handleFileChange}>Upload</button>
+            <button onClick={handleUpload}>Upload File</button>
         </div>
     );
 };
