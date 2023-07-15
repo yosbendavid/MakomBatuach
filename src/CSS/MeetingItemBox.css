@@ -8,8 +8,8 @@
 
 .app-notification .delete-appointment {
   position: absolute;
-  bottom: 55%;
-  left: 9px;
+  bottom: 56%;
+  left: 8px;
   cursor: pointer;
   /* Add any additional styles for the close button */
 }
@@ -29,7 +29,7 @@
 .delete-appointment svg{
   display: none;
 }
-.items-div .app-notification .delete-appointment svg{
+.patient-container-div .items-div.upper-div .app-notification .delete-appointment svg{
     width: 11px;
     height: 11px;
     display: block;

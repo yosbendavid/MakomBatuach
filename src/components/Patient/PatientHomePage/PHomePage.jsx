@@ -120,7 +120,7 @@ const PHomePage = () => {
         <div className="setMeetingBtn">
           <p className="upcoming-Meetings-title">פגישות קרובות:</p>
         </div>
-        <div className="items-div">
+        <div className="items-div upper-div">
           <PatientHPMeetings papatientMeetings={patientMeetings} />
         </div>
         <button className="setMeetBTN" onClick={Go2Nemeeting}> לזימון פגישה</button>  
