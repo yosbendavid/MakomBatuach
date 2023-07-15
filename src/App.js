@@ -36,7 +36,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Routes>
-            <Route path="/" element={<FilesListRender />} />
+            <Route path="/" element={<Login />} />
             <Route path="/Login" element={<Login />} />
             {/* <Route path="/RegisterTherapist" element={<RegisterTherapist />} /> */}
             <Route path="/RegisterPatient" element={<RegisterPatient />} />
@@ -56,6 +56,7 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
             <Route path="/Ad" element={<AdDa />} />
+
 
           </Routes>
           <Routes>
