@@ -63,11 +63,18 @@ const Patient = (props) => {
       .then(
         (result) => {
           console.log(result);
+
+          const updatedTimeSlots = result.map((slot) => {
+            return {
+              ...slot,
+              recommended: slot.recommended ? true : false,
+            };
+          });
           const indexedHours = result.map((roomNum, index) => {
             return { id: index, room: roomNum.Room_Num };
           });
           //לפה להכניס את הזמנים החדשים
-          setTimeSlots(result);
+          setTimeSlots(updatedTimeSlots);
           setRoomNum(indexedHours);
         },
         //////Not Good!!! "result[2].Room_Num" points to a specific place. Maybe Map functiom?
