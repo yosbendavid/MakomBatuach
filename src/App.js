@@ -30,6 +30,7 @@ import FileUpload from "./components/Files/FileUpload";
 import DisplayImage from "./components/Files/DisplayFile";
 =======
 import DisplayImage from "./components/Files/DisplayFile";
+import AdDa from "./components/Admin/AdDa";
 
 >>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
 
@@ -59,7 +60,8 @@ function App() {
             <Route path="/Admin" element={<AdminHome />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
-            
+            <Route path="/Ad" element={<AdDa />} />
+
 
 
 
