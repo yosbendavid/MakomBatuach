@@ -42,7 +42,9 @@ export default function FileUpload(props) {
             try {
                 const response = await axios.post('https://localhost:44380/api/files', {
                     filePath: fileUrl,
-                    fileName: userInputFileName
+                    fileName: userInputFileName,
+                    file_type_num: 1,
+                    //userId: 121221212
                 });
 
                 // Check the response status code
