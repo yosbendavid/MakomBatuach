@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ButtonCard from "../../Template parts/ButtonCard";
 import {
+  AddPatient,
   Container,
   LeftIcon,
   LogoContainer,
@@ -90,22 +91,9 @@ export default function Patients() {
         ))}
       </Container>
       <div className="add-p-btn" style={{ textAlign: "center" }}>
-        <button
-          onClick={Go2NewRegister}
-          style={{
-            margin: "0px",
-            width: "150px",
-            fontSize: "18px",
-            padding: "10px",
-            textAlign: "center",
-            color: "white",
-            backgroundColor: "rgb(0, 194, 0)",
-            border: "0",
-            borderRadius: "10px",
-          }}
-        >
+        <AddPatient onClick={Go2NewRegister}>
           הוסף מטופל
-        </button>
+        </AddPatient>
       </div>
       <Navbar>
         <BottomNavigation>

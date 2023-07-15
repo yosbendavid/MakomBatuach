@@ -53,7 +53,7 @@ export default function Summaries() {
     <div>
         <ContainerSummaries>
         <ReturnIcon1 onClick={goBack}/>
-            <TitleSummary> {name} הסיכומים של </TitleSummary>
+            <TitleSummary>  הסיכומים של {name} </TitleSummary>
             {summaries.map((summary, index, num) => (
             <SummaryCard key={summary.Patient_Id} summary={summary} index={summaries.length-1 - index} num={summary.Summary_Num} />
         ))}    
