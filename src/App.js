@@ -27,7 +27,6 @@ import TherapistCard from "./components/Admin/TherapisCard";
 import FilesListRender from "./components/Files/FilesListRender";
 import FileUpload from "./components/Files/FileUpload";
 import DisplayImage from "./components/Files/DisplayFile";
-import DisplayImage from "./components/Files/DisplayFile";
 import AdDa from "./components/Admin/AdDa";
 
 
