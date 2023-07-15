@@ -20,6 +20,7 @@ const PHomePage = () => {
 
   const navigate = useNavigate();
   const { state } = useLocation();
+  
 
   useEffect(() => {
     const email = state;

@@ -4,12 +4,13 @@ import SelectBox from "../Template parts/SelectBox";
 import RegisterTitle from "./RegisterTitle";
 import { selectBoxArray } from "./NewRegisterData/selectBoxArray";
 import { textBoxesArray } from "./NewRegisterData/textBoxesArray";
-import backArrow from "../../Photos/backArrow.svg";
+import backArrow from "../../Photos/right-arrow.svg";
 import ButtonCard from '../Template parts/ButtonCard';
 import '../../CSS/register.css';
 import axios from 'axios'
 import Swal from 'sweetalert2';
 import { useNavigate, useLocation } from 'react-router-dom';
+
 
 
 const RegisterBoxs = () => {
@@ -84,9 +85,14 @@ const RegisterBoxs = () => {
 
     };
 
+    
+    const goBack = () => {
+    navigate(-1);
+    };
+
     return (
         <div className="register-boxs-div">
-            <img className="back-from-register" src={backArrow} alt="Back arrow" />
+            <img className="back-from-register" src={backArrow} alt="Back arrow" onClick={goBack} />
             <form onSubmit={registerAccount}>
                 <div className='register-input-div'>
                     <RegisterTitle />

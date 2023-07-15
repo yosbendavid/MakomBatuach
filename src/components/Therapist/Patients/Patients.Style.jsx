@@ -120,7 +120,7 @@ export const TherapistName = styled.h1`
 `;
 
 export const Navbar = styled.div`
-  position: fixed;
+  
   bottom: 0;
   width: 100%;
 `;

@@ -4,7 +4,6 @@ import axios from 'axios';
 const DisplayImage = () => {
   const [userId, setUserId] = useState('');
 
-<<<<<<< HEAD
   const downloadPdf = async () => {
     try {
       const response = await axios.post('https://localhost:44380/api/getpdffiles', {
@@ -29,40 +28,6 @@ const DisplayImage = () => {
       // Simulate a click on the link to trigger the file download
       link.click();
   
-=======
-  const downloadImage = async () => {
-    try {
-      const response = await axios.post('https://localhost:44380/api/getpdffiles', {
-        Id: userId
-      });
-      const fileData = response.data[0]; // Assuming you receive a single file in the response
-
-      // Decode the Base64 content
-      const decodedContent = atob(fileData.Content);
-
-      // Convert the decoded content to a Uint8Array
-      const bytes = new Uint8Array(decodedContent.length);
-      for (let i = 0; i < decodedContent.length; i++) {
-        bytes[i] = decodedContent.charCodeAt(i);
-      }
-
-      // Create a Blob object from the Uint8Array
-      const blob = new Blob([bytes], { type: 'image/png' });
-
-      // Create a URL for the Blob object
-      const url = URL.createObjectURL(blob);
-
-      // Create a temporary link element
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `image_${fileData.File_Num}.png`; // Specify the desired file name
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-
-      // Simulate a click on the link to trigger the file download
-      link.click();
-
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
       // Clean up the URL and remove the temporary link
       URL.revokeObjectURL(url);
       link.remove();
@@ -78,21 +43,14 @@ const DisplayImage = () => {
   return (
     <div>
       <input type="text" value={userId} onChange={handleUserIdChange} placeholder="Enter User ID" />
-<<<<<<< HEAD
       <button onClick={downloadPdf}>Download PDF</button>
-=======
-      <button onClick={downloadImage}>Download Image</button>
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
     </div>
   );
 };
 
 export default DisplayImage;
-<<<<<<< HEAD
 
 
 
 
 
-=======
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1

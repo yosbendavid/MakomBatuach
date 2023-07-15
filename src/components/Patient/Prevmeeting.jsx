@@ -86,7 +86,7 @@ const PrevPatientMeetings = () => {
     <div className="PHomePage-container">
       <div className="setMeetingBtn">
       <TopBar patientName={patientName}  />
-        <p className="upcoming-Meetings-title"> פגישות קודמות</p>
+        <p className="upcoming-Meetings-title"> פגישות קודמות: </p>
       </div>
       <div></div>
       <div className="items-div">
