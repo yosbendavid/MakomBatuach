@@ -4,32 +4,6 @@ import axios from 'axios';
 const DisplayImage = () => {
   const [userId, setUserId] = useState('');
 
-<<<<<<< HEAD
-  const downloadPdf = async () => {
-    try {
-      const response = await axios.post('https://localhost:44380/api/getpdffiles', {
-        Id: userId
-      }, {
-        // Make sure the response data is received as a Blob
-        responseType: 'blob',
-      });
-  
-      const fileData = response.data; // The data is already a Blob
-  
-      // Create a temporary URL for the Blob object
-      const url = window.URL.createObjectURL(fileData);
-  
-      // Create a temporary anchor element
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `file.jpeg`; // Specify the desired file name
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-  
-      // Simulate a click on the link to trigger the file download
-      link.click();
-  
-=======
   const downloadImage = async () => {
     try {
       const response = await axios.post('https://localhost:44380/api/getpdffiles', {
@@ -62,7 +36,6 @@ const DisplayImage = () => {
       // Simulate a click on the link to trigger the file download
       link.click();
 
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
       // Clean up the URL and remove the temporary link
       URL.revokeObjectURL(url);
       link.remove();
@@ -78,21 +51,9 @@ const DisplayImage = () => {
   return (
     <div>
       <input type="text" value={userId} onChange={handleUserIdChange} placeholder="Enter User ID" />
-<<<<<<< HEAD
-      <button onClick={downloadPdf}>Download PDF</button>
-=======
       <button onClick={downloadImage}>Download Image</button>
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
     </div>
   );
 };
 
 export default DisplayImage;
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
