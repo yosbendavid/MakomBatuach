@@ -124,8 +124,16 @@
     box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.208) inset;
     background-color: rgba(0, 0, 0, 0.03);
 }
+
+.time-slot.recommended {
+    background-color: green;
+    color: white;
+  }
+
+
 .set-meeting-button{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
