@@ -57,16 +57,6 @@ function App() {
             <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
             <Route path="/Ad" element={<AdDa />} />
 
-
-
-
-
-
-            
-
-
-
-
           </Routes>
           <Routes>
             {/* <Route path='/' element={<HomePageTherapit />} /> */}
