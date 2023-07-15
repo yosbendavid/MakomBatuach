@@ -24,15 +24,12 @@ import PatientSummaries from "./components/Patient/Patient Summary/PatientSummar
 import AdminHome from "./components/Admin/AdminHome";
 import Dashboard from "./components/Admin/Dashboard";
 import TherapistCard from "./components/Admin/TherapisCard";
-<<<<<<< HEAD
 import FilesListRender from "./components/Files/FilesListRender";
 import FileUpload from "./components/Files/FileUpload";
 import DisplayImage from "./components/Files/DisplayFile";
-=======
 import DisplayImage from "./components/Files/DisplayFile";
 import AdDa from "./components/Admin/AdDa";
 
->>>>>>> bc1f728b4b7ceb6056694b066c94f4a975a795f1
 
 
 function App() {
