@@ -3,7 +3,6 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 function AdDa() {
-
     ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
     const options = {
@@ -16,15 +15,20 @@ function AdDa() {
         },
         scales: {
             y: {
-                ticks: {stepSize:1},
+                ticks: { stepSize: 1 },
             }
         }
     };
 
+    const [labels, setLabels] = useState([]);
+    const [chartData, setChartData] = useState([]);
+    const [labelsWeek, setLabelsWeek] = useState([]);
+    const [chartDataWeek, setChartDataWeek] = useState([]);
 
-
-    const [labels, setLables] = useState([]);
-    const [chartdata, setchartData] = useState([]);
+    useEffect(() => {
+        handleresult();
+        handleresultWeek();
+    }, []);
 
     const handleresult = () => {
         const tryget = "https://localhost:44380/api/DaAllTher";
@@ -32,7 +36,7 @@ function AdDa() {
             {
                 method: "GET",
                 headers: new Headers({
-                    "Content-Toype": "application/json; charset=UTF-8",
+                    "Content-Type": "application/json; charset=UTF-8",
                     Accept: "application/json; charset=UTF-8",
                 }),
             })
@@ -45,11 +49,10 @@ function AdDa() {
             .then(
                 (result) => {
                     console.log(result);
-                    setLables(Object.keys(result));
-                    // setchartData(Object.entries(result).map((thername,PatientLit)=>PatientLit.length));
-                    setchartData(labels.map((thername)=>result[thername].length))
-                    console.log("label", labels);
-                    console.log("chart", chartdata);
+                    setLabels(Object.keys(result));
+                    setChartData(Object.values(result).map((therData) => therData.length));
+                    console.log("labels", labels);
+                    console.log("chartData", chartData);
                 },
                 (error) => {
                     console.log("err post=", error);
@@ -57,23 +60,49 @@ function AdDa() {
             );
     };
 
-    handleresult();
+    const handleresultWeek = () => {
+        // Dummy data for demo purposes
+        const resultWeek = {
+            Sunday: 7,
+            Monday: 5,
+            Tuesday: 8,
+            Wednesday: 3,
+            Thursday: 6,
+            Friday: 2,
+        };
+
+        setLabelsWeek(Object.keys(resultWeek));
+        setChartDataWeek(Object.values(resultWeek));
+    };
 
     const data = {
         labels,
         datasets: [
             {
                 label: 'Patient Count',
-                data: chartdata,
+                data: chartData,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
         ],
-    }
+    };
 
+    const dataWeek = {
+        labels: labelsWeek,
+        datasets: [
+            {
+                label: 'Treatment Count',
+                data: chartDataWeek,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            }
+        ],
+    };
 
-
-
-    return <Bar options={options} data={data} />
+    return (
+        <div>
+            <Bar options={options} data={data} />
+            <Bar options={options} data={dataWeek} />
+        </div>
+    );
 }
 
 export default AdDa;
