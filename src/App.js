@@ -25,6 +25,7 @@ import AdminHome from "./components/Admin/AdminHome";
 import Dashboard from "./components/Admin/Dashboard";
 import TherapistCard from "./components/Admin/TherapisCard";
 import DisplayImage from "./components/Files/DisplayFile";
+import AdDa from "./components/Admin/AdDa";
 
 
 
@@ -53,7 +54,8 @@ function App() {
             <Route path="/Admin" element={<AdminHome />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
-            
+            <Route path="/Ad" element={<AdDa />} />
+
 
 
 
