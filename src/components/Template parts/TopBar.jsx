@@ -13,7 +13,11 @@ const TopBar = (props) => {
     // פונקציה להשגת ראשי התיבות
     const getInitials = (name) => {
         const words = name.split(" ");
-        const initials = words.map((word) => word[0]).join("");
+        const initials = words.map((word) => {
+            const letters = word.split("");
+            const spacedLetters = letters.join(" ");
+            return spacedLetters;
+        }).join(" ");
         return initials;
     };
 

@@ -5,9 +5,10 @@
 }
 
 .register-boxs-div .back-from-register {
-  padding-right: 300px;
+  margin-left: auto;
   height: 25px;
 }
+
 .register-input-div {
   display: flex;
   flex-direction: column;

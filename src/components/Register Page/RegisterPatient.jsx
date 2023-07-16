@@ -72,19 +72,19 @@ const RegisterBoxs = (props) => {
             }
             );
             if (response.status === 200) {
-                Swal.fire(
-                    'Welcome',
-                    `${firstName} ${lastName} You Have Signed In to Makom Batuach`,
-                    'success'
+                Swal.fire({
+                        title: 'ברוך הבא',
+                        text: `התחברת למקום בטוח ${firstName} ${lastName}`,
+                        confirmButtonText: 'אישור',}
                   )
                   Go2Login();
                   
             }
             else if (response.status === 400){
                 Swal.fire({
-                    icon:'error',
-                    title: 'Oops...',
-                    text: 'Email is Already Register, Please Try Other Email'
+                    icon: 'תקלה',
+                    title: 'אופס...',
+                    text: 'האימייל כבר קיים במערכת, נסה שנית עם אימייל אחר'
                 })
             }
         } catch (error) {

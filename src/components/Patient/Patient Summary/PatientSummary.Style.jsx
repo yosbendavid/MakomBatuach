@@ -4,7 +4,7 @@ import { ReactComponent as BackIcon } from '../../Therapist/Img/Right_arrow_back
 
 
 export const ContainerSummaries = styled.div`
-  padding: 80px 0;
+  padding: 0 0 80px 0;
 `;
 
 export const TitleSummary = styled.h1`
