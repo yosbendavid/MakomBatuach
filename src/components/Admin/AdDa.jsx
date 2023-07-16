@@ -3,7 +3,6 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 function AdDa() {
-
     ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
     const options = {
@@ -16,15 +15,27 @@ function AdDa() {
         },
         scales: {
             y: {
-                ticks: {stepSize:1},
+                ticks: { stepSize: 1 },
             }
         }
     };
 
+    const [label, setTherName] = useState([]);
+    const [NumofPatients, setNumofPatients] = useState([]);
+    const [WeekDay, setWeekDay] = useState([]);
+    const [WeekData, setWeekData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
-    const [labels, setLables] = useState([]);
-    const [chartdata, setchartData] = useState([]);
+    useEffect(() => {
+        handleresult()
+    }, []);
+
+    useEffect(() => {
+        console.log("Thername", label);
+        console.log("NumofPatient", NumofPatients);
+    }, [label, NumofPatients]);
+
 
     const handleresult = () => {
         const tryget = "https://localhost:44380/api/DaAllTher";
@@ -32,7 +43,7 @@ function AdDa() {
             {
                 method: "GET",
                 headers: new Headers({
-                    "Content-Toype": "application/json; charset=UTF-8",
+                    "Content-Type": "application/json; charset=UTF-8",
                     Accept: "application/json; charset=UTF-8",
                 }),
             })
@@ -45,11 +56,9 @@ function AdDa() {
             .then(
                 (result) => {
                     console.log(result);
-                    setLables(Object.keys(result));
-                    // setchartData(Object.entries(result).map((thername,PatientLit)=>PatientLit.length));
-                    setchartData(labels.map((thername)=>result[thername].length))
-                    console.log("label", labels);
-                    console.log("chart", chartdata);
+                    setTherName(Object.keys(result));
+                    setNumofPatients(Object.values(result).map((therData) => therData.length));
+                    setLoading(false); // Set loading state to false after data is fetched
                 },
                 (error) => {
                     console.log("err post=", error);
@@ -57,23 +66,64 @@ function AdDa() {
             );
     };
 
-    handleresult();
+    const handleresultWeek = () => {
+        const tryget = "https://localhost:44380/api/DaTreatmentsperDay";
+        fetch(tryget,
+            {
+                method: "GET",
+                headers: new Headers({
+                    "Content-Type": "application/json; charset=UTF-8",
+                    Accept: "application/json; charset=UTF-8",
+                }),
+            })
+            .then((res) => {
+                console.log("res=", res);
+                console.log("res.status", res.status);
+                console.log("res.ok", res.ok);
+                return res.json();
+            })
+            .then(
+                (result) => {
+                    console.log(result);
+                    setWeekDay(Object.keys(result));
+                    setWeekData(Object.values(result).map((dayData) => dayData.length));
+                    console.log("WeekDay", WeekDay);
+                    console.log("NumofTreatment", WeekData);
+                },
+                (error) => {
+                    console.log("err post=", error);
+                }
+            );
+    };
 
     const data = {
-        labels,
+        label,
         datasets: [
             {
                 label: 'Patient Count',
-                data: chartdata,
+                data: NumofPatients,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
         ],
-    }
+    };
 
+    // const dataWeek = {
+    //     labels: WeekDay,
+    //     datasets: [
+    //         {
+    //             label: 'Treatment Count',
+    //             data: WeekData,
+    //             backgroundColor: 'rgba(54, 162, 235, 0.5)',
+    //         }
+    //     ],
+    // };
 
-
-
-    return <Bar options={options} data={data} />
+    return (
+        <div>
+            <Bar options={options} data={data} />
+            {/* <Bar options={options} data={dataWeek} /> */}
+        </div>
+    );
 }
 
 export default AdDa;
