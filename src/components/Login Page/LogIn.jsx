@@ -65,10 +65,10 @@ const Login = () => {
                         Go2Therahome(email);
                     }
                     if (response.status === 226) {
-                        Swal.fire(
-                            'Welcome',
-                            `${email} You Have Signed In to Makom Batuach`,
-                            'success'
+                        Swal.fire({
+                            title: 'ברוך הבא',
+                            text: `התחברת למקום בטוח ${email}`,
+                            confirmButtonText: 'אישור',}
                         )
                         Go2AdminHome();
                     }

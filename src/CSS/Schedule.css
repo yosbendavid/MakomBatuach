@@ -72,3 +72,12 @@
   color: red;
   font-weight: bold;
 }
+.add-days .react-calendar__tile--rangeEnd {
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  background: unset;
+  color: unset;
+  font-weight: unset;
+}
