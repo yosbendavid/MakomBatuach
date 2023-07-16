@@ -238,8 +238,7 @@ const LastMeetingCard = ({ meeting, email }) => {
       Date1: date,
       Time: time,
       numOfMeeting: meeting.Treatment_Id,
-      Email: email,
-      Patient_Id: meeting.Patient_Id
+      Email: email
     };
 
     navigate("/NewMetting", { state: DateTime });
