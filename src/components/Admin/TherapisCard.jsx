@@ -8,7 +8,7 @@ import { InformationWrapper } from '../Therapist/Meeting/Meeting.style'
 import {  InformationContainer, InformationDesc, InformationTitle, LogoText, TitleWrapper,
    LastSummary, LastSummaryTitle, LastSummaryDesc, StyledIcon, ReturnIcon, Navbar, AllSummary, AllSummaryTitle } from '../Therapist/Patient Case/PatientCase.Style'
 
-const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/TherapisCard/";
+const apiUrl = "https://localhost:44380/api/TherapisCard/";
 
 export default function TherapistCard() {
 

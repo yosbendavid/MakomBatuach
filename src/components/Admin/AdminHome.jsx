@@ -11,7 +11,7 @@ import {
 import "../../CSS/PHomePage.css"
 import BottomBar from '../Template parts/BottomBar';
 
-const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/GetAllTherapits/?email="
+const apiUrl = "https://localhost:44380/api/GetAllTherapits/?email="
 
 
 export default function AdminHome() {

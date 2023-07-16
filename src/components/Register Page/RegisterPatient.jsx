@@ -60,7 +60,7 @@ const RegisterBoxs = (props) => {
     const registerAcount = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/SignUpPatient', {
+            const response = await axios.post('https://localhost:44380/api/SignInUser/SignUpPatient', {
                 FirstName: firstName,
                 LastName: lastName,
                 BirthDate: birthDate,

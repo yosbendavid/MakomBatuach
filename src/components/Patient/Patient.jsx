@@ -46,7 +46,7 @@ const Patient = (props) => {
     console.log(email);
     var v = format(value, "yyyy/MM/dd hh:mm");
     setMeetingDate(v);
-    const tryget = "http://proj.ruppin.ac.il/cgroup100/prod/api/amen/";
+    const tryget = "https://localhost:44380/api/amen/";
     fetch(tryget + t + "/?email=" + email, {
       method: "GET",
       headers: new Headers({
@@ -110,7 +110,7 @@ const Patient = (props) => {
     };
     console.log(newMeeting);
 
-    const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/createtre";
+    const apiUrl = "https://localhost:44380/api/createtre";
 
     try {
       fetch(apiUrl, {

@@ -31,7 +31,7 @@ const FilesListRender = () => {
 
   const getAllFiles = async () => {
     try {
-      const response = await axios.post('http://proj.ruppin.ac.il/cgroup100/prod/api/getpdffiles', {
+      const response = await axios.post('https://localhost:44380/api/getpdffiles', {
         Id: userId
       });
       const data = response.data;

@@ -64,7 +64,7 @@ const ChangePassword = () => {
   }
 
   const userexist = () => {
-    const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/userexist/?email=";
+    const apiUrl = "https://localhost:44380/api/SignInUser/userexist/?email=";
     try {
       fetch(apiUrl + email,
         {
@@ -98,7 +98,7 @@ const ChangePassword = () => {
       Password: password
 
     };
-    const Url = "http://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/Changepa";
+    const Url = "https://localhost:44380/api/SignInUser/Changepa";
     try {
       fetch(Url, {
         method: "POST",

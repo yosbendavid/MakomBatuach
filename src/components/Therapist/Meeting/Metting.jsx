@@ -6,9 +6,9 @@ import React, { useEffect, useState } from 'react'
 import {  useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ButtonDiv, ButtonFiles, InformationContainer, InformationDesc, InformationTitle, InformationWrapper, MeetingTitle, Navbar, StyledIcon, TherapistDiv1, TherapistName1, TitleWrapper } from './Meeting.style'
 
-// const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/GetSummaryByDate/";
+// const apiUrl = "https://localhost:44380/api/GetSummaryByDate/";
 
-const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/GetSummaryByNumber/";
+const apiUrl = "https://localhost:44380/api/GetSummaryByNumber/";
 
 
 

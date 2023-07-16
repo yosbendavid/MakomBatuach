@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { InformationWrapper } from '../Meeting/Meeting.style'
 import {  InformationContainer, InformationDesc, InformationTitle, LogoText, TitleWrapper, LastSummary, LastSummaryTitle, LastSummaryDesc, StyledIcon, ReturnIcon, Navbar, AllSummary, AllSummaryTitle } from './PatientCase.Style'
 
-const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/patientCard/";
+const apiUrl = "https://localhost:44380/api/patientCard/";
 
 export default function PatientCase() {
 

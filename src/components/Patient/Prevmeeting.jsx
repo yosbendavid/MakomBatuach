@@ -9,7 +9,7 @@ import BottomBar from "../Template parts/BottomBar";
 
 const PrevPatientMeetings = () => {
 
-  const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/prevpatientstreatment/?email="
+  const apiUrl = "https://localhost:44380/api/prevpatientstreatment/?email="
 
   const navigate = useNavigate();
   const { state } = useLocation();

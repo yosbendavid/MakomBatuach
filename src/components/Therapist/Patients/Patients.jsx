@@ -22,7 +22,7 @@ import {
   TherapistName,
 } from "./Patients.Style";
 
-const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/getpatient/?email=";
+const apiUrl = "https://localhost:44380/api/getpatient/?email=";
 
 export default function Patients() {
   const [patients, setPatients] = useState([]);
