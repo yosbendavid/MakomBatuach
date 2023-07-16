@@ -33,8 +33,8 @@ import {
   XICon,
 } from "./HomePageTherapit.Style";
 
-const apiUrl = "https://localhost:44380/api/Therapist/?email=";
-const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
+const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/Therapist/?email=";
+const apiUrll = "http://proj.ruppin.ac.il/cgroup100/prod/api/Therapistpreviou/?email=";
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
@@ -146,7 +146,7 @@ export default function HomePageTherapit() {
 
 const MeetingCard = ({ meeting }) => {
 
-  const apiUrl = "https://localhost:44380/api/Update";
+  const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/Update";
   
   const CancelMeeting = () => {
     Swal.fire({

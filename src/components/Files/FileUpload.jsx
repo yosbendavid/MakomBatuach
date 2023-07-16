@@ -40,7 +40,7 @@ export default function FileUpload(props) {
 
             // Send the file URL and user details to your server
             try {
-                const response = await axios.post('https://localhost:44380/api/files', {
+                const response = await axios.post('http://proj.ruppin.ac.il/cgroup100/prod/api/files', {
                     filePath: fileUrl,
                     fileName: userInputFileName,
                     file_type_num: 1,

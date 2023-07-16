@@ -27,7 +27,7 @@ function AdDa() {
     const [loading, setLoading] = useState(true);
 
     const handleresult = () => {
-        const tryget = "https://localhost:44380/api/DaAllTher";
+        const tryget = "http://proj.ruppin.ac.il/cgroup100/prod/api/DaAllTher";
         fetch(tryget,
             {
                 method: "GET",
@@ -57,7 +57,7 @@ function AdDa() {
 
 
     const handleresultWeek = () => {
-        const tryget = "https://localhost:44380/api/DaTreatmentsperDay";
+        const tryget = "http://proj.ruppin.ac.il/cgroup100/prod/api/DaTreatmentsperDay";
         fetch(tryget, {
             method: "GET",
             headers: new Headers({

@@ -54,7 +54,7 @@
 //     const registerAcount = async (event) => {
 //         event.preventDefault();
 //         try {
-//             const response = await axios.post('https://localhost:44380/api/SignInUser/SignUpTherapist', {
+//             const response = await axios.post('http://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/SignUpTherapist', {
 //                 FirstName: firstName,
 //                 LastName: lastName,
 //                 BirthDate: birthDate,

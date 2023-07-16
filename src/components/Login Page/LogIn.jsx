@@ -29,7 +29,7 @@ const Login = () => {
         event.preventDefault();
         if(password != "" && email != ""){
             try {
-                const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                const response = await axios.post('http://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/login', {
                     Email: email,
                     Password: password
                 });
