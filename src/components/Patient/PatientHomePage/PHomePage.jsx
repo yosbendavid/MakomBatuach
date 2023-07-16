@@ -21,6 +21,8 @@ const PHomePage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   
+  const [patientName, setPatientName] = useState("");
+
 
   useEffect(() => {
     const email = state;
@@ -45,6 +47,7 @@ const PHomePage = () => {
         (result) => {
           result.map(tr => console.log(tr.id));
           console.log("patientmeeting", result);
+          console.log(result[0].PatientName);
           setPatientMeetings(result);
           setPatientName(result[0].PatientName)
 
@@ -57,7 +60,7 @@ const PHomePage = () => {
   const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
   const [email, setEmail] = useState('')
   const [Freedays, setFreedays] = useState([]);
-  const [patientName, setPatientName] = useState("");
+  
 
   const patientUserClick = () => { };
   const patientHomeClick = () => {
