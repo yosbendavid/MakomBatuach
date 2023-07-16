@@ -1,0 +1,65 @@
+.containerFilesListRender {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.inputWrapperFilesListRender {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.inputFieldFilesListRender {
+  text-align: end;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.buttonFilesListRender {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.fileListFilesListRender {
+  margin-top: 20px;
+}
+
+.fileListTitleFilesListRender {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.fileListItemsFilesListRender {
+  list-style-type: none;
+  padding: 0;
+}
+
+.fileListItemFilesListRender {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fileListLinkFilesListRender {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #007aff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.fileListTextFilesListRender {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../CSS/FilesListRender.css';
 
 const FilesListRender = () => {
   const [userId, setUserId] = useState('');
@@ -43,21 +44,38 @@ const FilesListRender = () => {
   };
 
   return (
-    <div>
-      <input type="text" value={userId} onChange={handleUserIdChange} placeholder="Enter User ID" />
-      <button onClick={getAllFiles}>Get Files</button>
-      
+    <div className="containerFilesListRender">
+      <div className="inputWrapperFilesListRender">
+        <button onClick={getAllFiles} className="buttonFilesListRender">
+          השג קבצים
+        </button>
+        <input
+          type="text"
+          value={userId}
+          onChange={handleUserIdChange}
+          placeholder="הכנס מספר ת.ז"
+          className="inputFieldFilesListRender"
+        />
+      </div>
+
       {fileData.length > 0 && (
-        <div>
-          <h2>File List:</h2>
-          <ul>
+        <div className="fileListFilesListRender">
+          <h2 className="fileListTitleFilesListRender">רשימת קבצים:</h2>
+          <ul className="fileListItemsFilesListRender">
             {fileData.map((file, index) => (
-              <li key={index}>
-                <a href={file.FilePath} download={`${file.File_name}.pdf`} onClick={(event) => handleFileClick(file.File_Num, file.File_name, file.FilePath)}>
-                  File Name: {file.File_name}
+              <li key={index} className="fileListItemFilesListRender">
+                <a
+                  href={file.FilePath}
+                  download={`${file.File_name}.pdf`}
+                  onClick={(event) =>
+                    handleFileClick(file.File_Num, file.File_name, file.FilePath)
+                  }
+                  className="fileListLinkFilesListRender"
+                >
+                  שם הקובץ: {file.File_name}
                 </a>
-                <p>File Number: {file.File_Num}</p>
-                <p>Date Sent: {file.DateSent}</p>
+                <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
+                <p className="fileListTextFilesListRender">תאריך שליחה: {file.DateSent}</p>
               </li>
             ))}
           </ul>
