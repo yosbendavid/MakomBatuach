@@ -7,6 +7,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { ReactComponent as IconBack } from '../Img/right-arrow.svg';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
 
 const Schedule = (props) => {
@@ -96,6 +100,10 @@ const Schedule = (props) => {
     }
   };
 
+  const go2Patients = () => {
+    navigate("/Patients", { state: email });
+  };
+
   return (
     <div className="daysOff-container">
       <form onSubmit={submitTakeDaysOff}>
@@ -124,6 +132,17 @@ const Schedule = (props) => {
           <ButtonCard type="submit" className="register-submit-btn">
             אישור ימי חופש
           </ButtonCard>
+          <div style={{ "bottom": "0", "width": "100%"}}>
+          <BottomNavigation>
+          <BottomNavigationAction  icon={<HomeOutlinedIcon />}
+            onClick={go2HomePage} />
+          <BottomNavigationAction
+            icon={<PermIdentityOutlinedIcon />}
+            onClick={go2Patients}
+          />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
+        </BottomNavigation>
+        </div>
         </div>
       </form>
     </div>

@@ -6,11 +6,29 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledIcon } from '../Meeting/Meeting.style';
-import { ButtonAddFiles, ButtonDiv, ButtonSummery, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, Navbar, RecordButton, SaveButton, TitleWrapper, divCenter } from './NewMetting.style';
+import { ButtonAddFiles, ButtonDiv, ButtonSummery, FileUp, IconRecord, InformationContainer, InformationDesc, InformationTextArea, InformationTextAreaSummery, InformationTitle, InformationWrapper, MeetingTitle, NameFile, Navbar, RecordButton, SaveButton, TitleWrapper, divCenter } from './NewMetting.style';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
+const firebaseConfig = {
+  type: process.env.REACT_APP_TYPE,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  privateKeyId: process.env.REACT_APP_PRIVATE_KEY_ID,
+  privateKey: process.env.REACT_APP_PRIVATE_KEY,
+  clientEmail: process.env.REACT_APP_CLIENT_EMAIL,
+  clientId: process.env.REACT_APP_CLIENT_ID,
+  authUri: process.env.REACT_APP_AUTH_URI,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  authToken: process.env.REACT_APP_AUTH_TOKEN,
+  authProviderX509CertUrl: process.env.REACT_APP_AUTH_PROVIDER_X509_CERT_URL,
+  clientX509CertUrl: process.env.REACT_APP_CLIENT_X509_CERT_URL,
+  universeDomain: process.env.REACT_APP_UNIVERSE_DOMAIN
+};
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
 
 const apiUrl = 'https://localhost:44380/api/PostSummary'; 
@@ -108,10 +126,10 @@ export default function NewMetting(props) {
           console.log("fetch POST= ", result);
           console.log(result.Name);
           navigate(-1);
-          Swal.fire(
-            'נשמר',
-            `הסיכום נשמר בהצלחה`,
-          )        },
+          Swal.fire({
+            title: 'הסיכום נשמר בהצלחה',
+            icon: 'success'}
+          )},
           
         (error) => {
           console.log("err post=", error);
@@ -119,9 +137,9 @@ export default function NewMetting(props) {
       );
     } else {
       // Some required fields are missing a value, so show an alert message
-      Swal.fire(
-        'חסרים פרטים',
-        `אנא השלם את הסיכום`,
+      Swal.fire({
+        title: 'חסרים פרטים',
+        icon: 'error'}
       )
     }
       
@@ -129,50 +147,55 @@ export default function NewMetting(props) {
 
    const [ImportanttoNote, setImportanttoNote] = useState('');
 
-   const fileAdd = useRef(null);
 
-   const AddFile = async (event) => {
-    // const navigate = useNavigate();
-    // const { state } = useLocation();
-    // const [email, setEmail] = useState('')
+   const [userInputFileName, setUserInputFileName] = useState('');
+   const [file, setFile] = useState(null);
 
-    // useEffect(() => {
-    //     const email = state;
-    //     console.log(email)
-    //     setEmail(email)
-    // })
+   const handleFileChange1 = (event) => {
+       setFile(event.target.files[0]);
+   };
 
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const dataUrl = e.target.result;
-            const base64File = dataUrl.split(',')[1];
+    const handleUpload = async () => {
+      if (file && userInputFileName) {
+        // Upload the file to Firebase
+        const storageRef = ref(storage, `uploads/${userInputFileName}`);
+        await uploadBytesResumable(storageRef, file);
 
-            try {
-                // Sending the base64 string to the backend using Axios
-                const response = await axios.post('https://localhost:44380/api/files', {
-                    file_num: 76,
-                    date_sent: new Date(),
-                    file_type_num: 1,
-                    content: base64File,
-                    ///email: 
-                });
-                // Check the response status code
-                if (response.status === 200) {
-                    console.log('File uploaded successfully');
-                    alert('File uploaded successfully');
-                } else {
-                    console.error('Unexpected response:', response);
-                    alert('Unexpected response from the server');
-                }
-            } catch (error) {
-                console.error('Error:', error);
+        // Get the file URL
+        const fileUrl = await getDownloadURL(storageRef);
+
+        // Send the file URL and user details to your server
+        try {
+            const response = await axios.post('https://localhost:44380/api/files', {
+                filePath: fileUrl,
+                fileName: userInputFileName,
+                file_type_num: 1,
+                Filler_Id: Email,
+                TreatmentId: numOfMeeting
+                //userId: 121221212
+            });
+
+            // Check the response status code
+            if (response.status === 200) {
+                console.log('File uploaded successfully');
+                Swal.fire({
+                  title: 'הקובץ עלה בהצלחה',
+                  icon: 'success'}
+                )
+            } else {
+                console.error('Unexpected response:', response);
+                alert('Unexpected response from the server');
             }
-        };
-        reader.readAsDataURL(file);
-      }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    } else {
+      Swal.fire({
+        title: 'אנא בחר שם וקובץ',
+        icon: 'error'}
+      )
     }
+};
   
   return (
     <div style={{padding: "40px 0"}}>
@@ -208,15 +231,21 @@ export default function NewMetting(props) {
       <ButtonDiv>
       <DeleteForeverRoundedIcon onClick={clearTranscript}> </DeleteForeverRoundedIcon>
       <IconRecord style={{marginRight: "50px"}} onClick={toggleListen}>{isListening ? 'Stop' : 'Start'} </IconRecord>
-      <ButtonSummery onClick={() => fileInputRef.current.click()}> הוסף קובץ סיכום </ButtonSummery>
+      <ButtonSummery onClick={() => fileInputRef.current.click()}> הוסף סיכום </ButtonSummery>
       <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleFileChange} />
       </ButtonDiv>
-    
-    <ButtonDiv>
-    <ButtonAddFiles onClick={() => fileAdd.current.click()}> + הוסף קובץ למטופל </ButtonAddFiles>
-    <input type="file" style={{ display: 'none' }} ref={fileAdd} onChange={AddFile} />
-    
+      <ButtonDiv>
+       <NameFile 
+        type="text"
+        placeholder="הקלד את שם הקובץ"
+       value={userInputFileName}
+        onChange={e => setUserInputFileName(e.target.value)}
+      />
     </ButtonDiv>
+    <ButtonDiv>
+    <FileUp type="file" onChange={handleFileChange1} />
+    </ButtonDiv>
+    <ButtonAddFiles onClick={handleUpload}> + הוסף קובץ  </ButtonAddFiles>
     <ButtonDiv>
     <SaveButton onClick={btnPost}> שמור </SaveButton>
     

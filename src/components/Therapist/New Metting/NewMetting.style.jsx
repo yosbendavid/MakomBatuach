@@ -94,6 +94,39 @@ export const ButtonAddFiles = styled.button`
   margin-right: -30px;
 `;
 
+export const NameFile = styled.input`
+   width: 150px;
+  height: 40px;
+  border-radius: 0;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  margin-right: -30px;
+  text-align: right;
+  direction: rtl;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+`;
+
+export const FileUp = styled.input`
+   width: 250px;
+  height: 40px;
+  border-radius: 0;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  margin-right: -30px;
+  text-align: right;
+  direction: rtl;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+`;
 
 
 
