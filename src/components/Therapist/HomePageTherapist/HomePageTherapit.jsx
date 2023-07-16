@@ -196,7 +196,7 @@ const MeetingCard = ({ meeting }) => {
     minute: "2-digit",
     hour12: false,
   });
-  if (meeting.WasDone === "n" || meeting.WasDone === "N")
+  if ((meeting.WasDone === "n" || meeting.WasDone === "N") && meeting.rom !== 3)
     return (
       <MeetingContainer>
       <XICon onClick={CancelMeeting}/>
@@ -244,7 +244,7 @@ const LastMeetingCard = ({ meeting, email }) => {
     navigate("/NewMetting", { state: DateTime });
   };
 
-  if (meeting.WasDone === "y" || meeting.WasDone === "Y")
+  if ((meeting.WasDone === "y" || meeting.WasDone === "Y") && meeting.rom !== 3)
     return (
       <LastMeetingContainer>
         <MeetingText>
