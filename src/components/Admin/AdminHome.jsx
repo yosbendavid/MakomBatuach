@@ -45,7 +45,7 @@ export default function AdminHome() {
 
 
   const Go2Dashboard = () => {
-    navigate('/Dashboard')
+    navigate('/Qlik')
   };
 
 
@@ -73,7 +73,7 @@ export default function AdminHome() {
       </Container>
 
       <BottomBar
-        onUserClick={Go2Dashboard}
+        onCalendarClick={Go2Dashboard}
 
       />
     </div>
