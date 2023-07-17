@@ -24,21 +24,21 @@ const CalendarF = (props) => {
     }
 
     const year = date.getFullYear();
-const month = String(date.getMonth() + 1).padStart(2, "0");
-const day = String(date.getDate()).padStart(2, "0");
-const dateString = `${month}/${day}/${year}`;
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const dateString = `${month}/${day}/${year}`;
 
-const formattedBlockedDates = props.blockedDates.map((blockedDate) => {
-  const dateParts = blockedDate.split("/");
-  const formattedMonth = dateParts[0]?.padStart(2, "0") || ""; // Check if month is defined
-  const formattedDay = dateParts[1]?.padStart(2, "0") || ""; // Check if day is defined
-  const formattedYear = dateParts[2] || ""; // Assume year is always defined
-  return `${formattedMonth}/${formattedDay}/${formattedYear}`;
-});
+    const formattedBlockedDates = props.blockedDates.map((blockedDate) => {
+      const dateParts = blockedDate.split("/");
+      const formattedMonth = dateParts[0]?.padStart(2, "0") || ""; // Check if month is defined
+      const formattedDay = dateParts[1]?.padStart(2, "0") || ""; // Check if day is defined
+      const formattedYear = dateParts[2] || ""; // Assume year is always defined
+      return `${formattedMonth}/${formattedDay}/${formattedYear}`;
+    });
 
-const isBlocked = formattedBlockedDates.includes(dateString);
+    const isBlocked = formattedBlockedDates.includes(dateString);
 
-return isBlocked;
+    return isBlocked;
   };
 
   const tileClassName = ({ date, view }) => {

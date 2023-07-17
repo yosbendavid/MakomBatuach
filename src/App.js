@@ -28,6 +28,7 @@ import FilesListRender from "./components/Files/FilesListRender";
 import FileUpload from "./components/Files/FileUpload";
 import DisplayImage from "./components/Files/DisplayFile";
 import AdDa from "./components/Admin/AdDa";
+import Qlik from "./components/Admin/Qlik"
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Thercard/:therapistId" element={<TherapistCard />} />
             <Route path="/Ad" element={<AdDa />} />
+            <Route path="/Qlik" element={<Qlik />} />
+            <Route path="/Login" element={<Login />} />
+
+
 
 
 

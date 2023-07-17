@@ -41,10 +41,10 @@ function Dashboard() {
   };
 
   const updateToken = async () => {
-    // Generate a new embed token or refresh the user Azure AD access token
-    const newAccessToken = await getNewUserAccessToken();
+  //   // Generate a new embed token or refresh the user Azure AD access token
+     const newAccessToken = await getNewUserAccessToken();
 
-    // Update the new token expiration time
+  //   // Update the new token expiration time
     setTokenExpiration(newAccessToken.expiration);
 
     // Set the new access token
