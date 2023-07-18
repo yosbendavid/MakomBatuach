@@ -38,7 +38,6 @@ const PrevPatientMeetings = () => {
           result.map(tr => console.log(tr.id));
           console.log("prevpatientmeeting", result);
           setPatientMeetings(result);
-
         },
         (error) => {
           console.log("err post=", error);
@@ -70,7 +69,9 @@ const PrevPatientMeetings = () => {
   };
   
   const [patientName, setPatientName] = useState("");
-
+  const patientNameHandle = (name) => {
+    setPatientName(name);
+  };
   const patientUserClick = () => {};
   const patientHomeClick = () => 
   {
@@ -85,7 +86,6 @@ const PrevPatientMeetings = () => {
   return (
     <div className="PHomePage-container">
       <div className="setMeetingBtn">
-      <TopBar patientName={patientName}  />
         <p className="upcoming-Meetings-title"> פגישות קודמות: </p>
       </div>
       <div></div>

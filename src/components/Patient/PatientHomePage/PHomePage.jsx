@@ -23,8 +23,8 @@ const PHomePage = () => {
   
   const [patientName, setPatientName] = useState("");
 
-  const patientNameHandle = () => {
-    setPatientName("");
+  const patientNameHandle = (name) => {
+    setPatientName(name);
   };
   
   useEffect(() => {

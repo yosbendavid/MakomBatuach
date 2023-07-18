@@ -12,15 +12,10 @@ const TopBar = (props) => {
 
     // פונקציה להשגת ראשי התיבות
     const getInitials = (name) => {
-        const words = name.split(" ");
-        const initials = words.map((word) => {
-            const letters = word.split("");
-            const spacedLetters = letters.join(" ");
-            return spacedLetters;
-        }).join(" ");
-        return initials;
-    };
-
+        const nameArray = name.split(" ");
+        const initials = nameArray.map((word) => word.charAt(0).toUpperCase());
+        return initials.join(" ");
+    }
     // השג את ראשי התיבות של - props.patientName
     const initials = props.patientName ? getInitials(props.patientName) : "";
 
