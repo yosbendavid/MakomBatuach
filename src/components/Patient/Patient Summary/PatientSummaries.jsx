@@ -83,6 +83,8 @@ const PatientSummaries = () => {
       );
   };
 
+  
+
   return (
     <div className="patient-container-div">
       <TopBar patientName={patientName} />
