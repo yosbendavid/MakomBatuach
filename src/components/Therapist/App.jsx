@@ -7,6 +7,7 @@ import PatientCase from './Comp/Patient Case/PatientCase';
 import Patients from './Comp/Patients/Patients';
 import Summaries from './Comp/Summries/Summaries';
 import FileUpload from '../Files/FileUpload';
+import FilesListRender from '../Files/FilesListRender';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/Metting/:Patient_Id/:Summary_Date' element={<Metting/>} />
         <Route path='/HomePageTherapit' element={<HomePageTherapit/>} />
         <Route path='/Patients' element={<Patients/>} />
+        <Route path='/FilesListRender' element={<FilesListRender/>} />
        </Routes>
        </BrowserRouter>
     </div>

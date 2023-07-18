@@ -77,6 +77,7 @@ function App() {
             <Route path="/HomePageTherapit" element={<HomePageTherapit />} />
             <Route path="/Patients" element={<Patients />} />
             <Route path="/NewMetting" element={<NewMetting />} />
+            <Route path="/FilesListRender" element={<FilesListRender />} />
           </Routes>
         </header>
       </div>

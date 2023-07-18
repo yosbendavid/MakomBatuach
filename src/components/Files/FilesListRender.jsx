@@ -1,81 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../CSS/FilesListRender.css';
+import { useLocation, useNavigate } from 'react-router-dom';
+import backArrow from "../../Photos/right-arrow.svg";
 
 const FilesListRender = () => {
-  const [userId, setUserId] = useState('');
   const [fileData, setFileData] = useState([]);
+  const { state } = useLocation();
+  const therapistId = state?.therapistId || '';
+  const navigate = useNavigate();
 
-  const handleUserIdChange = (event) => {
-    setUserId(event.target.value);
-  };
 
-  const handleFileClick = (event, fileNum, fileName, FilePath) => {
+  const handleFileClick = (event, File_Num, File_name, FilePath) => {
     event.preventDefault();
-    downloadFile(fileNum, fileName, FilePath);
+    downloadFile(File_Num, File_name, FilePath);
   };
 
-  const downloadFile = async (fileNum, fileName, FilePath) => {
-    try {
+  const goBack = () => {
+    
+    navigate(`/HomePageTherapit`);
+  }
 
+  const downloadFile = async (File_Num, File_name, FilePath) => {
+    try {
+      const response = await axios.get(FilePath, { responseType: 'blob' });
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = FilePath;
-      link.download = `${fileName}.pdf`; 
+      link.href = url;
+      link.download = `${File_name}.pdf`;
+      link.target = '_blank'; // Open in a new tab
+      link.rel = 'noopener noreferrer';
       link.click();
-
-      URL.revokeObjectURL(FilePath);
-      link.remove();
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
-  const getAllFiles = async () => {
-    try {
-      const response = await axios.post('https://localhost:44380/api/getpdffiles', {
-        Id: userId
-      });
-      const data = response.data;
-      console.log(data)
-      setFileData(data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  useEffect(() => {
+    const getAllFiles = async () => {
+      try {
+        const response = await axios.get(`https://localhost:44380/api/gettherapistpatientsfiles2/${therapistId}`);
+        const data = response.data;
+        setFileData(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    getAllFiles();
+  }, [therapistId]);
 
   return (
     <div className="containerFilesListRender">
-      <div className="inputWrapperFilesListRender">
-        <button onClick={getAllFiles} className="buttonFilesListRender">
-          השג קבצים
-        </button>
-        <input
-          type="text"
-          value={userId}
-          onChange={handleUserIdChange}
-          placeholder="הכנס מספר ת.ז"
-          className="inputFieldFilesListRender"
-        />
-      </div>
-
       {fileData.length > 0 && (
         <div className="fileListFilesListRender">
-          <h2 className="fileListTitleFilesListRender">רשימת קבצים:</h2>
+          <h2 className="fileListTitleFilesListRender">רשימת קבצים</h2>
           <ul className="fileListItemsFilesListRender">
             {fileData.map((file, index) => (
               <li key={index} className="fileListItemFilesListRender">
-                <a
-                  href={file.FilePath}
-                  download={`${file.File_name}.pdf`}
+                <button
+                
                   onClick={(event) =>
-                    handleFileClick(file.File_Num, file.File_name, file.FilePath)
+                    handleFileClick(event, file.File_Num, file.File_name, file.FilePath)
                   }
                   className="fileListLinkFilesListRender"
                 >
                   שם הקובץ: {file.File_name}
-                </a>
+                </button>
                 <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
                 <p className="fileListTextFilesListRender">תאריך שליחה: {file.DateSent}</p>
+                <p> {file.FirstName} {file.LastName} </p>
               </li>
             ))}
           </ul>
