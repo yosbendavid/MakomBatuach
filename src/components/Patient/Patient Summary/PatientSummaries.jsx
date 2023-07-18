@@ -13,7 +13,9 @@ const PatientSummaries = () => {
   const { state } = useLocation();
 
   const [email, setEmail] = useState("");
-
+    const patientNameHandle = () => {
+      setPatientName("");
+    };
 
   useEffect(() => {
     const email  = state;
@@ -37,6 +39,7 @@ const PatientSummaries = () => {
         (result) => {
           console.log(result);
           setSummaries(result);
+          patientNameHandle(result[0].PatientName);
         },
         (error) => {
           console.log("err post=", error);
@@ -48,9 +51,7 @@ const PatientSummaries = () => {
   const [summary, setSummaries] = useState([]);
 
 
-  //   const patientNameHandle = () => {
-  //     setPatientName("");
-  //   };
+
 
   const patientUserClick = () => { };
   const patientHomeClick = () => { navigate("/Phome", { state: email } )};

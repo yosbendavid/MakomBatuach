@@ -129,6 +129,7 @@ const Patient = (props) => {
         .then(
           (result) => {
             console.log("fetch POST= ", result);
+            patientNameHandle(result[0].PatientName);
           },
           (error) => {
             console.log("err post=", error);

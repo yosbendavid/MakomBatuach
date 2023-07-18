@@ -23,7 +23,10 @@ const PHomePage = () => {
   
   const [patientName, setPatientName] = useState("");
 
-
+  const patientNameHandle = () => {
+    setPatientName("");
+  };
+  
   useEffect(() => {
     const email = state;
     console.log(email)
@@ -49,8 +52,7 @@ const PHomePage = () => {
           console.log("patientmeeting", result);
           console.log(result[0].PatientName);
           setPatientMeetings(result);
-          setPatientName(result[0].PatientName)
-
+          patientNameHandle(result[0].PatientName);
         },
         (error) => {
           console.log("err post=", error);
