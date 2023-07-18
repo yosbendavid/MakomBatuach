@@ -1,6 +1,5 @@
 .containerFilesListRender {
   padding: 20px;
-  background-color: #f2f2f2;
 }
 
 .inputWrapperFilesListRender {
@@ -34,6 +33,11 @@
 .fileListTitleFilesListRender {
   margin-bottom: 10px;
   font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: right; /* Align the text to the right */
+  direction: rtl; /* Set the text direction to right-to-left */
 }
 
 .fileListItemsFilesListRender {
@@ -42,20 +46,27 @@
 }
 
 .fileListItemFilesListRender {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
   padding: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 75%;
+  margin: 25px auto 0 auto;
+  margin-left: auto;
+  border: 2px solid #f2f2f2;
+  height: 100px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .fileListLinkFilesListRender {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  color: #007aff;
-  text-decoration: none;
-  margin-bottom: 5px;
+  font-size: 18px;
+  margin: 0;
+  text-align: center;
+  flex-grow: 2;
+  color: gray;
+  margin-right: 5px;
 }
 
 .fileListTextFilesListRender {

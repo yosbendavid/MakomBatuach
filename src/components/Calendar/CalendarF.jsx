@@ -5,6 +5,8 @@ import "../../CSS/Calendar.css";
 
 const CalendarF = (props) => {
   const [date, setDate] = useState(new Date());
+  console.log("gg");
+  console.log(props.blockedDates);
 
   const handleDateChange = (newDate) => {
     props.date(newDate);
@@ -29,10 +31,11 @@ const CalendarF = (props) => {
     const dateString = `${month}/${day}/${year}`;
 
     const formattedBlockedDates = props.blockedDates.map((blockedDate) => {
-      const dateParts = blockedDate.split("/");
-      const formattedMonth = dateParts[0]?.padStart(2, "0") || ""; // Check if month is defined
-      const formattedDay = dateParts[1]?.padStart(2, "0") || ""; // Check if day is defined
+      const dateParts = blockedDate.split(".");
+      const formattedMonth = dateParts[1]?.padStart(2, "0") || ""; // Check if month is defined
+      const formattedDay = dateParts[0]?.padStart(2, "0") || ""; // Check if day is defined
       const formattedYear = dateParts[2] || ""; // Assume year is always defined
+      console.log(`${formattedMonth}/${formattedDay}/${formattedYear}`);
       return `${formattedMonth}/${formattedDay}/${formattedYear}`;
     });
 

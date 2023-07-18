@@ -81,7 +81,14 @@ export default function HomePageTherapit() {
     navigate("/Article", { state: email });
   };
 
-  
+
+  const go2Filles = () => {
+    const therapistId = Meeting[0].Therapist_Id; // Assuming Meeting contains the therapist ID
+    const state = { therapistId };
+    navigate('/FilesListRender', { state });
+    console.log("gg");
+    console.log(therapistId);
+  };
 
 
   const currentDate = new Date().toLocaleDateString(); // get current date in the format of "MM/DD/YYYY"
@@ -137,7 +144,7 @@ export default function HomePageTherapit() {
             icon={<PermIdentityOutlinedIcon />}
             onClick={go2Patients}
           />
-          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />} onClick={go2Filles}/>
         </BottomNavigation>
       </Navbar>
     </div>
