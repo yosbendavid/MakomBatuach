@@ -109,9 +109,9 @@ const Patient = (props) => {
       Patient_Email: email,
     };
     console.log(newMeeting);
-
+  
     const apiUrl = "https://localhost:44380/api/createtre";
-
+  
     try {
       fetch(apiUrl, {
         method: "POST",
@@ -123,13 +123,16 @@ const Patient = (props) => {
         .then((res) => {
           console.log("res=", res);
           if (res.status === 200) Go2Approve();
-          {
-          }
+          return res.json(); // Parse the response JSON
         })
         .then(
           (result) => {
             console.log("fetch POST= ", result);
-            patientNameHandle(result[0].PatientName);
+            if (result && result.length > 0) {
+              patientNameHandle(result[0].PatientName);
+            } else {
+              console.log("Result is undefined or empty");
+            }
           },
           (error) => {
             console.log("err post=", error);
