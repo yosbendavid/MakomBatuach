@@ -29,35 +29,24 @@ const PHomePage = () => {
   
   useEffect(() => {
     const email = state;
-    console.log(email)
-    setEmail(email)
+    setEmail(email);
     console.log(email);
-    fetch(apiUrl + email,
-      {
-        method: 'GET',
-        headers: new Headers({
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json; charset=UTF-8',
-        })
-      })
-      .then(res => {
-        console.log('res=', res);
-        console.log('res.status', res.status);
-        console.log('res.ok', res.ok);
-        return res.json()
-      })
+  
+    fetch(apiUrl + email)
+      .then(res => res.json())
       .then(
         (result) => {
-          result.map(tr => console.log(tr.id));
           console.log("patientmeeting", result);
-          console.log(result[0].PatientName);
+          const patientName = result[0]?.PatientName; // Access the patient name from the response
+          setPatientName(patientName);
           setPatientMeetings(result);
-          patientNameHandle(result[0].PatientName);
+          console.log(patientName);
         },
         (error) => {
           console.log("err post=", error);
-        });
-  }, [])
+        }
+      );
+  }, []);
 
   const [patientMeetings, setPatientMeetings] = useState(dummy_meetings)
   const [email, setEmail] = useState('')
@@ -117,11 +106,14 @@ const PHomePage = () => {
 
   const buttonLabel = showPrevMeetings ? "סגור פגישות קודמות" : "לחץ לפגישות קודמות";
 
+  const patientNameInitials = patientName.split(" ")
+  .map((part) => part.charAt(0))
+  .join("")
 
   return (
     <div className="PHomePage-container">
       <div className="patient-container-div">
-        <TopBar patientName={patientName} />
+      <TopBar patientName={patientNameInitials} />
         <p className="pName">שלום, {patientName? patientName : ""}</p>
         <div className="setMeetingBtn">
           <p className="upcoming-Meetings-title">פגישות קרובות:</p>

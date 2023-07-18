@@ -71,7 +71,7 @@ const FilesListRender = () => {
             <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
             <p className="fileListTextFilesListRender">תאריך שליחה: {file.DateSent}</p>
             <p className="fileListTextFilesListRender">
-              שם הלקוח: {file.FirstName} {file.LastName}
+              שם המטופל: {file.FirstName} {file.LastName}
             </p>
           </li>
         ))}
