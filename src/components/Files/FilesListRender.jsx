@@ -54,30 +54,32 @@ const FilesListRender = () => {
 
   return (
     <div className="containerFilesListRender">
-      {fileData.length > 0 && (
-        <div className="fileListFilesListRender">
-          <h2 className="fileListTitleFilesListRender">רשימת קבצים</h2>
-          <ul className="fileListItemsFilesListRender">
-            {fileData.map((file, index) => (
-              <li key={index} className="fileListItemFilesListRender">
-                <button
-                
-                  onClick={(event) =>
-                    handleFileClick(event, file.File_Num, file.File_name, file.FilePath)
-                  }
-                  className="fileListLinkFilesListRender"
-                >
-                  שם הקובץ: {file.File_name}
-                </button>
-                <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
-                <p className="fileListTextFilesListRender">תאריך שליחה: {file.DateSent}</p>
-                <p> {file.FirstName} {file.LastName} </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+  {fileData.length > 0 && (
+    <div className="fileListFilesListRender">
+      <h2 className="fileListTitleFilesListRender">רשימת קבצים</h2>
+      <ul className="fileListItemsFilesListRender">
+        {fileData.map((file, index) => (
+          <li key={index} className="fileListItemFilesListRender">
+            <button
+              onClick={(event) =>
+                handleFileClick(event, file.File_Num, file.File_name, file.FilePath)
+              }
+              className="fileListLinkFilesListRender"
+            >
+              שם הקובץ: {file.File_name}
+            </button>
+            <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
+            <p className="fileListTextFilesListRender">תאריך שליחה: {file.DateSent}</p>
+            <p className="fileListTextFilesListRender">
+              שם הלקוח: {file.FirstName} {file.LastName}
+            </p>
+          </li>
+        ))}
+      </ul>
     </div>
+  )}
+</div>
+
   );
 };
 

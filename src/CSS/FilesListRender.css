@@ -1,29 +1,36 @@
 .containerFilesListRender {
   padding: 20px;
+  direction: rtl;
 }
 
 .inputWrapperFilesListRender {
   display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
 }
 
 .inputFieldFilesListRender {
-  text-align: end;
-  flex: 1;
+  text-align: right;
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #f2f2f2;
+  color: #333;
 }
 
 .buttonFilesListRender {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007aff;
+  background-color: #007bff;
   color: #fff;
-  font-size: 12px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonFilesListRender:hover {
+  background-color: #0056b3;
 }
 
 .fileListFilesListRender {
@@ -32,12 +39,11 @@
 
 .fileListTitleFilesListRender {
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 34px;
   color: #333;
   font-weight: bold;
-  text-decoration: underline;
-  text-align: right; /* Align the text to the right */
-  direction: rtl; /* Set the text direction to right-to-left */
+  text-align: center;
+  direction: rtl;
 }
 
 .fileListItemsFilesListRender {
@@ -47,30 +53,38 @@
 
 .fileListItemFilesListRender {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  background-color: white;
-  padding: 10px;
+  background-color: #fff;
+  padding: 5px 10px;
   border-radius: 10px;
-  width: 75%;
-  margin: 25px auto 0 auto;
-  margin-left: auto;
-  border: 2px solid #f2f2f2;
-  height: 100px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  width: 85%;
+  margin: 5px auto 0 auto;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .fileListLinkFilesListRender {
-  font-size: 18px;
-  margin: 0;
-  text-align: center;
-  flex-grow: 2;
-  color: gray;
-  margin-right: 5px;
+  font-size: 16px;
+  padding: 0;
+  margin: 5px 0;
+  text-align: left;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.fileListLinkFilesListRender:hover {
+  color: #007bff;
 }
 
 .fileListTextFilesListRender {
   font-size: 14px;
   color: #555;
-  margin: 0;
+  margin: 5px 0;
+  text-align: left;
 }

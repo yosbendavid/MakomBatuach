@@ -13,9 +13,10 @@ const PatientSummaries = () => {
   const { state } = useLocation();
 
   const [email, setEmail] = useState("");
-    const patientNameHandle = () => {
-      setPatientName("");
-    };
+
+  const patientNameHandle = (name) => {
+    setPatientName(name);
+  };
 
   useEffect(() => {
     const email  = state;
@@ -39,6 +40,7 @@ const PatientSummaries = () => {
         (result) => {
           console.log(result);
           setSummaries(result);
+          console.log(result.PatientName);
           patientNameHandle(result[0].PatientName);
         },
         (error) => {

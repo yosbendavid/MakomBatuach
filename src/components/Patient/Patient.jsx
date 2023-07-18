@@ -28,8 +28,8 @@ const Patient = (props) => {
   const [Freedays, setFreedays] = useState([]);
 
 
-  const patientNameHandle = () => {
-    setPatientName("");
+  const patientNameHandle = (name) => {
+    setPatientName(name);
   };
   const patientUserClick = () => { };
   const patientHomeClick = () => {

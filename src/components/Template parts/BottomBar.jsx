@@ -2,7 +2,7 @@ import React from "react";
 import '../../CSS/BottomBar.css'
 import HomeIcon from "../../Photos/Home-Icon.svg";
 import CalendarIcon from "../../Photos/Calendar-Icon.svg";
-import UserIcon from "../../Photos/User-Icon.svg";
+import UserIcon from "../../Photos/files.svg";
 
 const BottomBar = (props) => {
     return (
