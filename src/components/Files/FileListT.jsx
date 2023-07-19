@@ -75,7 +75,7 @@ const FileLisT = () => {
                 <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
                 <p className="fileListTextFilesListRender">תאריך שליחה: {new Date(file.DateSent).toLocaleDateString()}</p>
                 <p className="fileListTextFilesListRender">
-                  שם המטופל: {file.FirstName} {file.LastName}
+                  שם המטפל: {file.TherapistFirstName} {file.TherapistLastName}
                 </p>
               </li>
             ))}

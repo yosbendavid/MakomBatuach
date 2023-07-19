@@ -14,6 +14,8 @@ const PatientSummaries = () => {
 
   const [email, setEmail] = useState("");
 
+  const [therapistId, setTherapistId] = useState("");
+
   const patientNameHandle = (name) => {
     setPatientName(name);
   };
@@ -43,6 +45,7 @@ const PatientSummaries = () => {
             console.log("PatientName =", result[0].PatientName);
             setSummaries(result);
             patientNameHandle(result[0].PatientName);
+            console.log('כאן:', result);
           }
         },
         (error) => {
@@ -57,8 +60,14 @@ const PatientSummaries = () => {
 
 
 
-  const patientUserClick = () => { };
+  const patientUserClick = () => {
+    navigate("/FileLisT", {state: therapistId})
+    console.log("כאן");
+   console.log(therapistId);
+   };
+
   const patientHomeClick = () => { navigate("/Phome", { state: email } )};
+
   const patientCalendarClick = () => {navigate("/PaSummaries", { state: email } ) };
 
   const handlePastSummaries = () => {

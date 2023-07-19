@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../CSS/TopBar.css'
 import SideBarIcon from "../../Photos/Side-Bar-Icon.svg";
 import CloseIcon from "../../Photos/Close-Icon.svg";
+import { PatientName } from "../Therapist/Patients/Patients.Style";
 
 const TopBar = (props) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,13 +12,14 @@ const TopBar = (props) => {
     };
 
     // פונקציה להשגת ראשי התיבות
-    const getInitials = (name) => {
-        const nameArray = name.split(" ");
+    const getInitials = () => {
+        const nameArray = localStorage.getItem('patientName')?.split(" ");
         const initials = nameArray.map((word) => word.charAt(0).toUpperCase());
         return initials.join(" ");
     }
     // השג את ראשי התיבות של - props.patientName
-    const initials = props.patientName ? getInitials(props.patientName) : "";
+   const initials = localStorage.getItem('patientName')? getInitials(): "";
+   // console.log('כאן', initials);
 
     return(
         <div className="top-bar-container">

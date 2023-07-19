@@ -43,6 +43,8 @@ const PHomePage = () => {
           const therapistId = result[0]?.TherapistId;
           //setTherapistId(therapistId);
           setPatientName(patientName);
+          console.log('כאן', patientName);
+          localStorage.setItem('patientName', patientName);
           setPatientMeetings(result);
           console.log(patientName);
           console.log(therapistId);
@@ -115,13 +117,13 @@ const PHomePage = () => {
   };
 
   const buttonLabel = showPrevMeetings ? "סגור פגישות קודמות" : "לחץ לפגישות קודמות";
-  const patientNameInitials = patientName ? patientName.split(" ").map((part) => part.charAt(0)).join("") : "";
+  //const patientNameInitials = patientName ? patientName.split(" ").map((part) => part.charAt(0)).join("") : "";
 
 
   return (
     <div className="PHomePage-container">
       <div className="patient-container-div">
-      <TopBar patientName={patientNameInitials} />
+      <TopBar />
         <p className="pName">שלום, {patientName? patientName : ""}</p>
         <div className="setMeetingBtn">
           <p className="upcoming-Meetings-title">פגישות קרובות:</p>
@@ -142,8 +144,6 @@ const PHomePage = () => {
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
         onHomeClick={patientHomeClick}
-    
-
       />
     </div>
   );

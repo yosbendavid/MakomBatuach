@@ -69,8 +69,9 @@ export default function Patients() {
 
   const goToFiles = () => {
     if (patients.length > 0) {
-      const therapistId = patients[0].Therapist_Id;
-      console.log(therapistId);
+      const therapistId = patients[0].TherapistId;
+      console.log("כאן");
+      console.log(patients);
       navigate('/FilesListRender', { state: { therapistId } });
     }
   };

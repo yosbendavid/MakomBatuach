@@ -65,10 +65,12 @@ export default function AdminHome() {
         {filteredTherapists.map((therapist) => (
           <PatientCard key={therapist.Therapist_Id} therapist={therapist} />
         ))}
-
+        <div style={{marginTop: "20px", textAlign: "center"}}>
         <button className="setMeetBTN" onClick={Go2NewRegister}> רישום משתמש </button>
-        <button className="setMeetBTN" onClick={Go2Dashboard}> אלמנט  </button>
-
+        </div>
+        <div style={{marginTop: "20px", textAlign: "center"}}>
+        <button className="setMeetBTN" onClick={Go2Dashboard}> Dashboard  </button>
+        </div>
 
       </Container>
 
