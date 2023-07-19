@@ -68,9 +68,14 @@ export default function Qlik() {
         <div>
       <Container>
         <div className="my-iframe-container">
+        <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=Xdbzbz&theme=breeze&opt=ctxmenu" 
+          title="Dashboard" style={{ border: "none", width: "100%", height: "40%" }}>
+          </iframe>
+          </div>
           <div className="graph-container">
           <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=BRrMWP&theme=breeze&opt=ctxmenu" 
-          title="filter" style={{ border: "none", width: "100%", height: "100%" }}>
+          title="filter" style={{ border: "none", width: "100%", height: "50%" }}>
           </iframe>
           </div>
           <div className="graph-container">
@@ -90,7 +95,12 @@ export default function Qlik() {
           <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=gWmspX&theme=breeze&opt=ctxmenu" 
           title="pie" style={{ border: "none", width: "100%", height: "400px" }}>
           </iframe>
-          </div>      
+          </div>  
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=amcWCb&theme=horizon&opt=ctxmenu"
+          title="Scatter" style={{ border: "none", width: "100%", height: "400px" }}>
+          </iframe>
+          </div>  
         </div>
       </Container>
 

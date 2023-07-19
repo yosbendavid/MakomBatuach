@@ -100,9 +100,7 @@ const endTimeOnly = new Date(summary.EndTime).toLocaleTimeString([], {
     <InformationDesc> {summary.Content} </InformationDesc>
     </InformationContainer>
     </InformationWrapper>
-    <ButtonDiv>
-      <ButtonFiles> קבצים למטופל </ButtonFiles>
-    </ButtonDiv>
+    
     <Navbar>
       {/* <BottomNavigation>
         <BottomNavigationAction icon={<HomeOutlinedIcon />} onClick={go2HomePage}/>

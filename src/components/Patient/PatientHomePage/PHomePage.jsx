@@ -144,8 +144,6 @@ const PHomePage = () => {
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
         onHomeClick={patientHomeClick}
-    
-
       />
     </div>
   );

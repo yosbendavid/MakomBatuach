@@ -14,6 +14,8 @@ const PatientSummaries = () => {
 
   const [email, setEmail] = useState("");
 
+  const [therapistId, setTherapistId] = useState("");
+
   const patientNameHandle = (name) => {
     setPatientName(name);
   };
@@ -58,8 +60,14 @@ const PatientSummaries = () => {
 
 
 
-  const patientUserClick = () => { };
+  const patientUserClick = () => {
+    navigate("/FileLisT", {state: therapistId})
+    console.log("כאן");
+   console.log(therapistId);
+   };
+
   const patientHomeClick = () => { navigate("/Phome", { state: email } )};
+
   const patientCalendarClick = () => {navigate("/PaSummaries", { state: email } ) };
 
   const handlePastSummaries = () => {
