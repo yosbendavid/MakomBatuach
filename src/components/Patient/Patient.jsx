@@ -5,6 +5,7 @@ import BottomBar from "../Template parts/BottomBar";
 import TopBar from "../Template parts/TopBar";
 import { format } from "date-fns";
 import { useNavigate, useLocation } from "react-router-dom";
+import backArrow from "../../Photos/right-arrow.svg";
 
 const Patient = (props) => {
 
@@ -14,8 +15,8 @@ const Patient = (props) => {
     const { email, Freedays } = state;
     setEmail(state.email);
     setFreedays(state.Freedays);
-    console.log(Freedays);
-    console.log(email);
+    // console.log(Freedays);
+    // console.log(email);
   }, []);
 
   const [patientName, setPatientName] = useState("");
@@ -43,7 +44,7 @@ const Patient = (props) => {
   // הפונקציה שאני מעביר כדי לתפוס את הערך של תאריך, להעביר את הזמנים החדשים ולרנדר
   const handleMeetingDateChange = (value) => {
     var t = format(value, "yyyy/MM/dd");
-    console.log(email);
+    // console.log(email);
     var v = format(value, "yyyy/MM/dd hh:mm");
     setMeetingDate(v);
     const tryget = "https://localhost:44380/api/amen/";
@@ -63,7 +64,6 @@ const Patient = (props) => {
       .then(
         (result) => {
           console.log(result);
-
           const updatedTimeSlots = result.map((slot) => {
             return {
               ...slot,
@@ -131,6 +131,7 @@ const Patient = (props) => {
           (result) => {
             console.log("fetch POST= ", result);
             if (result && result.length > 0) {
+              console.log(result[0].PatientName);
               patientNameHandle(result[0].PatientName);
             } else {
               console.log("Result is undefined or empty");
@@ -144,6 +145,9 @@ const Patient = (props) => {
       console.error("Request failed with status code", error.response.status);
     }
   };
+  const BackOut = () => {
+    navigate("/Phome", { state: email })
+}
 
   return (
     <div className="patient-container-div">
@@ -161,9 +165,12 @@ const Patient = (props) => {
         blockedDates={Freedays}
         email={email}
       />
-
+      <button className="back-out" onClick={BackOut}>לחץ לביטול הזמנת תור</button>
       {/* מסך אישור תיאום פגישה */}
       {/* <NewApproved /> */}
+
+      
+
       <BottomBar
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
