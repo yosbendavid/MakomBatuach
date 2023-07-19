@@ -67,6 +67,14 @@ export default function Patients() {
     navigate("/NewRegister", { state: email });
   };
 
+  const goToFiles = () => {
+    if (patients.length > 0) {
+      const therapistId = patients[0].Therapist_Id;
+      console.log(therapistId);
+      navigate('/FilesListRender', { state: { therapistId } });
+    }
+  };
+
   return (
     <div>
       <Container>
@@ -102,7 +110,7 @@ export default function Patients() {
             onClick={go2HomePage}
           />
           <BottomNavigationAction icon={<PermIdentityOutlinedIcon />} />
-          <BottomNavigationAction icon={<ArticleOutlinedIcon />} />
+          <BottomNavigationAction icon={<ArticleOutlinedIcon />} onClick={goToFiles}/>
         </BottomNavigation>
       </Navbar>
     </div>

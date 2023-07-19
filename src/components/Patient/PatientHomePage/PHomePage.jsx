@@ -23,6 +23,8 @@ const PHomePage = () => {
   
   const [patientName, setPatientName] = useState("");
 
+  const [therapistId, setTherapistId] = useState("");
+
   const patientNameHandle = (name) => {
     setPatientName(name);
   };
@@ -38,9 +40,12 @@ const PHomePage = () => {
         (result) => {
           console.log("patientmeeting", result);
           const patientName = result[0]?.PatientName; // Access the patient name from the response
+          const therapistId = result[0]?.TherapistId;
+          //setTherapistId(therapistId);
           setPatientName(patientName);
           setPatientMeetings(result);
           console.log(patientName);
+          console.log(therapistId);
         },
         (error) => {
           console.log("err post=", error);
@@ -53,7 +58,12 @@ const PHomePage = () => {
   const [Freedays, setFreedays] = useState([]);
   
 
-  const patientUserClick = () => { };
+  const patientUserClick = () => { 
+    navigate("/FileLisT", {state: therapistId})
+    console.log("כאן");
+   console.log(therapistId);
+  };
+
   const patientHomeClick = () => {
     navigate("/Phome", { state: email })
 
@@ -105,10 +115,8 @@ const PHomePage = () => {
   };
 
   const buttonLabel = showPrevMeetings ? "סגור פגישות קודמות" : "לחץ לפגישות קודמות";
+  const patientNameInitials = patientName ? patientName.split(" ").map((part) => part.charAt(0)).join("") : "";
 
-  const patientNameInitials = patientName.split(" ")
-  .map((part) => part.charAt(0))
-  .join("")
 
   return (
     <div className="PHomePage-container">
@@ -134,6 +142,7 @@ const PHomePage = () => {
         onCalendarClick={patientCalendarClick}
         onUserClick={patientUserClick}
         onHomeClick={patientHomeClick}
+    
 
       />
     </div>
