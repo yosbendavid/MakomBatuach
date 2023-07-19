@@ -19,9 +19,9 @@ const PatientSummaries = () => {
   };
 
   useEffect(() => {
-    const email  = state;
+    const email = state;
     setEmail(email);
-    console.log("email=",email);
+    console.log("email =", email);
     const apiUrl = "https://localhost:44380/api/GetPatientSummaries/?email=";
     fetch(apiUrl + email, {
       method: "GET",
@@ -31,20 +31,22 @@ const PatientSummaries = () => {
       }),
     })
       .then((res) => {
-        console.log("res=", res);
-        console.log("res.status", res.status);
-        console.log("res.ok", res.ok);
+        console.log("res =", res);
+        console.log("res.status =", res.status);
+        console.log("res.ok =", res.ok);
         return res.json();
       })
       .then(
         (result) => {
-          console.log(result);
-          setSummaries(result);
-          console.log(result.PatientName);
-          patientNameHandle(result[0].PatientName);
+          console.log("result =", result);
+          if (result && result.length > 0) {
+            console.log("PatientName =", result[0].PatientName);
+            setSummaries(result);
+            patientNameHandle(result[0].PatientName);
+          }
         },
         (error) => {
-          console.log("err post=", error);
+          console.log("err post =", error);
         }
       );
   }, []);

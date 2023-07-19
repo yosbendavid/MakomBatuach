@@ -29,6 +29,7 @@ import FileUpload from "./components/Files/FileUpload";
 import DisplayImage from "./components/Files/DisplayFile";
 import AdDa from "./components/Admin/AdDa";
 import Qlik from "./components/Admin/Qlik"
+import FileLisT from "./components/Files/FileListT";
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
             <Route path="/Patients" element={<Patients />} />
             <Route path="/NewMetting" element={<NewMetting />} />
             <Route path="/FilesListRender" element={<FilesListRender />} />
+            <Route path="/FileLisT" element={<FileLisT />} />
           </Routes>
         </header>
       </div>

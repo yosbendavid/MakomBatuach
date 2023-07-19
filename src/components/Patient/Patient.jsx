@@ -89,7 +89,9 @@ const Patient = (props) => {
   };
 
   const handleRoomNum = (value) => {
-    setRoomNum(roomNum[value].room);
+    if (roomNum && roomNum.length > 0) {
+      setRoomNum(roomNum[value]?.room);
+    }
   };
   //הפוקנציה שאני מעביר בשביל הכפתור אישור שיקח את המשתנים בזמן הלחיצה
 

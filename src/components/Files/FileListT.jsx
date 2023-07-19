@@ -4,7 +4,7 @@ import '../../CSS/FilesListRender.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import backArrow from "../../Photos/right-arrow.svg";
 
-const FilesListRender = () => {
+const FileLisT = () => {
   const [fileData, setFileData] = useState([]);
   const { state } = useLocation();
   const therapistId = state?.therapistId || '';
@@ -37,17 +37,18 @@ const FilesListRender = () => {
     }
   };
 
-  
-
-
   useEffect(() => {
     const getAllFiles = async () => {
       try {
-        const response = await axios.get(`https://localhost:44380/api/gettherapistpatientsfiles2/${therapistId}`);
+        const response = await axios.get(`https://localhost:44380/api/gettherapistfiles/33445566`);
         const data = response.data;
         setFileData(data);
+        console.log("היי");
+        console.log(therapistId);
       } catch (error) {
         console.error('Error:', error);
+        console.log("היי");
+        console.log(therapistId);
       }
     };
 
@@ -56,34 +57,33 @@ const FilesListRender = () => {
 
   return (
     <div className="containerFilesListRender">
-  {fileData.length > 0 && (
-    <div className="fileListFilesListRender">
-    <img src={backArrow} alt="Back Arrow" onClick={goBack} style={{height: "20px"}} />
-      <h2 className="fileListTitleFilesListRender">רשימת קבצים</h2>
-      <ul className="fileListItemsFilesListRender">
-        {fileData.map((file, index) => (
-          <li key={index} className="fileListItemFilesListRender">
-            <button
-              onClick={(event) =>
-                handleFileClick(event, file.File_Num, file.File_name, file.FilePath)
-              }
-              className="fileListLinkFilesListRender"
-            >
-              שם הקובץ: {file.File_name}
-            </button>
-            <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
-            <p className="fileListTextFilesListRender">תאריך שליחה: {new Date(file.DateSent).toLocaleDateString()}</p>
-            <p className="fileListTextFilesListRender">
-              שם המטופל: {file.FirstName} {file.LastName}
-            </p>
-          </li>
-        ))}
-      </ul>
+      {fileData.length > 0 && (
+        <div className="fileListFilesListRender">
+          <img src={backArrow} alt="Back Arrow" onClick={goBack} style={{height: "20px"}} />
+          <h2 className="fileListTitleFilesListRender">רשימת קבצים</h2>
+          <ul className="fileListItemsFilesListRender">
+            {fileData.map((file, index) => (
+              <li key={index} className="fileListItemFilesListRender">
+                <button
+                  onClick={(event) =>
+                    handleFileClick(event, file.File_Num, file.File_name, file.FilePath)
+                  }
+                  className="fileListLinkFilesListRender"
+                >
+                  שם הקובץ: {file.File_name}
+                </button>
+                <p className="fileListTextFilesListRender">מספר קובץ: {file.File_Num}</p>
+                <p className="fileListTextFilesListRender">תאריך שליחה: {new Date(file.DateSent).toLocaleDateString()}</p>
+                <p className="fileListTextFilesListRender">
+                  שם המטופל: {file.FirstName} {file.LastName}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
-  )}
-</div>
-
   );
 };
 
-export default FilesListRender;
+export default FileLisT;
