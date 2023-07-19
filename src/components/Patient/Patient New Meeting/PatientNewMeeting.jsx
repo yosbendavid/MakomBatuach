@@ -91,13 +91,13 @@ const PatientNewMeeting = (props) => {
                 <div className="meeting-time-slots-container">
                     {props.timeSlots.length > 0 && (
                         <div className="meeting-time-slots">
-                            {props.timeSlots.map((time, index) => (
-                                <div
+                            {props.timeSlots.map((time, index) => {                               
+                               return ( <div
                                 className={`time-slot${time.recommended ? ' recommended' : ''}`}
                                     key={index}
                                     id={index}
-                                    onClick={() => handleSlotClick(index)}>{time.startTimetemp}</div>
-                            ))}
+                                    onClick={() => handleSlotClick(index)}>{time.startTimetemp}</div> )
+                            })}
                         </div>
                     )}
                 </div>

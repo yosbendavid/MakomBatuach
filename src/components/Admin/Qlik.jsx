@@ -66,26 +66,35 @@ export default function Qlik() {
     return (
 
         <div>
-            <Container>
+      <Container>
+        <div className="my-iframe-container">
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=BRrMWP&theme=breeze&opt=ctxmenu" 
+          title="filter" style={{ border: "none", width: "100%", height: "100%" }}>
+          </iframe>
+          </div>
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=pVjmSu&theme=breeze&opt=ctxmenu" 
+          title="patients" style={{ border: "none", width: "50%", height: "50%" }}>
+          </iframe>
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=npSVpJ&theme=breeze&opt=ctxmenu" 
+          title="thrapist" style={{ border: "none", width: "50%", height: "50%" }}>
+          </iframe>
+          </div>
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=UdQqmCv&theme=horizon&opt=ctxmenu" 
+          title="barChart" style={{ border: "none", width: "100%", height: "400px" }}>
+          </iframe>
+          </div>  
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=gWmspX&theme=breeze&opt=ctxmenu" 
+          title="pie" style={{ border: "none", width: "100%", height: "400px" }}>
+          </iframe>
+          </div>      
+        </div>
+      </Container>
 
-                <div class="my-iframe-container">
-
-                    <div class="graph-container">
-                        <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=UdQqmCv&theme=horizon&opt=ctxmenu,currsel"
-                            style={{ border: 'none', width: '100%', height: '100%' }}></iframe>
-                    </div>
-
-                    <div class="graph-container">
-                        <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=gWmspX&theme=horizon&opt=ctxmenu,currsel"
-                            style={{ border: 'none', width: '100%', height: '100%' }}></iframe>
-                    </div>
-                    </div>
-            </Container>
-
-            <BottomBar
-                onHomeClick={Go2Home}
-
-            />
-        </div >
+      <BottomBar onHomeClick={Go2Home} />
+    </div>
     );
 }

@@ -69,6 +69,7 @@ const PrevPatientMeetings = () => {
   };
   
   const [patientName, setPatientName] = useState("");
+  
   const patientNameHandle = (name) => {
     setPatientName(name);
   };

@@ -63,7 +63,7 @@ const Patient = (props) => {
       })
       .then(
         (result) => {
-          console.log(result);
+          console.log('result:', result);
           const updatedTimeSlots = result.map((slot) => {
             return {
               ...slot,

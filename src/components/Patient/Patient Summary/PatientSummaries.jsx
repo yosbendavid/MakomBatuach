@@ -43,6 +43,7 @@ const PatientSummaries = () => {
             console.log("PatientName =", result[0].PatientName);
             setSummaries(result);
             patientNameHandle(result[0].PatientName);
+            console.log('כאן:', result);
           }
         },
         (error) => {
