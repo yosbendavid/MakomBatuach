@@ -57,6 +57,9 @@ export default function AdminHome() {
   return (
     <div>
       <Container>
+      <h2 style={{ textAlign: "center", marginBottom: "20px", color: "#BD9DBB",  }}>
+          היי, מנהלת הקליניקה
+        </h2>
         <SearchDiv>
           <SearchText onChange={event => setQuery(event.target.value)} type={"text"} placeholder="חיפוש..." />
           <StyledIcon />

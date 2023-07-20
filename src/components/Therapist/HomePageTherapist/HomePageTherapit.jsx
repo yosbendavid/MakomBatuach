@@ -65,8 +65,15 @@ export default function HomePageTherapit() {
     console.log("email=", email);
     const result = await fetch(apiUrll + email);
     const json = await result.json();
+    localStorage.setItem('FirstName', json[0].FirstName);
+    localStorage.setItem('LastName', json[0].LastName);
     setLastmeeting(json);
   };
+
+  const name = localStorage.getItem('FirstName');
+  console.log(name);
+  const lastName = localStorage.getItem('LastName');
+  console.log(lastName);
 
   const go2Patients = () => {
     navigate("/Patients", { state: email });
@@ -99,15 +106,14 @@ export default function HomePageTherapit() {
         <TherapistDiv>
           <TherapistName>
             {" "}
-            {Meeting &&
-              Meeting.length > 0 &&
-              `${Meeting[0].FirstName[0]} ${Meeting[0].LastName[0]}`}{" "}
+            {name[0]? name[0] : ""} {lastName[0]? lastName[0] : ""}
+            {" "}
           </TherapistName>
         </TherapistDiv>
         <span></span>
         <TitleName>
           {" "}
-          היי, {Meeting && Meeting.length > 0 && `${Meeting[0].FirstName}`} {" "}
+          היי, {name? name : ""}
         </TitleName>
       </TitleWrapper>
       <MeetingDate> פגישות להיום- {currentDate} </MeetingDate>
