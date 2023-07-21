@@ -16,7 +16,7 @@ const dummy_meetings = [
 
 const PHomePage = () => {
 
-  const apiUrl = "https://localhost:44380/api/patientstreatment/?email="
+  const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/patientstreatment/?email="
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -83,7 +83,7 @@ const PHomePage = () => {
   };
 
   const Go2Nemeeting = () => {
-    const tryget = "https://localhost:44380/api/getdayoff";
+    const tryget = "http://proj.ruppin.ac.il/cgroup100/prod/api/getdayoff";
     fetch(tryget + "/?email=" + email, {
       method: "GET",
       headers: new Headers({
@@ -124,7 +124,7 @@ const PHomePage = () => {
     <div className="PHomePage-container">
       <div className="patient-container-div">
       <TopBar />
-        <p className="pName">שלום, {patientName? patientName : ""}</p>
+        <p className="pName">שלום,{" "} {patientName? patientName : ""} {" "}</p>
         <div className="setMeetingBtn">
           <p className="upcoming-Meetings-title">פגישות קרובות:</p>
         </div>

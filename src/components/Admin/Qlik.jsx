@@ -87,6 +87,14 @@ export default function Qlik() {
           </iframe>
           </div>
           <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=ygsePbj&theme=breeze&opt=ctxmenu" 
+          title="cancel" style={{ border: "none", width: "50%", height: "50%" }}>
+          </iframe>
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=YLLeg&theme=breeze&opt=ctxmenu" 
+          title="save" style={{ border: "none", width: "50%", height: "50%" }}>
+          </iframe>
+          </div>
+          <div className="graph-container">
           <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=UdQqmCv&theme=horizon&opt=ctxmenu" 
           title="barChart" style={{ border: "none", width: "100%", height: "400px" }}>
           </iframe>
@@ -94,6 +102,11 @@ export default function Qlik() {
           <div className="graph-container">
           <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=gWmspX&theme=breeze&opt=ctxmenu" 
           title="pie" style={{ border: "none", width: "100%", height: "400px" }}>
+          </iframe>
+          </div>  
+          <div className="graph-container">
+          <iframe src="https://6tos7pzl6xqjljz.sg.qlikcloud.com/single/?appid=42f90f3d-d8e4-4759-8256-a75291ba5d2e&obj=DmpmM&theme=horizon&opt=ctxmenu"
+          title="BarCancel" style={{ border: "none", width: "100%", height: "400px" }}>
           </iframe>
           </div>  
           <div className="graph-container">

@@ -24,7 +24,7 @@ const PatientSummaries = () => {
     const email = state;
     setEmail(email);
     console.log("email =", email);
-    const apiUrl = "https://localhost:44380/api/GetPatientSummaries/?email=";
+    const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/GetPatientSummaries/?email=";
     fetch(apiUrl + email, {
       method: "GET",
       headers: new Headers({
@@ -71,7 +71,7 @@ const PatientSummaries = () => {
   const patientCalendarClick = () => {navigate("/PaSummaries", { state: email } ) };
 
   const handlePastSummaries = () => {
-    const apiUrl = "https://localhost:44380/api/GetPatientSummaries/?email=";
+    const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/GetPatientSummaries/?email=";
     fetch(apiUrl + email, {
       method: "GET",
       headers: new Headers({

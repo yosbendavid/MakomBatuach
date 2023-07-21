@@ -40,7 +40,7 @@ const FileLisT = () => {
   useEffect(() => {
     const getAllFiles = async () => {
       try {
-        const response = await axios.get(`https://localhost:44380/api/gettherapistfiles/33445566`);
+        const response = await axios.get(`https://proj.ruppin.ac.il/cgroup100/prod/api/gettherapistfiles/33445566`);
         const data = response.data;
         setFileData(data);
         console.log("היי");

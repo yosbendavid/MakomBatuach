@@ -6,7 +6,7 @@ const DisplayImage = () => {
 
   const downloadPdf = async () => {
     try {
-      const response = await axios.post('https://localhost:44380/api/getpdffiles', {
+      const response = await axios.post('https://proj.ruppin.ac.il/cgroup100/prod/api/getpdffiles', {
         Id: userId
       }, {
         // Make sure the response data is received as a Blob

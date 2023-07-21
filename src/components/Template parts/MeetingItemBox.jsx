@@ -11,7 +11,7 @@ const MeetingItemBox = (props) => {
 
   const isPastAppointment = new Date(props.date) < new Date();
 
-  const apiUrl = "https://localhost:44380/api/Update";
+  const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/Update";
 
   const CancelMeeting = () => {
     Swal.fire({

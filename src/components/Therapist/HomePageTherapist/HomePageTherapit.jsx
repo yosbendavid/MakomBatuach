@@ -33,8 +33,8 @@ import {
   XICon,
 } from "./HomePageTherapit.Style";
 
-const apiUrl = "https://localhost:44380/api/Therapist/?email=";
-const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
+const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/Therapist/?email=";
+const apiUrll = "https://proj.ruppin.ac.il/cgroup100/prod/api/Therapistpreviou/?email=";
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
@@ -65,8 +65,15 @@ export default function HomePageTherapit() {
     console.log("email=", email);
     const result = await fetch(apiUrll + email);
     const json = await result.json();
+    localStorage.setItem('FirstName', json[0].FirstName);
+    localStorage.setItem('LastName', json[0].LastName);
     setLastmeeting(json);
   };
+
+  const name = localStorage.getItem('FirstName');
+  console.log(name);
+  const lastName = localStorage.getItem('LastName');
+  console.log(lastName);
 
   const go2Patients = () => {
     navigate("/Patients", { state: email });
@@ -96,20 +103,20 @@ export default function HomePageTherapit() {
   return (
     <div style={{ padding: "50px 0" }}>
       <TitleWrapper>
-        <TherapistDiv>
-          <TherapistName>
-            {" "}
-            {Meeting &&
-              Meeting.length > 0 &&
-              `${Meeting[0].FirstName[0]} ${Meeting[0].LastName[0]}`}{" "}
-          </TherapistName>
-        </TherapistDiv>
-        <span></span>
-        <TitleName>
-          {" "}
-          היי, {Meeting && Meeting.length > 0 && `${Meeting[0].FirstName}`} {" "}
-        </TitleName>
-      </TitleWrapper>
+    <TherapistDiv>
+      <TherapistName>
+        {" "}
+        {name && name[0] ? name[0] : ""} {lastName && lastName[0] ? lastName[0] : ""}
+        {" "}
+      </TherapistName>
+    </TherapistDiv>
+    <span></span>
+    <TitleName>
+      {" "}
+      היי, {name ? name : ""}
+      {" "}
+    </TitleName>
+  </TitleWrapper>
       <MeetingDate> פגישות להיום- {currentDate} </MeetingDate>
       {Meeting != null && Meeting.length > 0 ? (
         Meeting.map((meeting) => (
@@ -153,7 +160,7 @@ export default function HomePageTherapit() {
 
 const MeetingCard = ({ meeting }) => {
 
-  const apiUrl = "https://localhost:44380/api/Update";
+  const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/Update";
   
   const CancelMeeting = () => {
     Swal.fire({

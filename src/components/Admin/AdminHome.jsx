@@ -11,7 +11,7 @@ import {
 import "../../CSS/PHomePage.css"
 import BottomBar from '../Template parts/BottomBar';
 
-const apiUrl = "https://localhost:44380/api/GetAllTherapits/?email="
+const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/GetAllTherapits/?email="
 
 
 export default function AdminHome() {
@@ -57,6 +57,9 @@ export default function AdminHome() {
   return (
     <div>
       <Container>
+      <h2 style={{ textAlign: "center", marginBottom: "20px", color: "#BD9DBB",  }}>
+          היי, מנהלת הקליניקה
+        </h2>
         <SearchDiv>
           <SearchText onChange={event => setQuery(event.target.value)} type={"text"} placeholder="חיפוש..." />
           <StyledIcon />
