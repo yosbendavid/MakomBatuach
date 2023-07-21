@@ -39,9 +39,9 @@ const MeetingItemBox = (props) => {
               title: 'הפגישה בוטלה',
               icon: 'success'
             })
-            setTimeout(() => {
-              window.location.reload(); // Reload the current page after a delay
-            }, 1000); // Set the desired delay in milliseconds (e.g., 2000ms = 2 seconds)
+            //setTimeout(() => {
+            // window.location.reload(); // Reload the current page after a delay
+           // }, 1000); // Set the desired delay in milliseconds (e.g., 2000ms = 2 seconds)
           })
           .catch((error) => {
             // Handle error

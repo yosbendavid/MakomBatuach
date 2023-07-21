@@ -16,7 +16,7 @@ const dummy_meetings = [
 
 const PHomePage = () => {
 
-  const apiUrl = "http://proj.ruppin.ac.il/cgroup100/prod/api/patientstreatment/?email="
+  const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/patientstreatment/?email="
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -83,7 +83,7 @@ const PHomePage = () => {
   };
 
   const Go2Nemeeting = () => {
-    const tryget = "http://proj.ruppin.ac.il/cgroup100/prod/api/getdayoff";
+    const tryget = "https://proj.ruppin.ac.il/cgroup100/prod/api/getdayoff";
     fetch(tryget + "/?email=" + email, {
       method: "GET",
       headers: new Headers({
