@@ -43,7 +43,7 @@ const FilesListRender = () => {
   useEffect(() => {
     const getAllFiles = async () => {
       try {
-        const response = await axios.get(`https://localhost:44380/api/gettherapistpatientsfiles2/${therapistId}`);
+        const response = await axios.get(`https://proj.ruppin.ac.il/cgroup100/prod/api/gettherapistpatientsfiles2/${therapistId}`);
         const data = response.data;
         setFileData(data);
       } catch (error) {

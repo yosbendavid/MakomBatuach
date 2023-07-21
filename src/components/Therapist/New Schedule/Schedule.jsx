@@ -78,7 +78,7 @@ const Schedule = (props) => {
     event.preventDefault();
     console.log(selectedDates);
     try {
-      const response = await axios.post("https://localhost:44380/api/Daysoff", {
+      const response = await axios.post("https://proj.ruppin.ac.il/cgroup100/prod/api/Daysoff", {
         Free: selectedDates,
         Email: email,
       });

@@ -33,8 +33,8 @@ import {
   XICon,
 } from "./HomePageTherapit.Style";
 
-const apiUrl = "https://localhost:44380/api/Therapist/?email=";
-const apiUrll = "https://localhost:44380/api/Therapistpreviou/?email=";
+const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/Therapist/?email=";
+const apiUrll = "https://proj.ruppin.ac.il/cgroup100/prod/api/Therapistpreviou/?email=";
 
 export default function HomePageTherapit() {
   const [Meeting, setPaMeeting] = useState([]);
@@ -103,19 +103,20 @@ export default function HomePageTherapit() {
   return (
     <div style={{ padding: "50px 0" }}>
       <TitleWrapper>
-        <TherapistDiv>
-          <TherapistName>
-            {" "}
-            {name[0]? name[0] : ""} {lastName[0]? lastName[0] : ""}
-            {" "}
-          </TherapistName>
-        </TherapistDiv>
-        <span></span>
-        <TitleName>
-          {" "}
-          היי, {name? name : ""}
-        </TitleName>
-      </TitleWrapper>
+    <TherapistDiv>
+      <TherapistName>
+        {" "}
+        {name && name[0] ? name[0] : ""} {lastName && lastName[0] ? lastName[0] : ""}
+        {" "}
+      </TherapistName>
+    </TherapistDiv>
+    <span></span>
+    <TitleName>
+      {" "}
+      היי, {name ? name : ""}
+      {" "}
+    </TitleName>
+  </TitleWrapper>
       <MeetingDate> פגישות להיום- {currentDate} </MeetingDate>
       {Meeting != null && Meeting.length > 0 ? (
         Meeting.map((meeting) => (
@@ -159,7 +160,7 @@ export default function HomePageTherapit() {
 
 const MeetingCard = ({ meeting }) => {
 
-  const apiUrl = "https://localhost:44380/api/Update";
+  const apiUrl = "https://proj.ruppin.ac.il/cgroup100/prod/api/Update";
   
   const CancelMeeting = () => {
     Swal.fire({

@@ -27,9 +27,9 @@ const Login = () => {
     // צריך לעדכן לולידציה רלוונטית לוחץ על התחבר זה הפונקציה עם הולידציה להתחברות
     const loginInAccount = async (event) => {
         event.preventDefault();
-        if(password != "" && email != ""){
+        if(password !== "" && email !== ""){
             try {
-                const response = await axios.post('https://localhost:44380/api/SignInUser/login', {
+                const response = await axios.post('https://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/login', {
                     Email: email,
                     Password: password
                 });

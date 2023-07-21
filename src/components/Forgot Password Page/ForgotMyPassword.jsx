@@ -65,7 +65,7 @@ const ForgotMyPassword = () => {
     navigate("/Login");
   }
   const userexist = async () => {
-    const apiUrl = 'https://localhost:44380/api/SignInUser/userexist/?email=';
+    const apiUrl = 'https://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/userexist/?email=';
   
     try {
       const res = await fetch(apiUrl + email, {
@@ -90,7 +90,7 @@ const ForgotMyPassword = () => {
 
   const change = async () => {
     try {
-      const response = await axios.post('https://localhost:44380/api/SignInUser/Changepa', {
+      const response = await axios.post('https://proj.ruppin.ac.il/cgroup100/prod/api/SignInUser/Changepa', {
         Email: email,
         Password: newPassword,
       });
