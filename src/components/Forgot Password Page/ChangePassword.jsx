@@ -130,6 +130,8 @@ const ChangePassword = () => {
     } catch (error) {
       console.error('Request failed with status code', error.response.status);
     }
+
+    navigate("/Phome");
   };
 
 
